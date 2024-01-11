@@ -1,0 +1,9 @@
+.mainContainer {
+  min-height: 100vh;
+  background-color: grey;
+}
+@media (min-width: 500px) {
+  .mainContainer {
+    padding: 0px 20px 10px 20px;
+  }
+}

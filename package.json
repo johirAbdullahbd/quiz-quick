@@ -1,0 +1,22 @@
+{
+  "name": "quick-exam-online",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf/renderer": "^3.1.15",
+    "file-saver": "^2.0.5",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.1",
+    "next": "14.0.4",
+    "pdfjs-dist": "^4.0.379",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}

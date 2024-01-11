@@ -1,0 +1,40 @@
+.mainContainer {
+  min-height: 100vh;
+  background-color: grey;
+}
+@media (min-width: 500px) {
+  .mainContainer {
+    padding: 0px 20px 10px 20px;
+  }
+}
+
+.skillsContainer {
+  display: grid;
+  grid-template-columns: auto;
+  max-width: 100%;
+  padding: 20px;
+  width: var(--max-width);
+  background-color: #555;
+}
+.container {
+  background-color: #555;
+}
+.bttm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  margin: 20px;
+  font-size: 22px;
+  padding: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #73a6de;
+}
