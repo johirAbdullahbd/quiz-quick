@@ -1,0 +1,93 @@
+/* SignupForm.module.css */
+.bodyContainear {
+  width: 100vw;
+  height: 100vh;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.formContainer {
+  background-color: grey;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.inputField {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: #69717f;
+  border: 1px solid #e8eaef;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  outline: none;
+}
+.inputField:focus {
+  background-color: #1c293f;
+  border: 2px solid #e8eaef; /* Highlight border color on focus */
+}
+.invalidEmail {
+  border-color: red;
+}
+.passwordContainer {
+  position: relative;
+}
+
+.passwordInput {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: #69717f;
+  border: 1px solid #e8eaef;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.showPasswordToggle {
+  background-color: #4282ef;
+  border-radius: 5px;
+  padding: 2px;
+  position: absolute;
+  top: 57%;
+  right: 8px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.btnDiv {
+  width: 100%;
+
+  text-align: center;
+  align-items: center;
+}
+.btn {
+  /* margin: 0 auto; */
+  background-color: #0056b3;
+  color: white;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.backBtn {
+  position: relative;
+  right: 210px;
+  bottom: 150px;
+}
+.btn:hover {
+  background-color: #4282ef; /* Darker blue on hover for visual feedback */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .formContainer {
+    max-width: 100%;
+  }
+}

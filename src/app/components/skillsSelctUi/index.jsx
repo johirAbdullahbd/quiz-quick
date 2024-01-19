@@ -3,8 +3,10 @@ import SerchBox from "./searchBox";
 import SkillsList from "./skiilsList";
 import Styles from "../../styles/skilsSelectStyle/page.module.css";
 import styles from "../../styles/quizStyle/page.module.css";
+import { useRouter } from "next/navigation";
 
 const SkillsSelectUi = ({ isDropdownVisible, searchResults, handleSearch, handleSelectSearchValue, searchValue }) => {
+  const router = useRouter();
   return (
     <div>
       <Navbar />
@@ -18,7 +20,9 @@ const SkillsSelectUi = ({ isDropdownVisible, searchResults, handleSearch, handle
         />
         <SkillsList handleClick={handleSelectSearchValue} />
         <div className={styles.bttm}>
-          <button className={styles.btn}>Back to home</button>
+          <button onClick={() => router.push("/")} className={styles.btn}>
+            Back to home
+          </button>
         </div>
       </div>
     </div>

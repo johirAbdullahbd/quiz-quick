@@ -1,9 +1,8 @@
 .skillsContainer {
   display: grid;
   grid-template-columns: auto;
-  max-width: 100%;
+  width: 100%;
   padding: 20px;
-  width: var(--max-width);
   background-color: #555;
 }
 .skillsContainer li {

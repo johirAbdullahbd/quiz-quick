@@ -1,93 +1,66 @@
+import React, { useMemo } from "react";
 import McqSelection from "./selection";
 import Styles from "../../styles/quizStyle/page.module.css";
 import Headding from "./headding";
 import Navbar from "../navbar";
-import Permision from "./permition";
-import ShowRejult from "./rejultShow";
 
+// Function to render the quiz header component
+const renderQuizHeader = (rejultPage, timeString, score, allSelect, isVisible, scrollToTop) => (
+  <Headding rejultPage={rejultPage} timeString={timeString} score={score} allSelect={allSelect} isVisible={isVisible} scrollToTop={scrollToTop} />
+);
+
+// Rendering of quiz buttons to
+const renderQuizButtons = () => (
+  <div className={Styles.bttm}>
+    <button className={Styles.btn}>Submit Quiz</button>
+  </div>
+);
+
+// Function to render an individual question select component
+const renderQuestion = (question, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount) => (
+  <McqSelection
+    key={index}
+    index={index}
+    selectedObj={selectedObj}
+    handleSelectedObj={handleSelectedObj}
+    rejultPage={rejultPage}
+    question={question.statement}
+    options={question.options}
+    answer={question.correctAnswer}
+    handleScore={handleScore}
+    handleAllSelectCount={handleAllSelectCount}
+  />
+);
+
+// Main rendering of the QuizUi component
 const QuizUi = ({
   selectedObj,
   handleSelectedObj,
-  handleAnsViews,
-  rejultShow,
-  quizStart,
   timeString,
-  seconds,
   score,
-  allSelectedQuestionNumber,
+  allSelect,
   isVisible,
   scrollToTop,
-
   questions,
-  seePage,
-  resetQuiz,
+  rejultPage,
   handleScore,
   handleAllSelectCount,
-  handleQuizStart,
 }) => {
-  if (!questions) {
-    return (
-      <div>
-        <h1>loading...</h1>
-      </div>
-    );
-  }
   return (
     <div>
-      {rejultShow ? (
-        <ShowRejult
-          timeString={timeString}
-          handleAnsViews={handleAnsViews}
-          seconds={seconds}
-          score={score}
-          allSelectedQuestionNumber={allSelectedQuestionNumber}
-          handleQuizStart={handleQuizStart}
-        />
-      ) : (
-        <div>
-          {quizStart ? (
-            <div>
-              <Navbar />
-              <div className={Styles.mainContainer}>
-                <div className={Styles.container}>
-                  <Headding
-                    seePage={seePage}
-                    timeString={timeString}
-                    score={score}
-                    allSelectedQuestionNumber={allSelectedQuestionNumber}
-                    isVisible={isVisible}
-                    scrollToTop={scrollToTop}
-                    handleQuizStart={handleQuizStart}
-                  />
-
-                  {questions.map((question, i) => (
-                    <McqSelection
-                      index={i}
-                      selectedObj={selectedObj}
-                      handleSelectedObj={handleSelectedObj}
-                      seePage={seePage}
-                      question={question.statement}
-                      options={question.options}
-                      answer={question.correctAnswer}
-                      handleScore={handleScore}
-                      handleAllSelectCount={handleAllSelectCount}
-                      resetQuiz={resetQuiz}
-                    />
-                  ))}
-                  {!seePage && (
-                    <div className={Styles.bttm}>
-                      <button className={Styles.btn}>Submit Qu</button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <Permision handleQuizStart={handleQuizStart} />
+      <Navbar />
+      <div className={Styles.mainContainer}>
+        <div className={Styles.container}>
+          {/* Conditional rendering based on the availability of questions */}
+          {renderQuizHeader(rejultPage, timeString, score, allSelect, isVisible, scrollToTop)}
+          {questions.map((question, index) =>
+            renderQuestion(question, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount)
           )}
+          {!rejultPage && renderQuizButtons()}
         </div>
-      )}
+      </div>
     </div>
   );
 };
+
 export default QuizUi;

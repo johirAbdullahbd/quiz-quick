@@ -1,137 +1,101 @@
-// McqSelection.js
 "use client";
+import React, { useState } from "react";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
-import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import url from "../../../../public/iim.png";
 
-const McqSelection = ({ handleSelectedObj, seePage, index, question, options, answer, handleScore, handleAllSelectCount, selectedObj }) => {
+const McqSelection = ({ handleSelectedObj, rejultPage, index, question, options, answer, handleScore, handleAllSelectCount, selectedObj }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [ans, setAns] = useState(false);
 
-  // useEffect(() => {
-  //   if (selectedOption) {
-  //     handleSelectedObj(index, selectedOption);
-  //   } else {
-  //     handleSelectedObj(index);
-  //   }
-  // }, [selectedOption]);
-  // Handler function to update the selected option
+  // Handler function to update the selected option and handle score
   const handleOptionSelect = (option) => {
-    if (selectedOption === option) {
-      handleSelectedObj(index);
-    } else {
-      handleSelectedObj(index, option);
-    }
-    // console.log("call");
-    setSelectedOption((prevSelectedOption) => (prevSelectedOption === option ? null : option));
+    const isSameOption = selectedOption === option;
+    handleSelectedObj(index, isSameOption ? null : option);
+    setSelectedOption(() => (isSameOption ? null : option));
+
+    // Handle score and answer state based on user selection
+
     if (!selectedOption) {
       handleAllSelectCount(true);
-      // console.log("111");
       if (answer === option) {
-        // console.log("empty to write");
+        // empty to correct
         handleScore(true);
         setAns(true);
       } else {
-        // console.log("empty to wrong");
+        // empty to wrong
         setAns(false);
       }
     } else {
       selectedOption === option && handleAllSelectCount(false);
 
-      // console.log("33");
-      // console.log("222");
       if (answer === option && !ans) {
-        // console.log("wrong to write");
+        // wrong to correct
         handleScore(true);
         setAns(true);
       } else {
         if (answer === option && ans) {
-          // console.log("write to write");
-
+          // correct to correct
           handleScore(false);
           setAns(false);
         } else {
           if (ans) {
-            // console.log("write to wrong");
-
+            // correct to wrong
             handleScore(false);
             setAns(false);
-          } else {
-            // console.log("wrong to wrong");
           }
         }
       }
     }
   };
+
+  // Function to determine the styling based on resultPage and user selection
   const handleStyle = (option) => {
-    if (seePage) {
+    if (rejultPage) {
       if (option === answer) {
-        if (option == selectedObj[index]) {
-          return Styles.correct;
-        } else {
-          return Styles.deafaultAns;
-        }
+        return option === selectedObj[index] ? Styles.correct : Styles.deafaultAns;
       } else {
-        if (selectedObj[index] === option) {
-          return Styles.wrong;
-        } else {
-          return Styles.resetPointer;
-        }
+        return selectedObj[index] === option ? Styles.wrong : Styles.resetPointer;
       }
     } else {
       return selectedOption === option ? Styles.selected : Styles.nonSelect;
     }
   };
+
   // Render the component JSX
   return (
     <div className={Styles.mcqContainer}>
       <h3>
-        {index}. 33{question}11
+        {index}. {question}
       </h3>
+      <Image
+        className={Styles.img}
+        src="https://ipfs.filebase.io/ipfs/QmRdvZX4FTx84TjybCXpzoXLFK5u2x3JbhHVCaZS1piwp8"
+        // src="https://i.postimg.cc/Lhxcrvm5/Screenshot-2023-10-21-073257.png"
+        width={600}
+        height={200}
+        alt="Screenshot-2023-10-21-073257"
+      />
+
       <ul>
-        {options.map((option, index) => (
-          <div>
-            <li key={index} onClick={() => !seePage && handleOptionSelect(option)} className={handleStyle(option)}>
-              {/* <span className="checkmark"> nn[&#10003;] </span> */}
+        {options.map((option, idx) => (
+          <div key={idx}>
+            <li onClick={() => !rejultPage && handleOptionSelect(option)} className={handleStyle(option)}>
               {option}
             </li>
-            {seePage && (
+            {rejultPage && (
               <div className={Styles.ans}>
-                {handleStyle(option) === Styles.correct && <span>your answer correct</span>}
-                {handleStyle(option) === Styles.wrong && <span>your answer wrong</span>}
-                {handleStyle(option) === Styles.deafaultAns && <span> default answer</span>}
+                {handleStyle(option) === Styles.correct && <span>Your answer is correct</span>}
+                {handleStyle(option) === Styles.wrong && <span>Your answer is wrong</span>}
+                {handleStyle(option) === Styles.deafaultAns && <span>Default answer</span>}
               </div>
             )}
           </div>
         ))}
       </ul>
-      {!seePage && <p> Selected Option: {selectedOption}</p>}
+      {!rejultPage && <p> Selected Option: {selectedOption}</p>}
     </div>
   );
 };
 
 export default McqSelection;
-
-const handleOptionClick = (option) => {
-  setSelectedOption(option);
-  onAnswer(option === data.correctAnswer);
-};
-
-const handleAnswe = (isCorrect) => {
-  if (isCorrect) {
-    setScore(score + 1);
-  }
-};
-
-const handleAnswer = (isCorrect) => {
-  if (isCorrect) {
-    setScore(score + 1);
-  }
-
-  // Move to the next question or show the result
-  setCurrentQuestionIndex(currentQuestionIndex + 1);
-};
-
-const resetQuiz = () => {
-  setCurrentQuestionIndex(0);
-  setScore(0);
-};

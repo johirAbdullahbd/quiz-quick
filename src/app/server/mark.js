@@ -1,9 +1,37 @@
-const obj = { point: "", allSelect: "" };
-export const setDataHandle = (data) => {
-  obj.point = data.point;
-  obj.allSelect = data.allSelect;
-};
+class MarkData {
+  constructor() {
+    this.data = {
+      name: "",
+      email: "",
+      password: "",
+      score: "",
+      allSelect: "",
+      timeString: "",
+      selectedObj: "",
+      questions: [],
+      subject: "",
+      rejultPage: false,
+    };
+  }
 
-export const getDataHandle = () => {
-  return obj;
-};
+  setMarkData(data) {
+    this.data = { ...this.data, ...data };
+  }
+
+  getMarkData() {
+    return this.data;
+  }
+
+  getSubjectName() {
+    return this.data.subject;
+  }
+
+  setSubjectName(data) {
+    this.data = { ...this.data, subject: data.subject };
+  }
+}
+
+// Creating a single instance of the MarkData class
+const markDataInstance = new MarkData();
+
+export default markDataInstance;

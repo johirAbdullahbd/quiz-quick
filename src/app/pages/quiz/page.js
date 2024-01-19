@@ -1,140 +1,138 @@
 "use client";
-// import { library } from "@fortawesome/fontawesome-svg-core";
-// import { faCheck } from "@fortawesome/free-solid-svg-icons";
-// import "@fortawesome/fontawesome-svg-core/styles.css";
 
-// library.add(faCheck);
-
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import getQuestions from "@/app/server/getQuestion";
-// import questions from "./quetionData";
 import QuizUi from "@/app/components/quizUi";
+import markDataInstance from "@/app/server/mark";
+import { useRouter } from "next/navigation";
+import Custom404 from "@/app/error";
 
 const App = () => {
-  const [pdfView, setPdfView] = useState(false);
-  const [questions, setQuestions] = useState(null);
-  const [selectedObj, setSelectedObj] = useState({});
-  const [quizStart, setQuizStart] = useState(false);
-  const [timeString, setTimeString] = useState("");
-  const [rejultShow, setRejultShow] = useState(false);
+  const router = useRouter();
 
-  const [seePage, setSeePage] = useState(false);
-  const [seconds, setSeconds] = useState(20);
-  const [isTimerActive, setIsTimerActive] = useState(false);
-  const [score, setScore] = useState(0);
-  const [allSelectedQuestionNumber, setAllSelectedQuestionNumber] = useState(0);
-  const [resetQuiz, setResetQuiz] = useState(false);
-
-  const [isVisible, setIsVisible] = useState(false);
-
-  const handleScroll = () => {
-    const scrollY = window.scrollY;
-    const showThreshold = 200; // Adjust this threshold as needed
-
-    setIsVisible(scrollY > showThreshold);
+  // Initial state
+  const initialState = {
+    questions: [],
+    selectedObj: {},
+    timeString: "",
+    rejultPage: false,
+    seconds: 12,
+    isTimerActive: true,
+    score: 0,
+    allSelect: 0,
+    isVisible: false,
   };
+
+  const [state, setState] = useState(initialState);
+
+  // Event handler for scrolling
+  const handleScroll = () => {
+    const showThreshold = 200;
+    setState((prevState) => ({ ...prevState, isVisible: window.scrollY > showThreshold }));
+  };
+
+  // Function to fetch questions
+  const fetchQuestions = () => {
+    const array = getQuestions(markDataInstance.getSubjectName());
+    setState((prevState) => ({ ...prevState, questions: shuffleArray(array).slice(0, 100) }));
+  };
+  // Check previus route
+  if (!markDataInstance.getSubjectName()) {
+    return <Custom404 />;
+  }
   useEffect(() => {
-    // setQuestions(getQuestions(sessionStorage.getItem("subject")));
+    // Check if there are no saved questions and fetch inisial data handle
+    const data = markDataInstance.getMarkData();
+    if (data.questions.length === 0) {
+      // Fetch initial data
+      fetchQuestions();
+    } else {
+      console.log("kkk");
+      // Update this page for see all answer
+      setState((prevState) => ({ ...prevState, isTimerActive: false, ...data, rejultPage: true }));
+    }
 
-    // const preventTextSelection = (event) => {
-    //   event.preventDefault();
-    // };
-
-    // Attach the preventTextSelection function to the selectstart and contextmenu events
-    // document.addEventListener("selectstart", preventTextSelection);
-    // document.addEventListener("contextmenu", preventTextSelection);
+    // Event listener setup for preventing text selection and context menu
+    const preventTextSelection = (event) => event.preventDefault();
+    document.addEventListener("selectstart", preventTextSelection);
+    document.addEventListener("contextmenu", preventTextSelection);
     window.addEventListener("scroll", handleScroll);
-    //Cleanup: Remove event listeners when the component is unmounted
+
+    // Cleanup: Remove event listeners when the component is unmounted
     return () => {
-      // document.removeEventListener("selectstart", preventTextSelection);
-      // document.removeEventListener("contextmenu", preventTextSelection);
+      document.removeEventListener("selectstart", preventTextSelection);
+      document.removeEventListener("contextmenu", preventTextSelection);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  // Timer interval setup
   useEffect(() => {
-    const array = getQuestions(sessionStorage.getItem("subject"));
+    const intervalId = setInterval(
+      () => setState((prevState) => ({ ...prevState, seconds: prevState.isTimerActive ? prevState.seconds - 1 : prevState.seconds })),
+      1000
+    );
 
-    setQuestions(shuffleArray(array).slice(0, 100));
-  }, [resetQuiz]);
+    // Cleanup: Clear interval when the component is unmounted or on timer completion
+    return () => clearInterval(intervalId);
+  }, [state.isTimerActive]);
 
-  const handleScore = (isCorrect) => {
-    if (isCorrect) {
-      setScore((prevScore) => prevScore + 1);
-    } else {
-      setScore((prevScore) => prevScore - 1);
-    }
-  };
-  const handleAllSelectCount = (isAdded) => {
-    if (isAdded) {
-      setAllSelectedQuestionNumber((preNumber) => preNumber + 1);
-    } else {
-      setAllSelectedQuestionNumber((preNumber) => preNumber - 1);
-    }
-  };
-
+  // Timer countdown and time string update
   useEffect(() => {
-    // Start the interval if isTimerActive is true
-    if (isTimerActive) {
-      const intervalId = setInterval(() => {
-        setSeconds((prevSeconds) => prevSeconds - 1);
-      }, 1000);
+    // Conditional logic for submitting on timer completion
+    if (!state.rejultPage && state.seconds === 0) submit();
 
-      // Cleanup function to clear the interval when the component is unmounted
-      return () => clearInterval(intervalId);
-    }
+    // Calculate minutes and remaining seconds
+    const minutes = Math.floor((state.seconds % 3600) / 60);
+    const remainingSeconds = state.seconds % 60;
 
-    // Stop the interval when isTimerActive becomes false
-  }, [isTimerActive]);
-
-  useEffect(() => {
-    if (seconds == 0) {
-      setIsTimerActive(false);
-      // setSeePage(true);
-      setRejultShow(true);
-    }
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = seconds % 60;
-
+    // Format time string
     const formattedTimeString = `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
 
-    setTimeString(formattedTimeString);
-  }, [seconds]);
+    // Update state with formatted time string
+    setState((prevState) => ({ ...prevState, timeString: formattedTimeString }));
+  }, [state.seconds]);
 
+  // Event handler for updating score based on correctness
+  const handleScore = (isCorrect) => setState((prevState) => ({ ...prevState, score: isCorrect ? prevState.score + 1 : prevState.score - 1 }));
+
+  // Event handler for updating allSelect based on addition/removal
+  const handleAllSelectCount = (isAdded) =>
+    setState((prevState) => ({
+      ...prevState,
+      allSelect: isAdded ? prevState.allSelect + 1 : prevState.allSelect - 1,
+    }));
+
+  // Event handler for form submission
+  const submit = () => {
+    // Save mark data to storage
+    markDataInstance.setMarkData({
+      seconds: state.seconds,
+      timeString: state.timeString,
+      score: state.score,
+      allSelect: state.allSelect,
+      selectedObj: state.selectedObj,
+      questions: state.questions,
+    });
+    // Update state to stop the timer
+    setState((prevState) => ({ ...prevState, isTimerActive: false }));
+    // Navigate to the result page
+    router.push("showrejult");
+  };
+
+  // Event handler for smooth scroll to top
   const scrollToTop = () => {
     const scrollStep = -window.scrollY / (1 * 60);
     let scrollPosition = window.scrollY;
-
     const scrollInterval = setInterval(() => {
       if (scrollPosition > 0) {
         window.scrollBy(0, scrollStep);
         scrollPosition += scrollStep;
-      } else {
-        clearInterval(scrollInterval);
-      }
+      } else clearInterval(scrollInterval);
     }, 1000 / 60);
   };
 
-  const handleButtonClick = () => {
-    scrollToTop();
-  };
-
-  const handleQuizStart = (again) => {
-    if (again) {
-      setSeePage(false);
-      setTimeString("");
-      setSeconds(10);
-      setAllSelectedQuestionNumber(0);
-      setScore(0);
-      setRejultShow(false);
-      setResetQuiz((prevData) => !prevData);
-      setQuizStart(false);
-      setIsTimerActive(false);
-    } else {
-      setQuizStart(true);
-      setIsTimerActive(true);
-    }
-  };
+  // Function for shuffling an questions data array
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -142,62 +140,37 @@ const App = () => {
     }
     return array;
   };
-  // useEffect(() => shuffleArray(array), []);
-  const handleAnsViews = () => {
-    setSeePage(true);
-    setRejultShow(false);
-  };
 
+  // Event handler for updating questions options selectedObj based on key and value
   const handleSelectedObj = (key, value) => {
-    const obj = selectedObj;
-    if (value) {
-      obj[key] = value;
-      setSelectedObj(obj);
-    } else {
-      delete obj[key];
-
-      setSelectedObj(obj);
-    }
+    setState((prevState) => {
+      const obj = { ...prevState.selectedObj };
+      // Conditional logic for adding or removing key from obj
+      if (value) obj[key] = value;
+      else delete obj[key];
+      // Update state with modified selectedObj
+      return { ...prevState, selectedObj: obj };
+    });
   };
 
   return (
     <div>
       <QuizUi
-        selectedObj={selectedObj}
+        submit={submit}
+        selectedObj={state.selectedObj}
         handleSelectedObj={handleSelectedObj}
-        handleAnsViews={handleAnsViews}
-        rejultShow={rejultShow}
-        quizStart={quizStart}
-        timeString={timeString}
-        seconds={seconds}
-        score={score}
-        allSelectedQuestionNumber={allSelectedQuestionNumber}
-        isVisible={isVisible}
+        timeString={state.timeString}
+        score={state.score}
+        allSelect={state.allSelect}
+        isVisible={state.isVisible}
         scrollToTop={scrollToTop}
-        questions={questions}
-        seePage={seePage}
-        resetQuiz={resetQuiz}
+        questions={state.questions}
+        rejultPage={state.rejultPage}
         handleScore={handleScore}
         handleAllSelectCount={handleAllSelectCount}
-        handleQuizStart={handleQuizStart}
       />
     </div>
   );
 };
 
 export default App;
-const array = [
-  { 1: "ab" },
-  { 2: "33" },
-  { 3: "22" },
-  { 9: "kdd" },
-  { 4: "dd" },
-  { 5: "jj" },
-  { 6: "dd", 7: "dd" },
-  { 6: "ddd" },
-  { 0: "dd" },
-  { dd: "dd", d: "dd" },
-  { b: "dd", s: "dsd" },
-  { ddd: "dd" },
-  { 6: "ddt" },
-];

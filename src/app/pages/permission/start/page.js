@@ -1,9 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
-import Styles from "../../styles/quizStyle/permision.module.css";
-const SecondStart = ({ handleQuizStart }) => {
+import Styles from "../../../styles/quizStyle/permision.module.css";
+import { useRouter } from "next/navigation";
+import markDataInstance from "@/app/server/mark";
+const SecondStart = () => {
   const [isTimerActive, setIsTimerActive] = useState(true);
   const [seconds, setSeconds] = useState(3);
+  const router = useRouter();
+
+  if (!markDataInstance.getSubjectName()) {
+    return <Custom404 />;
+  }
   useEffect(() => {
     // Start the interval if isTimerActive is true
     if (isTimerActive) {
@@ -17,16 +24,17 @@ const SecondStart = ({ handleQuizStart }) => {
 
     // Stop the interval when isTimerActive becomes false
   }, [isTimerActive]);
-
   useEffect(() => {
     if (seconds == 1) {
-      handleQuizStart();
       setIsTimerActive(false);
+      router.push("/pages/quiz");
     }
   }, [seconds]);
   return (
-    <div className={Styles.card}>
-      <span>{seconds}</span>
+    <div className={Styles.startContainear}>
+      <div className={Styles.start}>
+        <span>{seconds}</span>
+      </div>
     </div>
   );
 };

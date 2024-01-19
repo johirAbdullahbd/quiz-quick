@@ -1,4 +1,4 @@
-const JavaScript = [
+const javascript = [
   {
     id: 1,
     statement: "What is 'state' in React?",
@@ -73,4 +73,4 @@ const JavaScript = [
     correctAnswer: "It allows you to perform actions after the state is updated",
   },
 ];
-export default JavaScript;
+export default javascript;

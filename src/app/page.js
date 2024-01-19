@@ -30,21 +30,21 @@ export default function Home() {
           <p>This quiz for softwer enginearing, development , programing,deveopses and same related </p>
         </div>
 
-        <div className={styles.card} onClick={() => router.push("")}>
+        <div className={styles.card} onClick={() => router.push("pages/empty")}>
           <h2>
             Academic Quiz <span>-&gt;</span>
           </h2>
           <p>This quiz for school, collage, university and govment permisionend religion (madrasha) academic subjects ,</p>
         </div>
 
-        <div className={styles.card} onClick={() => router.push("")}>
+        <div className={styles.card} onClick={() => router.push("pages/empty")}>
           <h2>
             world Wide Quiz <span>-&gt;</span>
           </h2>
           <p>This quiz for world economy, politics, history, playing, reserching, jolbayu and wolds social unnoyo , issue and others etc...</p>
         </div>
 
-        <div className={styles.card} onClick={() => router.push("")}>
+        <div className={styles.card} onClick={() => router.push("pages/empty")}>
           <h2>
             Job Peperation Quiz <span>-&gt;</span>
           </h2>

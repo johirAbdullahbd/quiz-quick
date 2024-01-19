@@ -1,0 +1,12 @@
+.containear {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgb(232, 82, 82);
+  color: white;
+}

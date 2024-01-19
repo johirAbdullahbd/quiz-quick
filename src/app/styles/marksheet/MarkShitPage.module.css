@@ -9,6 +9,7 @@
   box-sizing: border-box;
   background-color: white; /* Set background color to white for A4 size appearance */
 }
+
 .card1 {
   width: 100%;
   height: auto;

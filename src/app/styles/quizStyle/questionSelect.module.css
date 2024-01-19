@@ -8,6 +8,11 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.img {
+  width: 550px;
+  padding: 20px;
+  height: auto;
+}
 .mcqContainer ul {
   list-style-type: none;
   padding: 0;
@@ -84,7 +89,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
   align-items: center;
   justify-content: center;
 }
@@ -118,7 +123,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #dc3a3a;
+  background-color: #284679;
 }
 .btn button,
 .headString button {
@@ -127,10 +132,11 @@
   padding: 5px 20px;
   font-size: 20px;
   color: white;
-  background-color: gray;
-  border: 1px solid rgb(10, 10, 10);
+  background-color: rgb(59, 55, 55);
+  border: 1px solid white;
   border-radius: 5px;
 }
+.headString button:hover,
 .btn button:hover {
   background-color: darkgray;
 }
@@ -146,7 +152,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #be3b3b;
+  background-color: #1f3352;
   flex-wrap: wrap;
 }
 .headString h3 {
