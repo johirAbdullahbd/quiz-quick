@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Styles from "../../styles/gloval.module.css";
+import Styles from "../../styles/error.module.css";
 export default function Empty() {
   const router = useRouter();
   return (

@@ -1,15 +1,15 @@
 "use client";
 import ReactDOMServer from "react-dom/server";
 
-import React from "react";
+import { useEffect, useState } from "react";
 import PDFDocument from "./pdfDocument";
 import { saveAs } from "file-saver";
-import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
-import markDataInstance from "@/app/server/mark";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import Custom404 from "@/app/error";
 import Styles from "../../styles/marksheet/marksheetPage.module.css";
 import { useRouter } from "next/navigation";
-
+import axios from "axios";
+const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
 const generatePdfBlob = (content) => {
   try {
     const pdfContent = ReactDOMServer.renderToString(content);
@@ -22,12 +22,39 @@ const generatePdfBlob = (content) => {
 };
 
 const App = () => {
+  const [data, setData] = useState({ name: "", JAQC: "" });
+  const [rejult, setRejult] = useState([]);
+  const [loading, setLoading] = useState(true);
   const route = useRouter();
+
   // Check previus route
-  const name = markDataInstance.getMarkData().name;
-  if (!name) {
+
+  const routePath = sessionStorage.getItem("prevRoute");
+  if (!routePath) {
     return <Custom404 />;
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(API_URL, { JAQC: sessionStorage.getItem("JAQC") });
+        const mark = response.data;
+
+        if (mark.success) {
+          setRejult([...Object.values(mark.rejult)]);
+          setData({ ...data, ...mark });
+          setLoading(false);
+        } else {
+          route.push(routePath);
+        }
+      } catch (error) {
+        route.push(routePath);
+        console.error("Error fetching quiz questions:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const handleGeneratePDF = () => {
     try {
       const pdfBlob = generatePdfBlob(<PDFDocument />);
@@ -45,24 +72,28 @@ const App = () => {
 
   return (
     <div className={Styles.containear}>
-      <div className={Styles.card}>
-        <h1>React PDF Converter</h1>
+      {loading ? (
+        <h1>Load certificate</h1>
+      ) : (
+        <div className={Styles.card}>
+          <h1>React PDF Converter</h1>
 
-        <PDFDocument />
-        <div className={Styles.bttm}>
-          <button onClick={() => route.push("signup")} className={Styles.backBtn}>
-            <span>&laquo; </span>back
-          </button>
-          {/* Generate and Download PDF */}
+          <PDFDocument name={data.name} JAQC={data.JAQC} rejult={rejult} />
+          <div className={Styles.bttm}>
+            <button onClick={() => route.push(routePath)} className={Styles.backBtn}>
+              <span>&laquo; </span>back
+            </button>
+            {/* Generate and Download PDF */}
 
-          {/* PDF Download Link */}
-          <PDFDownloadLink className={Styles.btn} document={<PDFDocument />} fileName="example.pdf">
-            {({ loading }) => <DownloadButton loading={loading} />}
-          </PDFDownloadLink>
-
-          {/* PDF Viewer */}
+            {/* PDF Download Link */}
+            {routePath === "signup" && (
+              <PDFDownloadLink className={Styles.btn} document={<PDFDocument />} fileName="example.pdf">
+                {({ loading }) => <DownloadButton loading={loading} />}
+              </PDFDownloadLink>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

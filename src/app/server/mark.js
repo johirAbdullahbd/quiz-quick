@@ -1,25 +1,37 @@
-class MarkData {
+class Data {
   constructor() {
-    this.data = {
-      name: "",
-      email: "",
-      password: "",
+    this.data = JSON.parse(sessionStorage.getItem("data")) || this.getDefaultData();
+    this.questions = JSON.parse(sessionStorage.getItem("questions")) || [];
+    this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 500);
+    this.saveToSessionStorageDebouncedQuestions = this.debounce(this.saveToSessionStorageQuestions, 500);
+  }
+
+  getDefaultData() {
+    return {
       score: "",
       allSelect: "",
       timeString: "",
       selectedObj: "",
-      questions: [],
       subject: "",
       rejultPage: false,
     };
   }
 
-  setMarkData(data) {
+  setData(data) {
     this.data = { ...this.data, ...data };
+    this.saveToSessionStorageDebouncedData();
   }
 
-  getMarkData() {
+  getData() {
     return this.data;
+  }
+  setQuestions(data) {
+    this.questions = [...data];
+    this.saveToSessionStorageDebouncedQuestions();
+  }
+
+  getQuestions() {
+    return this.questions;
   }
 
   getSubjectName() {
@@ -28,10 +40,27 @@ class MarkData {
 
   setSubjectName(data) {
     this.data = { ...this.data, subject: data.subject };
+    this.saveToSessionStorageDebouncedData();
+  }
+
+  saveToSessionStorageData() {
+    sessionStorage.setItem("data", JSON.stringify(this.data));
+  }
+  saveToSessionStorageQuestions() {
+    sessionStorage.setItem("questions", JSON.stringify(this.questions));
+  }
+
+  debounce(func, delay) {
+    let timeoutId;
+    return function () {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(this, arguments);
+      }, delay);
+    };
   }
 }
 
-// Creating a single instance of the MarkData class
-const markDataInstance = new MarkData();
+const dataInstance = new Data();
 
-export default markDataInstance;
+export default dataInstance;

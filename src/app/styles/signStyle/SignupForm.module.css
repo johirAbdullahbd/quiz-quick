@@ -1,7 +1,8 @@
 /* SignupForm.module.css */
 .bodyContainear {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 30px;
   background-color: darkgray;
   display: flex;
   flex-direction: column;
@@ -13,9 +14,15 @@
   padding: 20px;
   border-radius: 8px;
   width: 400px;
-  margin: 0 auto;
+  margin: 10px auto;
+  align-items: center;
 }
-
+.text {
+  text-align: center;
+}
+.passwordLen {
+  color: rgb(135, 12, 12);
+}
 .inputField {
   width: 100%;
   margin-bottom: 10px;
@@ -55,7 +62,7 @@
   border-radius: 5px;
   padding: 2px;
   position: absolute;
-  top: 57%;
+  top: 44%;
   right: 8px;
   transform: translateY(-50%);
   cursor: pointer;
@@ -78,8 +85,13 @@
 }
 .backBtn {
   position: relative;
-  right: 210px;
-  bottom: 150px;
+  right: 250px;
+  bottom: 350px;
+}
+.backBtn2 {
+  position: relative;
+  right: 200px;
+  bottom: 60px;
 }
 .btn:hover {
   background-color: #4282ef; /* Darker blue on hover for visual feedback */
@@ -89,5 +101,26 @@
 @media (max-width: 768px) {
   .formContainer {
     max-width: 100%;
+  }
+  .showPasswordToggle {
+    top: 43%;
+  }
+  .backBtn {
+    right: 180px;
+    bottom: 346px;
+  }
+  .backBtn2 {
+    right: 140px;
+    /* bottom: 210px; */
+  }
+}
+@media (max-width: 450px) {
+  .backBtn {
+    right: 170px;
+  }
+}
+@media (max-width: 430px) {
+  .backBtn {
+    right: 160px;
   }
 }

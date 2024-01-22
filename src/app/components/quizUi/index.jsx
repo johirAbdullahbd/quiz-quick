@@ -10,9 +10,11 @@ const renderQuizHeader = (rejultPage, timeString, score, allSelect, isVisible, s
 );
 
 // Rendering of quiz buttons to
-const renderQuizButtons = () => (
+const renderQuizButtons = (submit) => (
   <div className={Styles.bttm}>
-    <button className={Styles.btn}>Submit Quiz</button>
+    <button onClick={submit} className={Styles.btn}>
+      Submit Quiz
+    </button>
   </div>
 );
 
@@ -26,6 +28,7 @@ const renderQuestion = (question, index, selectedObj, handleSelectedObj, rejultP
     rejultPage={rejultPage}
     question={question.statement}
     options={question.options}
+    img={question.img}
     answer={question.correctAnswer}
     handleScore={handleScore}
     handleAllSelectCount={handleAllSelectCount}
@@ -34,6 +37,7 @@ const renderQuestion = (question, index, selectedObj, handleSelectedObj, rejultP
 
 // Main rendering of the QuizUi component
 const QuizUi = ({
+  submit,
   selectedObj,
   handleSelectedObj,
   timeString,
@@ -56,7 +60,7 @@ const QuizUi = ({
           {questions.map((question, index) =>
             renderQuestion(question, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount)
           )}
-          {!rejultPage && renderQuizButtons()}
+          {renderQuizButtons(submit)}
         </div>
       </div>
     </div>

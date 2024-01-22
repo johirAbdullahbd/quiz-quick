@@ -1,18 +1,24 @@
 "use client";
-import Image from "next/image";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 export default function Home() {
   const router = useRouter();
+  useEffect(() => {
+    sessionStorage.setItem("prevRoute", "/");
+  });
 
   return (
     <main className={styles.main}>
       <div className={styles.description}>
         <div>
-          By <Image src="/vercel.svg" alt="Vercel Logo" className={styles.vercelLogo} width={100} height={24} priority />
+          <h3>
+            <span style={{ fontSize: "25px" }}>By</span> <span style={{ fontSize: "44px", fontWeight: "bolder", color: "lightblue" }}>JA</span>
+            Academy
+          </h3>
         </div>
 
-        <div className={styles.card}>
+        <div className={styles.card} onClick={() => router.push("pages/getcertificate")}>
           <h2>
             Get Sertificate <span>-&gt;</span>
           </h2>

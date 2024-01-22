@@ -1,11 +1,12 @@
 "use client";
 
+import Styles from "../../styles/quizStyle/permision.module.css";
 import React, { useState, useEffect } from "react";
-import getQuestions from "@/app/server/getQuestion";
 import QuizUi from "@/app/components/quizUi";
-import markDataInstance from "@/app/server/mark";
 import { useRouter } from "next/navigation";
 import Custom404 from "@/app/error";
+import dataInstance from "@/app/server/mark";
+import axios from "axios";
 
 const App = () => {
   const router = useRouter();
@@ -15,15 +16,62 @@ const App = () => {
     questions: [],
     selectedObj: {},
     timeString: "",
-    rejultPage: false,
-    seconds: 12,
-    isTimerActive: true,
+    seconds: 20,
+    isTimerActive: false,
     score: 0,
     allSelect: 0,
     isVisible: false,
+    loading: true,
+    error: null,
+    startTimerActive: true,
+    startSeconds: 3,
   };
 
   const [state, setState] = useState(initialState);
+  const subject = dataInstance.getSubjectName();
+  if (!subject) {
+    return <Custom404 />;
+  }
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.post("http://localhost:4000/api/quiz/questions", { subjectName: subject });
+      const questions = response.data.questions;
+      setState((prevState) => ({ ...prevState, questions: [...questions] }));
+      dataInstance.setQuestions(questions);
+    } catch (error) {
+      console.error("Error fetching quiz questions:", error);
+      setState((prevState) => ({ ...prevState, error: error }));
+    } finally {
+      setState((prevState) => ({ ...prevState, loading: false }));
+    }
+  };
+
+  useEffect(() => {
+    // Start the interval if state.startTimerActive is true
+    if (state.startTimerActive) {
+      const intervalId = setInterval(() => setState((prevState) => ({ ...prevState, startSeconds: prevState.startSeconds - 1 })), 1000);
+
+      // Cleanup function to clear the interval when the component is unmounted
+      return () => clearInterval(intervalId);
+    }
+
+    // Stop the interval when state.startTimerActive becomes false
+  }, [state.startTimerActive]);
+  useEffect(() => {
+    if (state.startSeconds == 0) {
+      setState((prevState) => ({ ...prevState, startTimerActive: false }));
+      if (state.error) {
+        console.log(state.error, "error");
+        router.push("/pages/permission");
+      } else {
+        if (!state.loading) {
+          setState((prevState) => ({ ...prevState, isTimerActive: true }));
+        }
+      }
+      // router.push("/pages/quiz");
+    }
+  }, [state.startSeconds]);
 
   // Event handler for scrolling
   const handleScroll = () => {
@@ -31,26 +79,13 @@ const App = () => {
     setState((prevState) => ({ ...prevState, isVisible: window.scrollY > showThreshold }));
   };
 
-  // Function to fetch questions
-  const fetchQuestions = () => {
-    const array = getQuestions(markDataInstance.getSubjectName());
-    setState((prevState) => ({ ...prevState, questions: shuffleArray(array).slice(0, 100) }));
-  };
   // Check previus route
-  if (!markDataInstance.getSubjectName()) {
+  if (!dataInstance.getSubjectName()) {
     return <Custom404 />;
   }
   useEffect(() => {
-    // Check if there are no saved questions and fetch inisial data handle
-    const data = markDataInstance.getMarkData();
-    if (data.questions.length === 0) {
-      // Fetch initial data
-      fetchQuestions();
-    } else {
-      console.log("kkk");
-      // Update this page for see all answer
-      setState((prevState) => ({ ...prevState, isTimerActive: false, ...data, rejultPage: true }));
-    }
+    sessionStorage.removeItem("JAQC");
+    fetchData();
 
     // Event listener setup for preventing text selection and context menu
     const preventTextSelection = (event) => event.preventDefault();
@@ -68,19 +103,20 @@ const App = () => {
 
   // Timer interval setup
   useEffect(() => {
-    const intervalId = setInterval(
-      () => setState((prevState) => ({ ...prevState, seconds: prevState.isTimerActive ? prevState.seconds - 1 : prevState.seconds })),
-      1000
-    );
-
-    // Cleanup: Clear interval when the component is unmounted or on timer completion
-    return () => clearInterval(intervalId);
+    if (state.isTimerActive) {
+      const intervalId = setInterval(
+        () => setState((prevState) => ({ ...prevState, seconds: prevState.isTimerActive ? prevState.seconds - 1 : prevState.seconds })),
+        1000
+      );
+      // Cleanup: Clear interval when the component is unmounted or on timer completion
+      return () => clearInterval(intervalId);
+    }
   }, [state.isTimerActive]);
 
   // Timer countdown and time string update
   useEffect(() => {
     // Conditional logic for submitting on timer completion
-    if (!state.rejultPage && state.seconds === 0) submit();
+    state.seconds === 0 && submit();
 
     // Calculate minutes and remaining seconds
     const minutes = Math.floor((state.seconds % 3600) / 60);
@@ -105,18 +141,48 @@ const App = () => {
 
   // Event handler for form submission
   const submit = () => {
-    // Save mark data to storage
-    markDataInstance.setMarkData({
+    const points = (state.score / 100) * 10;
+    const score = parseFloat(points.toFixed(10));
+
+    // Save mark dataInstance to storage
+    dataInstance.setData({
       seconds: state.seconds,
       timeString: state.timeString,
-      score: state.score,
+      score,
       allSelect: state.allSelect,
       selectedObj: state.selectedObj,
-      questions: state.questions,
     });
     // Update state to stop the timer
     setState((prevState) => ({ ...prevState, isTimerActive: false }));
     // Navigate to the result page
+    ///
+    const setData = async () => {
+      try {
+        // Assuming you have some data to send in the request body
+        const postData = {
+          uniqueString: sessionStorage.getItem("id"),
+          subjectName: dataInstance.getSubjectName(),
+          score,
+        };
+
+        const response = await axios.post("http://localhost:4000/api/quiz/examdata", postData);
+
+        const data = response.data;
+
+        if (data.success) {
+          sessionStorage.setItem("id", data.uniqueString);
+        } else {
+          console.log("error");
+        }
+
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching quiz questions:", error);
+      }
+    };
+    setData();
+
+    ///
     router.push("showrejult");
   };
 
@@ -132,7 +198,7 @@ const App = () => {
     }, 1000 / 60);
   };
 
-  // Function for shuffling an questions data array
+  // Function for shuffling an questions dataInstance array
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -155,20 +221,33 @@ const App = () => {
 
   return (
     <div>
-      <QuizUi
-        submit={submit}
-        selectedObj={state.selectedObj}
-        handleSelectedObj={handleSelectedObj}
-        timeString={state.timeString}
-        score={state.score}
-        allSelect={state.allSelect}
-        isVisible={state.isVisible}
-        scrollToTop={scrollToTop}
-        questions={state.questions}
-        rejultPage={state.rejultPage}
-        handleScore={handleScore}
-        handleAllSelectCount={handleAllSelectCount}
-      />
+      {state.startSeconds !== 0 ? (
+        <div className={Styles.startContainear}>
+          <div className={Styles.start}>
+            {state.startSeconds == 0 ? (
+              <p>
+                <span>L...</span>
+              </p>
+            ) : (
+              <span>{state.startSeconds}</span>
+            )}
+          </div>
+        </div>
+      ) : (
+        <QuizUi
+          submit={submit}
+          selectedObj={state.selectedObj}
+          handleSelectedObj={handleSelectedObj}
+          timeString={state.timeString}
+          score={state.score}
+          allSelect={state.allSelect}
+          isVisible={state.isVisible}
+          scrollToTop={scrollToTop}
+          questions={state.questions}
+          handleScore={handleScore}
+          handleAllSelectCount={handleAllSelectCount}
+        />
+      )}
     </div>
   );
 };

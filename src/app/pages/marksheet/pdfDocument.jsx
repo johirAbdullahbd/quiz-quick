@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import markDataInstance from "@/app/server/mark";
-import { Page, Text, View, Document, StyleSheet, List } from "@react-pdf/renderer";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import dataInstance from "@/app/server/mark";
 
 const styles = StyleSheet.create({
   card2: {
@@ -35,6 +35,13 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "grey",
   },
+  reffer: {
+    paddingTop: "5px",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginBottom: "10px",
+  },
   subject: {
     paddingTop: "5px",
     borderTop: "1px solid white",
@@ -44,17 +51,29 @@ const styles = StyleSheet.create({
     marginBottom: "10px",
   },
 });
+// Create a new Date object
+const currentDate = new Date();
 
-const PDFDocument = () => {
-  const data = markDataInstance.getMarkData();
+// Get various parts of the date
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1; // Note: Month is zero-based, so we add 1
+const day = currentDate.getDate();
+
+const PDFDocument = ({ name, JAQC, rejult }) => {
   return (
     <Document>
       <Page size={{ width: 595.276, height: "auto" }}>
         <View style={styles.card2}>
           <View style={styles.subjects}>
             <Text style={styles.heading}>J A Academy quiz exam certification</Text>
-            <Text style={styles.textD}>Date:- 20/09/2024</Text>
-            <Text style={styles.examInfo}>Examini Name:- {data.name}</Text>
+            <View style={styles.reffer}>
+              <Text style={styles.textD}>Ceetificate Code:- {JAQC}</Text>
+              <Text style={styles.textD}>
+                Date:- {day}/{month}/{year}
+              </Text>
+            </View>
+
+            <Text style={styles.examInfo}>Examini Name:- {name}</Text>
           </View>
 
           <View style={styles.subjects}>
@@ -63,10 +82,13 @@ const PDFDocument = () => {
               <Text style={styles.examInfo}>Result</Text>
             </View>
 
-            <View style={styles.subject}>
-              <Text style={styles.text}>{data.subject}</Text>
-              <Text style={styles.text}>{data.score}</Text>
-            </View>
+            {rejult &&
+              rejult.map((obj) => (
+                <View style={styles.subject}>
+                  <Text style={styles.text}>{obj.subjectName}</Text>
+                  <Text style={styles.text}>{obj.score}</Text>
+                </View>
+              ))}
           </View>
         </View>
       </Page>

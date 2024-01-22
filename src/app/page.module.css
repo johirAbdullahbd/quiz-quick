@@ -29,7 +29,16 @@
   max-width: 100%;
   width: var(--max-width);
 }
-
+.cards {
+  cursor: pointer;
+  margin: 10px;
+  max-width: 350px;
+  padding: 1rem 1.2rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0.1);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  transition: background 200ms, border 200ms;
+}
 .card {
   cursor: pointer;
   margin: 10px;
@@ -41,16 +50,17 @@
   transition: background 200ms, border 200ms;
 }
 
+.cards span,
 .card span {
   display: inline-block;
   transition: transform 200ms;
 }
-
+.cards h2,
 .card h2 {
   font-weight: 600;
   margin-bottom: 0.7rem;
 }
-
+.cards p,
 .card p {
   margin: 0;
   opacity: 0.6;

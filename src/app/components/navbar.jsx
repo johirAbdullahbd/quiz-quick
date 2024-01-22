@@ -15,28 +15,28 @@ const Navbar = () => {
         </div>
         <div className={Styles.navbar}>
           {/* Use Next.js Link component for client-side navigation */}
-          <div className={pathname === "/pages/skillselect" ? Styles.active : Styles.link}>
+          <div className={pathname === "/pages/empty" ? Styles.active : Styles.link}>
             <Link href="/">
               {/* <a className={pathname === "/" ? "active" : ""}>Navbar</a> */}
               Home
             </Link>
           </div>
 
-          <div className={pathname === "/pages/about" ? Styles.active : Styles.link}>
-            <Link href="/about">
+          <div className={pathname === "/pages/empty" ? Styles.active : Styles.link}>
+            <Link href="/pages/empty">
               {/* <a className={pathname === "/about" ? "active" : ""}>About</a> */}
               About
             </Link>
           </div>
 
-          <div className={pathname === "/pages/contact" ? Styles.active : Styles.link}>
-            <Link href="/contact">
+          <div className={pathname === "/pages/empty" ? Styles.active : Styles.link}>
+            <Link href="/pages/empty">
               {/* <a className={pathname === "/contact" ? "active" : ""}>Contact</a> */}
               Contact
             </Link>
           </div>
-          <div className={pathname === "/pages/certificate" ? Styles.active : Styles.link}>
-            <Link href="/contact">
+          <div className={pathname === "/pages/getcertificate" ? Styles.active : Styles.link}>
+            <Link href="/pages/getcertificate">
               {/* <a className={pathname === "/contact" ? "active" : ""}>Contact</a> */}
               Certificate
             </Link>

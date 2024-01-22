@@ -13,11 +13,11 @@ const Permision = () => {
   return (
     <div className={Styles.container}>
       <div className={Styles.card}>
-        <h1>hello start page to </h1>
-        <p>kjdsk dkjfiej djflaup eoeurdhh = fjd </p>
+        <h1> Ready your exam jurny </h1>
+        <p>click to start button and exam time start </p>
         <div className={Styles.buttons}>
           <button onClick={() => router.push("skillselect")}>Close</button>
-          <button onClick={() => router.push("permission/start")}>Start</button>
+          <button onClick={() => router.push("quiz")}>Start</button>
         </div>
       </div>
     </div>

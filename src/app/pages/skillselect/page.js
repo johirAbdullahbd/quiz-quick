@@ -2,7 +2,7 @@
 import { useState, useMemo } from "react";
 import SkillsSelectUi from "../../components/skillsSelctUi/index";
 import { useRouter } from "next/navigation";
-import markDataInstance from "@/app/server/mark";
+import dataInstance from "@/app/server/mark";
 
 // Dummy search value, replace with actual search values
 const allSearchValues = [
@@ -46,7 +46,7 @@ const SearchPage = () => {
   // Logic for selecting a search value
   const handleSelectSearchValue = (selectedValue) => {
     setIsDropdownVisible(false);
-    markDataInstance.setSubjectName({ subject: selectedValue });
+    dataInstance.setSubjectName({ subject: selectedValue });
     router.push("permission");
   };
 

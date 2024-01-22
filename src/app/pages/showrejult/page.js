@@ -1,23 +1,30 @@
 "use client";
 import { useRouter } from "next/navigation";
-import markDataInstance from "@/app/server/mark";
 import Styles from "../../styles/quizStyle/permision.module.css";
 import Custom404 from "@/app/error";
+import dataInstance from "@/app/server/mark";
 
 const ShowResult = () => {
   // Check previus route
-  if (!markDataInstance.getSubjectName()) {
+  if (!dataInstance.getSubjectName()) {
     return <Custom404 />;
   }
   // Destructure the storage mark data
-  const { seconds, timeString, score, allSelect } = markDataInstance.getMarkData();
+  const { seconds, timeString, score, allSelect } = dataInstance.getData();
 
   const router = useRouter();
 
   const seePageRouteHandle = (routePath) => {
     // Clear mark data when navigating to a new page
-    markDataInstance.setMarkData({ score: "", allSelect: "", timeString: "", questions: [], selectedObj: "", rejultPage: false });
+    dataInstance.setData({ score: "", allSelect: "", timeString: "", questions: [], selectedObj: "", rejultPage: false });
     router.push(routePath);
+  };
+  const rejultPageHandle = () => {
+    if (sessionStorage.getItem("JAQC")) {
+      router.push("marksheet");
+    } else {
+      router.push("signup");
+    }
   };
 
   return (
@@ -29,7 +36,7 @@ const ShowResult = () => {
         <p>Non-selected questions: {allSelect - 100} of 100</p>
 
         <div className={Styles.buttons}>
-          <button onClick={() => router.push("quiz")}>See Your Answer</button>
+          <button onClick={() => router.push("seepage")}>See Your Answer</button>
           <button onClick={() => seePageRouteHandle("permission")}>Again Quiz</button>
         </div>
 
@@ -39,7 +46,7 @@ const ShowResult = () => {
         </div>
 
         <div className={Styles.buttons}>
-          <button onClick={() => router.push("signup")}>Result Download</button>
+          <button onClick={rejultPageHandle}>Result Download</button>
         </div>
       </div>
     </div>
