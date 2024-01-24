@@ -1,7 +1,7 @@
 class Data {
   constructor() {
     this.data = JSON.parse(sessionStorage.getItem("data")) || this.getDefaultData();
-    this.questions = JSON.parse(sessionStorage.getItem("questions")) || [];
+    this.allQuestions = JSON.parse(sessionStorage.getItem("allQuestions")) || [];
     this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 500);
     this.saveToSessionStorageDebouncedQuestions = this.debounce(this.saveToSessionStorageQuestions, 500);
   }
@@ -26,12 +26,12 @@ class Data {
     return this.data;
   }
   setQuestions(data) {
-    this.questions = [...data];
+    this.allQuestions = [...data];
     this.saveToSessionStorageDebouncedQuestions();
   }
 
   getQuestions() {
-    return this.questions;
+    return this.allQuestions;
   }
 
   getSubjectName() {

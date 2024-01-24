@@ -18,18 +18,18 @@ const renderQuizButtons = (submit) => (
   </div>
 );
 
-// Function to render an individual question select component
-const renderQuestion = (question, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount) => (
+// Function to render an individual questions select component
+const renderQuestion = (questions, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount) => (
   <McqSelection
     key={index}
     index={index}
     selectedObj={selectedObj}
     handleSelectedObj={handleSelectedObj}
     rejultPage={rejultPage}
-    question={question.statement}
-    options={question.options}
-    img={question.img}
-    answer={question.correctAnswer}
+    question={questions.question}
+    options={questions.options}
+    img={questions.img}
+    answer={questions.correctAnswer}
     handleScore={handleScore}
     handleAllSelectCount={handleAllSelectCount}
   />
@@ -45,7 +45,7 @@ const QuizUi = ({
   allSelect,
   isVisible,
   scrollToTop,
-  questions,
+  allQuestions,
   rejultPage,
   handleScore,
   handleAllSelectCount,
@@ -55,10 +55,10 @@ const QuizUi = ({
       <Navbar />
       <div className={Styles.mainContainer}>
         <div className={Styles.container}>
-          {/* Conditional rendering based on the availability of questions */}
+          {/* Conditional rendering based on the availability of allQuestions */}
           {renderQuizHeader(rejultPage, timeString, score, allSelect, isVisible, scrollToTop)}
-          {questions.map((question, index) =>
-            renderQuestion(question, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount)
+          {allQuestions.map((questions, index) =>
+            renderQuestion(questions, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount)
           )}
           {renderQuizButtons(submit)}
         </div>

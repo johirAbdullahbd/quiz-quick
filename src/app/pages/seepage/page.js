@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 const SeePage = () => {
   // Initial state
   const initialState = {
-    questions: [],
+    allQuestions: [],
     selectedObj: {},
     timeString: "",
     score: 0,
@@ -29,8 +29,8 @@ const SeePage = () => {
   };
   useEffect(() => {
     const data = dataInstance.getData();
-    const questions = dataInstance.getQuestions();
-    setState((prevState) => ({ ...prevState, ...data, questions: [...questions] }));
+    const allQuestions = dataInstance.getQuestions();
+    setState((prevState) => ({ ...prevState, ...data, allQuestions: [...allQuestions] }));
 
     window.addEventListener("scroll", handleScroll);
     // Cleanup: Remove event listeners when the component is unmounted
@@ -61,8 +61,8 @@ const SeePage = () => {
             isVisible={state.isVisible}
             scrollToTop={scrollToTop}
           />
-          {state.questions.map((question, index) => (
-            <Questions index={index} question={question} selectedObj={state.selectedObj} />
+          {state.allQuestions.map((questions, index) => (
+            <Questions index={index} questions={questions} selectedObj={state.selectedObj} />
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -6,7 +7,7 @@ export default function Home() {
   const router = useRouter();
   useEffect(() => {
     sessionStorage.setItem("prevRoute", "/");
-  });
+  }, []);
 
   return (
     <main className={styles.main}>

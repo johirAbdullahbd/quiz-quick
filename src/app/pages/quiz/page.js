@@ -13,7 +13,7 @@ const App = () => {
 
   // Initial state
   const initialState = {
-    questions: [],
+    allQuestions: [],
     selectedObj: {},
     timeString: "",
     seconds: 20,
@@ -36,9 +36,9 @@ const App = () => {
   const fetchData = async () => {
     try {
       const response = await axios.post("http://localhost:4000/api/quiz/questions", { subjectName: subject });
-      const questions = response.data.questions;
-      setState((prevState) => ({ ...prevState, questions: [...questions] }));
-      dataInstance.setQuestions(questions);
+      const allQuestions = response.data.allQuestions;
+      setState((prevState) => ({ ...prevState, allQuestions: [...allQuestions] }));
+      dataInstance.setQuestions(allQuestions);
     } catch (error) {
       console.error("Error fetching quiz questions:", error);
       setState((prevState) => ({ ...prevState, error: error }));
@@ -243,7 +243,7 @@ const App = () => {
           allSelect={state.allSelect}
           isVisible={state.isVisible}
           scrollToTop={scrollToTop}
-          questions={state.questions}
+          allQuestions={state.allQuestions}
           handleScore={handleScore}
           handleAllSelectCount={handleAllSelectCount}
         />

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 
-const Questions = ({ index, question, selectedObj }) => {
+const Questions = ({ index, questions, selectedObj }) => {
   const handleStyle = (option) => {
-    if (option === question.correctAnswer) {
+    if (option === questions.correctAnswer) {
       return option === selectedObj[index] ? Styles.correct : Styles.deafaultAns;
     } else {
       return selectedObj[index] === option ? Styles.wrong : Styles.resetPointer;
@@ -13,7 +13,7 @@ const Questions = ({ index, question, selectedObj }) => {
   return (
     <div className={Styles.mcqContainer}>
       <h3>
-        {index}. {question.statement}
+        {index}. {questions.question}
       </h3>
       <Image
         className={Styles.img}
@@ -24,7 +24,7 @@ const Questions = ({ index, question, selectedObj }) => {
         alt="Screenshot-2023-10-21-073257"
       />
       <ul>
-        {question.options.map((option, idx) => (
+        {questions.options.map((option, idx) => (
           <div key={idx}>
             <li className={handleStyle(option)}>{option}</li>
 
