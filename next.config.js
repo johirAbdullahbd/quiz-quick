@@ -13,3 +13,6 @@ module.exports = nextConfig;
 //     domains: ["i.postimg.cc"],
 //   },
 // };
+// "@react-pdf-viewer/core": "^3.12.0",
+//     "@react-pdf/renderer": "^3.1.15",
+  

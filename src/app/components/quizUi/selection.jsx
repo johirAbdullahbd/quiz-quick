@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 import Image from "next/image";
-import url from "../../../../public/iim.png";
 
-const McqSelection = ({ handleSelectedObj, img, index, question, options, answer, handleScore, handleAllSelectCount, selectedObj }) => {
+const McqSelection = ({ handleSelectedObj, index, questions, handleScore, handleAllSelectCount }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [ans, setAns] = useState(false);
 
@@ -18,7 +17,7 @@ const McqSelection = ({ handleSelectedObj, img, index, question, options, answer
 
     if (!selectedOption) {
       handleAllSelectCount(true);
-      if (answer === option) {
+      if (questions.correctAnswer === option) {
         // empty to correct
         handleScore(true);
         setAns(true);
@@ -29,12 +28,12 @@ const McqSelection = ({ handleSelectedObj, img, index, question, options, answer
     } else {
       selectedOption === option && handleAllSelectCount(false);
 
-      if (answer === option && !ans) {
+      if (questions.correctAnswer === option && !ans) {
         // wrong to correct
         handleScore(true);
         setAns(true);
       } else {
-        if (answer === option && ans) {
+        if (questions.correctAnswer === option && ans) {
           // correct to correct
           handleScore(false);
           setAns(false);
@@ -53,20 +52,22 @@ const McqSelection = ({ handleSelectedObj, img, index, question, options, answer
   return (
     <div className={Styles.mcqContainer}>
       <h3>
-        {index}. {question}
+        {index + 1}. {questions.question}
       </h3>
-      {img && (
+
+      {Object.keys(questions).length === 4 && (
         <Image
           className={Styles.img}
-          src={img}
-          // src="https://i.postimg.cc/Lhxcrvm5/Screenshot-2023-10-21-073257.png"
+          // src={img}
+          src={questions.img}
           width={600}
           height={200}
           alt="Screenshot-2023-10-21-073257"
         />
       )}
+
       <ul>
-        {options.map((option, idx) => (
+        {questions.options.map((option, idx) => (
           <div key={idx}>
             <li onClick={() => handleOptionSelect(option)} className={selectedOption === option ? Styles.selected : Styles.nonSelect}>
               {option}

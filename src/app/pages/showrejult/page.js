@@ -46,7 +46,7 @@ const ShowResult = () => {
         </div>
 
         <div className={Styles.buttons}>
-          <button onClick={rejultPageHandle}>Result Download</button>
+          <button onClick={rejultPageHandle}>save rejult</button>
         </div>
       </div>
     </div>

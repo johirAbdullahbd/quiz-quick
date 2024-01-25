@@ -32,7 +32,7 @@ const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop }) =
     <div className={Styles.btn}>
       <button onClick={() => router.push("skillselect")}>closed</button>
       <button onClick={() => router.push("permission")}>try again</button>
-      <button onClick={() => router.push("signup")}>marksheet</button>
+      <button onClick={() => router.push("signup")}>save rejult</button>
     </div>
   );
 

@@ -6,7 +6,8 @@ import Custom404 from "@/app/error";
 import axios from "axios";
 import dataInstance from "@/app/server/mark";
 
-const API_URL = "http://localhost:4000/api/quiz/certificatedata";
+// const API_URL = "http://localhost:4000/api/quiz/certificatedata";
+const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/certificatedata";
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({

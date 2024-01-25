@@ -19,17 +19,13 @@ const renderQuizButtons = (submit) => (
 );
 
 // Function to render an individual questions select component
-const renderQuestion = (questions, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount) => (
+const renderQuestion = (questions, index, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount) => (
   <McqSelection
     key={index}
     index={index}
-    selectedObj={selectedObj}
     handleSelectedObj={handleSelectedObj}
     rejultPage={rejultPage}
-    question={questions.question}
-    options={questions.options}
-    img={questions.img}
-    answer={questions.correctAnswer}
+    questions={questions}
     handleScore={handleScore}
     handleAllSelectCount={handleAllSelectCount}
   />
@@ -38,7 +34,6 @@ const renderQuestion = (questions, index, selectedObj, handleSelectedObj, rejult
 // Main rendering of the QuizUi component
 const QuizUi = ({
   submit,
-  selectedObj,
   handleSelectedObj,
   timeString,
   score,
@@ -57,9 +52,7 @@ const QuizUi = ({
         <div className={Styles.container}>
           {/* Conditional rendering based on the availability of allQuestions */}
           {renderQuizHeader(rejultPage, timeString, score, allSelect, isVisible, scrollToTop)}
-          {allQuestions.map((questions, index) =>
-            renderQuestion(questions, index, selectedObj, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount)
-          )}
+          {allQuestions.map((questions, index) => renderQuestion(questions, index, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount))}
           {renderQuizButtons(submit)}
         </div>
       </div>

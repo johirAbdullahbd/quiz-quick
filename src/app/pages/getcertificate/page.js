@@ -6,7 +6,8 @@ import styles from "../../styles/signStyle/SignupForm.module.css";
 import Custom404 from "@/app/error";
 import Navbar from "@/app/components/navbar";
 
-const API_URL = "http://localhost:4000/api/quiz/certificate";
+const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/rejultcertificate";
+// const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
 
 const GetCertificate = () => {
   const [code, setCode] = useState("");

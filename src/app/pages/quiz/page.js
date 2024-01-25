@@ -16,7 +16,7 @@ const App = () => {
     allQuestions: [],
     selectedObj: {},
     timeString: "",
-    seconds: 20,
+    seconds: 5,
     isTimerActive: false,
     score: 0,
     allSelect: 0,
@@ -35,7 +35,10 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post("http://localhost:4000/api/quiz/questions", { subjectName: subject });
+      const response = await axios.post(" https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/questions", {
+        subjectName: subject,
+      });
+      // const response = await axios.post("http://localhost:4000/api/quiz/questions", { subjectName: subject });
       const allQuestions = response.data.allQuestions;
       setState((prevState) => ({ ...prevState, allQuestions: [...allQuestions] }));
       dataInstance.setQuestions(allQuestions);
@@ -165,7 +168,8 @@ const App = () => {
           score,
         };
 
-        const response = await axios.post("http://localhost:4000/api/quiz/examdata", postData);
+        const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/examdata", postData);
+        // const response = await axios.post("http://localhost:4000/api/quiz/examdata", postData);
 
         const data = response.data;
 
@@ -198,15 +202,6 @@ const App = () => {
     }, 1000 / 60);
   };
 
-  // Function for shuffling an questions dataInstance array
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
-
   // Event handler for updating questions options selectedObj based on key and value
   const handleSelectedObj = (key, value) => {
     setState((prevState) => {
@@ -236,7 +231,6 @@ const App = () => {
       ) : (
         <QuizUi
           submit={submit}
-          selectedObj={state.selectedObj}
           handleSelectedObj={handleSelectedObj}
           timeString={state.timeString}
           score={state.score}

@@ -9,7 +9,8 @@ import Custom404 from "@/app/error";
 import Styles from "../../styles/marksheet/marksheetPage.module.css";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
+// const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
+const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/rejultcertificate";
 const generatePdfBlob = (content) => {
   try {
     const pdfContent = ReactDOMServer.renderToString(content);
@@ -76,7 +77,7 @@ const App = () => {
         <h1>Load certificate</h1>
       ) : (
         <div className={Styles.card}>
-          <h1>React PDF Converter</h1>
+          <h1>Please memories Ceetificate Code for use next Time</h1>
 
           <PDFDocument name={data.name} JAQC={data.JAQC} rejult={rejult} />
           <div className={Styles.bttm}>
