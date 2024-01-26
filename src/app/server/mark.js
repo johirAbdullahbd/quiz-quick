@@ -1,9 +1,9 @@
 class Data {
   constructor() {
-    this.data =  this.getDefaultData();
-    // this.data = JSON.parse(sessionStorage.getItem("data")) || this.getDefaultData();
-    this.allQuestions =  [];
-    // this.allQuestions = JSON.parse(sessionStorage.getItem("allQuestions")) || [];
+    // this.data = this.getDefaultData();
+    this.data = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("data"))) || this.getDefaultData();
+    // this.allQuestions = [];
+    this.allQuestions = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("allQuestions"))) || [];
     this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 500);
     this.saveToSessionStorageDebouncedQuestions = this.debounce(this.saveToSessionStorageQuestions, 500);
   }
@@ -46,10 +46,14 @@ class Data {
   }
 
   saveToSessionStorageData() {
-    // sessionStorage.setItem("data", JSON.stringify(this.data));
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("data", JSON.stringify(this.data));
+    }
   }
   saveToSessionStorageQuestions() {
-    // sessionStorage.setItem("questions", JSON.stringify(this.questions));
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("questions", JSON.stringify(this.allQuestions));
+    }
   }
 
   debounce(func, delay) {

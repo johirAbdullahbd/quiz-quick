@@ -6,7 +6,9 @@ import { useEffect } from "react";
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    sessionStorage.setItem("prevRoute", "/");
+    if (window) {
+      sessionStorage.setItem("prevRoute", "/");
+    }
   }, []);
 
   return (

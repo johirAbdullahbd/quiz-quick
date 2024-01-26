@@ -20,13 +20,13 @@ const ShowResult = () => {
     router.push(routePath);
   };
   const rejultPageHandle = () => {
-    // if (typeof window !== "undefined") {
-    //   if (sessionStorage.getItem("JAQC")) {
-    //     router.push("marksheet");
-    //   } else {
-    //     router.push("signup");
-    //   }
-    // }
+    if (typeof window !== "undefined") {
+      if (sessionStorage.getItem("JAQC")) {
+        router.push("marksheet");
+      } else {
+        router.push("signup");
+      }
+    }
   };
 
   return (

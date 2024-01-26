@@ -20,12 +20,12 @@ const GetCertificate = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     //Runnig route path save for next page validationsd
-  //     sessionStorage.setItem("prevRoute", "getcertificate");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (window) {
+      // set props data to session storage or local storage
+      sessionStorage.setItem("prevRoute", "getcertificate");
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
