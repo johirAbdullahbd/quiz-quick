@@ -13,7 +13,6 @@
     "@react-pdf/renderer": "^3.1.15",
     "axios": "^1.6.5",
     "file-saver": "^2.0.5",
-    "fs": "^0.0.1-security",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
     "next": "^14.0.4",
