@@ -1,5 +1,5 @@
 // MarkShitPage.js;
-import styles from "../../styles/markshit/MarkShitPage.module.css";
+import styles from "../../styles/marksheet/MarkShitPage.module.css";
 
 import url from "./images.jpeg";
 
