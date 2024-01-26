@@ -4,6 +4,14 @@ const nextConfig = {
   images: {
     domains: ["i.postimg.cc", "ipfs.filebase.io"],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Exclude fs module on the client side
+      config.externals.push("fs");
+    }
+
+    return config;
+  },
 };
 
 module.exports = nextConfig;
@@ -15,4 +23,3 @@ module.exports = nextConfig;
 // };
 // "@react-pdf-viewer/core": "^3.12.0",
 //     "@react-pdf/renderer": "^3.1.15",
-  
