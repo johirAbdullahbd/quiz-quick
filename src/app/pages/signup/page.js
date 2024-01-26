@@ -29,8 +29,10 @@ const SignupForm = () => {
     return <Custom404 />;
   }
   useEffect(() => {
-    //Runnig route path save for next page validationsd
-    sessionStorage.setItem("prevRoute", "showrejult");
+    if (typeof window !== "undefined") {
+      //Runnig route path save for next page validationsd
+      sessionStorage.setItem("prevRoute", "showrejult");
+    }
   }, []);
   useEffect(() => {
     const validatePasswordLength = (password) => password.length > 0 && (password.length < 6 || password.length > 10);
@@ -52,8 +54,12 @@ const SignupForm = () => {
 
   const setData = async (obj) => {
     try {
+      let str;
+      if (typeof window !== "undefined") {
+        str = sessionStorage.getItem("id");
+      }
       const postData = {
-        uniqueString: sessionStorage.getItem("id"),
+        uniqueString: str,
         ...obj,
       };
 
@@ -61,8 +67,11 @@ const SignupForm = () => {
       const data = response.data;
 
       if (data.success) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("JAQC", data.JAQC);
+        }
         console.log("Success:", data);
-        sessionStorage.setItem("JAQC", data.JAQC);
+
         router.push("marksheet");
       } else {
         console.log("Error:", data);

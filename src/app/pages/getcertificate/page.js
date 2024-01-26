@@ -14,13 +14,17 @@ const GetCertificate = () => {
 
   const router = useRouter();
 
-  //Check page route validaion
-  if (!sessionStorage.getItem("prevRoute")) {
-    return <Custom404 />;
+  if (typeof window !== "undefined") {
+    if (!sessionStorage.getItem("prevRoute")) {
+      return <Custom404 />;
+    }
   }
+
   useEffect(() => {
-    //Runnig route path save for next page validationsd
-    sessionStorage.setItem("prevRoute", "getcertificate");
+    if (typeof window !== "undefined") {
+      //Runnig route path save for next page validationsd
+      sessionStorage.setItem("prevRoute", "getcertificate");
+    }
   }, []);
 
   const handleSubmit = async (event) => {

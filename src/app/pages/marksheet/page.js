@@ -29,10 +29,11 @@ const App = () => {
   const route = useRouter();
 
   // Check previus route
-
-  const routePath = sessionStorage.getItem("prevRoute");
-  if (!routePath) {
-    return <Custom404 />;
+  if (typeof window !== "undefined") {
+    const routePath = sessionStorage.getItem("prevRoute");
+    if (!routePath) {
+      return <Custom404 />;
+    }
   }
 
   useEffect(() => {

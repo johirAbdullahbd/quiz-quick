@@ -86,8 +86,12 @@ const App = () => {
   if (!dataInstance.getSubjectName()) {
     return <Custom404 />;
   }
+
   useEffect(() => {
-    sessionStorage.removeItem("JAQC");
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem("JAQC");
+    }
+
     fetchData();
 
     // Event listener setup for preventing text selection and context menu
@@ -162,8 +166,12 @@ const App = () => {
     const setData = async () => {
       try {
         // Assuming you have some data to send in the request body
+        let str;
+        if (typeof window !== "undefined") {
+          str = sessionStorage.getItem("id");
+        }
         const postData = {
-          uniqueString: sessionStorage.getItem("id"),
+          uniqueString: str,
           subjectName: dataInstance.getSubjectName(),
           score,
         };
@@ -174,7 +182,9 @@ const App = () => {
         const data = response.data;
 
         if (data.success) {
-          sessionStorage.setItem("id", data.uniqueString);
+          if (typeof window !== "undefined") {
+            sessionStorage.setItem("id", data.uniqueString);
+          }
         } else {
           console.log("error");
         }
