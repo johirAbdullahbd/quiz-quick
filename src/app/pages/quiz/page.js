@@ -167,9 +167,9 @@ const App = () => {
       try {
         // Assuming you have some data to send in the request body
         let str;
-        if (typeof window !== "undefined") {
-          str = sessionStorage.getItem("id");
-        }
+        // if (typeof window !== "undefined") {
+        //   str = sessionStorage.getItem("id");
+        // }
         const postData = {
           uniqueString: str,
           subjectName: dataInstance.getSubjectName(),

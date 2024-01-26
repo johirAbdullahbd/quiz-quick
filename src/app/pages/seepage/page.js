@@ -5,6 +5,7 @@ import SeeHeadding from "@/app/components/seeQuiz/headding";
 import Questions from "@/app/components/seeQuiz/questions";
 import dataInstance from "@/app/server/mark";
 import { useState, useEffect } from "react";
+import Custom404 from "@/app/error";
 
 const SeePage = () => {
   // Initial state
