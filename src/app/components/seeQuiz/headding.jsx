@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 import Image from "next/image";
-import url from "../../../../public/nayemvai.jpg";
 import dataInstance from "@/app/server/mark";
 
 const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop }) => {
@@ -11,7 +10,6 @@ const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop }) =
   // Function to render the summary of quiz results
   const renderQuizSummary = () => (
     <div className={Styles.headString}>
-      <Image style={{ width: "100px", height: "100px" }} src={url} />
       <h3>
         time <span>{timeString}</span> minutes finish
       </h3>

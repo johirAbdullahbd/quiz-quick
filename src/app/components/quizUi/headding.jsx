@@ -2,7 +2,6 @@ import React from "react";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import url from "../../../../public/nayemvai.jpg";
 import dataInstance from "@/app/server/mark";
 
 const Headding = ({ timeString, score, allSelect, isVisible, scrollToTop }) => {
