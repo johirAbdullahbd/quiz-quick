@@ -1,8 +1,6 @@
 class Data {
   constructor() {
-    // this.data = this.getDefaultData();
     this.data = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("data"))) || this.getDefaultData();
-    // this.allQuestions = [];
     this.allQuestions = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("allQuestions"))) || [];
     this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 500);
     this.saveToSessionStorageDebouncedQuestions = this.debounce(this.saveToSessionStorageQuestions, 500);

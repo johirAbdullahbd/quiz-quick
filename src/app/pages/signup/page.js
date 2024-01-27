@@ -74,17 +74,20 @@ const SignupForm = () => {
 
         router.push("marksheet");
       } else {
+        alert("your session time out, please again start quiz, (session limit 30mnt)");
         console.log("Error:", data);
+        router.push("skillselect");
       }
     } catch (error) {
       console.error("Error fetching quiz questions:", error);
+      return <Custom404 />;
     }
   };
 
   const handleSubmit = (event, logging) => {
     event.preventDefault();
 
-    const validatePassword = (password, message) => {
+    const validatePassword = (message) => {
       if (passwordLenError) {
         alert(message);
         return false;

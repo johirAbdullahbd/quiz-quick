@@ -1,10 +1,8 @@
 import React from "react";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import dataInstance from "@/app/server/mark";
 
-const Headding = ({ timeString, score, allSelect, isVisible, scrollToTop }) => {
+const Headding = ({ timeString, allSelect, isVisible, scrollToTop }) => {
   const router = useRouter();
 
   // Function to handle page navigation and reset quiz data

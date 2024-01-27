@@ -28,9 +28,10 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const route = useRouter();
 
+  let routePath;
   // Check previus route
   if (typeof window !== "undefined") {
-    const routePath = sessionStorage.getItem("prevRoute");
+    routePath = sessionStorage.getItem("prevRoute");
     if (!routePath) {
       return <Custom404 />;
     }
@@ -88,7 +89,7 @@ const App = () => {
             {/* Generate and Download PDF */}
 
             {/* PDF Download Link */}
-            {routePath === "signup" && (
+            {routePath === "showrejult" && (
               <PDFDownloadLink className={Styles.btn} document={<PDFDocument />} fileName="example.pdf">
                 {({ loading }) => <DownloadButton loading={loading} />}
               </PDFDownloadLink>

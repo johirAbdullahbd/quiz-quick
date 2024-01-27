@@ -33,7 +33,6 @@ const GetCertificate = () => {
     try {
       const response = await axios.post(API_URL, { JAQC: code });
       const data = response.data;
-      console.log(data, "dd");
 
       if (data.success) {
         sessionStorage.setItem("JAQC", data.JAQC);

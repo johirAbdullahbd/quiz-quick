@@ -16,7 +16,7 @@ const App = () => {
     allQuestions: [],
     selectedObj: {},
     timeString: "",
-    seconds: 5,
+    seconds: 200,
     isTimerActive: false,
     score: 0,
     allSelect: 0,
@@ -196,7 +196,6 @@ const App = () => {
     };
     setData();
 
-    ///
     router.push("showrejult");
   };
 

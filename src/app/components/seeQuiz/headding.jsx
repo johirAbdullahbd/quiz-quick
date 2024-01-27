@@ -1,8 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
-import Image from "next/image";
-import dataInstance from "@/app/server/mark";
 
 const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop }) => {
   const router = useRouter();

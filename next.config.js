@@ -12,15 +12,16 @@ const nextConfig = {
 
     return config;
   },
-  
+  webpack: (config, { isServer }) => {
+    // If client-side, don't polyfill `fs`
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+      };
+    }
+
+    return config;
+  },
 };
 
 module.exports = nextConfig;
-// next.config.js
-// module.exports = {
-//   images: {
-//     domains: ["i.postimg.cc"],
-//   },
-// };
-// "@react-pdf-viewer/core": "^3.12.0",
-//     "@react-pdf/renderer": "^3.1.15",
