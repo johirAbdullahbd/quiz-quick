@@ -7,7 +7,7 @@ import { saveAs } from "file-saver";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import Custom404 from "@/app/error";
 import Styles from "../../styles/marksheet/marksheetPage.module.css";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import Loading from "../loading/page";
 // const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
@@ -28,20 +28,20 @@ const App = () => {
   const [rejult, setRejult] = useState([]);
   const [loading, setLoading] = useState(true);
   const route = useRouter();
-
+  const params = useParams();
   let routePath;
   // Check previus route
   if (typeof window !== "undefined") {
     routePath = sessionStorage.getItem("prevRoute");
-    if (!routePath) {
-      return <Custom404 />;
-    }
+  }
+  if (params.marksheet.length !== 8) {
+    return <Custom404 />;
   }
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(API_URL, { JAQC: sessionStorage.getItem("JAQC") });
+        const response = await axios.post(API_URL, { JAQC: params.marksheet });
         const mark = response.data;
 
         if (mark.success) {
@@ -49,13 +49,13 @@ const App = () => {
           setData({ ...data, ...mark });
           setLoading(false);
         } else {
-          route.push(routePath);
+          routePath ? route.push(routePath) : route.push("/");
         }
       } catch (error) {
         if (error.message == "Network Error") {
           alert("Netword connection faild");
         }
-        route.push(routePath);
+        routePath ? route.push(routePath) : route.push("/");
         console.error("Error fetching quiz questions:", error);
       }
     };
@@ -88,7 +88,7 @@ const App = () => {
 
             <PDFDocument name={data.name} JAQC={data.JAQC} rejult={rejult} />
             <div className={Styles.bttm}>
-              <button onClick={() => route.push(routePath)} className={Styles.backBtn}>
+              <button onClick={() => route.push(routePath || "/")} className={Styles.backBtn}>
                 <span>&laquo; </span>back
               </button>
               {/* Generate and Download PDF */}

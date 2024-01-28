@@ -4,7 +4,7 @@ class Data {
   constructor() {
     this.onTimeData = {};
     this.data = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("data"))) || this.getDefaultData();
-    this.allQuestions = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("allQuestions"))) || [];
+    this.allQuestions = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("questions"))) || [];
     this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 500);
     this.saveToSessionStorageDebouncedQuestions = this.debounce(this.saveToSessionStorageQuestions, 500);
   }
@@ -17,10 +17,11 @@ class Data {
 
   getDefaultData() {
     return {
-      score: "",
-      allSelect: "",
+      score: 0,
+      wrong: 0,
+      allSelect: 0,
       timeString: "",
-      selectedObj: "",
+      selectedObj: 0,
       subject: "",
       rejultPage: false,
     };

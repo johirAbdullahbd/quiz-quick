@@ -37,9 +37,8 @@ const GetCertificate = () => {
       const data = response.data;
 
       if (data.success) {
-        sessionStorage.setItem("JAQC", data.JAQC);
         setLoading(true);
-        router.push("marksheet");
+        router.push(data.JAQC);
       } else {
         console.log("Error:", data);
         alert(data.message);

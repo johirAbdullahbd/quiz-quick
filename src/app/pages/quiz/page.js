@@ -159,6 +159,7 @@ const App = () => {
       seconds: state.seconds,
       timeString: state.timeString,
       score,
+      wrong: state.score,
       allSelect: state.allSelect,
       selectedObj: state.selectedObj,
     });

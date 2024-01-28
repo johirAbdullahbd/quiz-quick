@@ -17,6 +17,7 @@ const SeePage = () => {
     selectedObj: {},
     timeString: "",
     score: 0,
+    wrong: 0,
     allSelect: 0,
     isVisible: false,
   };
@@ -35,8 +36,8 @@ const SeePage = () => {
   useEffect(() => {
     const data = dataInstance.getData();
     const allQuestions = dataInstance.getQuestions();
+    console.log("helo", allQuestions, "allQuesions", data);
     setState((prevState) => ({ ...prevState, ...data, allQuestions: [...allQuestions] }));
-
     window.addEventListener("scroll", handleScroll);
     // Cleanup: Remove event listeners when the component is unmounted
     return () => {
@@ -55,14 +56,19 @@ const SeePage = () => {
   };
   const handleRoute = (path) => {
     setLoading(true);
+    console.log("path", path);
     if (path == "signup") {
+      console.log("path1");
       const checkNetworkData = dataInstance.getOnTimeData();
       if (Object.keys(checkNetworkData).length > 0) {
+        console.log("path2");
         sendDataBeforePageForNetworkError(checkNetworkData);
       } else {
+        console.log("path3");
         router.push(path);
       }
     } else {
+      console.log("path4");
       router.push(path);
     }
   };
@@ -99,6 +105,7 @@ const SeePage = () => {
           <div className={Styles.mainContainer}>
             <div className={Styles.container}>
               <SeeHeadding
+                wrong={wrong}
                 timeString={state.timeString}
                 allSelect={state.allSelect}
                 score={state.score}

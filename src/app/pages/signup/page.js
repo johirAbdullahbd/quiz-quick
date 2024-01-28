@@ -69,21 +69,18 @@ const SignupForm = () => {
       const data = response.data;
 
       if (data.success) {
-        if (typeof window !== "undefined") {
-          sessionStorage.setItem("JAQC", data.JAQC);
-        }
         console.log("Success:", data);
-        router.push("marksheet");
+        router.push(`${data.JAQC}`);
       } else {
         alert(data.message);
         console.log("Error:", data);
         setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching quiz questions:", error);
       if (error.message == "Network Error") {
         alert("Netword connection faild");
-        setLoading(false);
       } else {
         return <Custom404 />;
       }

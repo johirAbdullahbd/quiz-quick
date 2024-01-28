@@ -2,7 +2,7 @@
 
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 
-const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop, handleHeadingRoute }) => {
+const SeeHeadding = ({ wrong, timeString, allSelect, score, isVisible, scrollToTop, handleHeadingRoute }) => {
   // Function to render the summary of quiz results
   const renderQuizSummary = () => (
     <div className={Styles.headString}>
@@ -16,7 +16,7 @@ const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop, han
         correct answer: <span>{score}</span>
       </h3>
       <h3>
-        wrong answer: <span>{allSelect - score}</span>{" "}
+        wrong answer: <span>{allSelect - wrong}</span>{" "}
       </h3>
     </div>
   );
