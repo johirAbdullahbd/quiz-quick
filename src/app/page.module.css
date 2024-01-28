@@ -5,6 +5,8 @@
   align-items: center;
   padding: 1rem 3rem;
   min-height: 100vh;
+  color: #1a202c;
+  background-color: #fff; /* Add this line to set the background color to white */
 }
 
 .description {
@@ -35,19 +37,22 @@
   max-width: 350px;
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0.1);
-  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  background: #f0f4f8; /* Light blue-gray background color */
+  border: 1px solid #d2d8dd; /* Light gray border color */
   transition: background 200ms, border 200ms;
+  color: #1a202c; /* Dark blue-gray text color */
 }
+
 .card {
   cursor: pointer;
   margin: 10px;
   max-width: 350px;
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0.1);
-  border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  background: #f0f4f8; /* Light blue-gray background color */
+  border: 1px solid #d2d8dd; /* Light gray border color */
   transition: background 200ms, border 200ms;
+  color: #1a202c; /* Dark blue-gray text color */
 }
 
 .cards span,
@@ -139,7 +144,11 @@
     height: 300px;
   }
 }
-
+.largeFontSize {
+  color: lightseagreen;
+  font-size: 44px;
+  
+}
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {

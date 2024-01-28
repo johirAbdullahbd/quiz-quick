@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import Custom404 from "@/app/error";
 import axios from "axios";
 import dataInstance from "@/app/server/mark";
+import Loading from "../loading/page";
 
 // const API_URL = "http://localhost:4000/api/quiz/certificatedata";
 const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/certificatedata";
 
 const SignupForm = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     code: "",
     name: "",
@@ -71,20 +73,25 @@ const SignupForm = () => {
           sessionStorage.setItem("JAQC", data.JAQC);
         }
         console.log("Success:", data);
-
         router.push("marksheet");
       } else {
-        alert("your session time out, please again start quiz, (session limit 30mnt)");
+        alert(data.message);
         console.log("Error:", data);
-        router.push("skillselect");
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error fetching quiz questions:", error);
-      return <Custom404 />;
+      if (error.message == "Network Error") {
+        alert("Netword connection faild");
+        setLoading(false);
+      } else {
+        return <Custom404 />;
+      }
     }
   };
 
   const handleSubmit = (event, logging) => {
+    setLoading(true);
     event.preventDefault();
 
     const validatePassword = (message) => {
@@ -111,116 +118,125 @@ const SignupForm = () => {
 
     setData(obj);
   };
-
+  const handleBack = (path) => {
+    setLoading(true);
+    router.push(path);
+  };
   return (
-    <div className={styles.bodyContainear}>
-      <div className={styles.text}>
-        <h1>if your account already created </h1>
-      </div>
-      <div className={styles.formContainer}>
-        <div className={styles.text}>
-          <h2>logging and add results previous certificate</h2>
-        </div>
-        <form onSubmit={(e) => handleSubmit(e, true)}>
-          <label htmlFor="code">Certificate Code:</label>
-          <input
-            type="number"
-            id="code"
-            value={formData.code}
-            onChange={(e) => handleInputChange("code", e.target.value)}
-            className={styles.inputField}
-            required
-          />
-
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={formData.email}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-            className={styles.inputField}
-            required
-          />
-
-          <div className={styles.passwordContainer}>
-            <label htmlFor="password">Password:</label>
-            <input
-              type={formData.showPassword ? "text" : "password"}
-              id="password"
-              value={formData.password}
-              onChange={(e) => handleInputChange("password", e.target.value)}
-              className={styles.passwordInput}
-              required
-            />
-            <span className={styles.showPasswordToggle} onClick={() => togglePasswordVisibility("showPassword")}>
-              {formData.showPassword ? "Hide" : "Show"}
-            </span>
-            <p className={passwordLenError && styles.passwordLen}>Password must be between 6 - 10 characters</p>
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className={styles.bodyContainear}>
+          <div className={styles.text}>
+            <h1>if your account already created </h1>
           </div>
+          <div className={styles.formContainer}>
+            <div className={styles.text}>
+              <h2>logging and add results previous certificate</h2>
+            </div>
+            <form onSubmit={(e) => handleSubmit(e, true)}>
+              <label htmlFor="code">Certificate Code:</label>
+              <input
+                type="number"
+                id="code"
+                value={formData.code}
+                onChange={(e) => handleInputChange("code", e.target.value)}
+                className={styles.inputField}
+                required
+              />
 
-          <div className={styles.btnDiv}>
-            <button className={styles.btn} type="submit">
-              Sign Up
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange("email", e.target.value)}
+                className={styles.inputField}
+                required
+              />
+
+              <div className={styles.passwordContainer}>
+                <label htmlFor="password">Password:</label>
+                <input
+                  type={formData.showPassword ? "text" : "password"}
+                  id="password"
+                  value={formData.password}
+                  onChange={(e) => handleInputChange("password", e.target.value)}
+                  className={styles.passwordInput}
+                  required
+                />
+                <span className={styles.showPasswordToggle} onClick={() => togglePasswordVisibility("showPassword")}>
+                  {formData.showPassword ? "Hide" : "Show"}
+                </span>
+                <p className={passwordLenError && styles.passwordLen}>Password must be between 6 - 10 characters</p>
+              </div>
+
+              <div className={styles.btnDiv}>
+                <button className={styles.btn} type="submit">
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className={styles.text}>
+            <h2>OR</h2>
+          </div>
+          <div className={styles.formContainer}>
+            <div className={styles.text}>
+              <h2>create new account</h2>
+            </div>
+            <form onSubmit={(e) => handleSubmit(e, false)}>
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                value={formData.name}
+                onChange={(e) => handleInputChange("name", e.target.value)}
+                className={styles.inputField}
+                required
+              />
+
+              <label htmlFor="newEmail">Email:</label>
+              <input
+                type="newEmail"
+                id="newEmail"
+                value={formData.newEmail}
+                onChange={(e) => handleInputChange("newEmail", e.target.value)}
+                className={styles.inputField}
+                required
+              />
+
+              <div className={styles.passwordContainer}>
+                <label htmlFor="newPassword">Password:</label>
+                <input
+                  type={formData.newShowPassword ? "text" : "password"}
+                  id="newPassword"
+                  value={formData.newPassword}
+                  onChange={(e) => handleInputChange("newPassword", e.target.value)}
+                  className={styles.passwordInput}
+                  required
+                />
+                <span className={styles.showPasswordToggle} onClick={() => togglePasswordVisibility("newShowPassword")}>
+                  {formData.newShowPassword ? "Hide" : "Show"}
+                </span>
+                <p className={newPasswordLenError && styles.passwordLen}>Password must be between 6 - 10 characters</p>
+              </div>
+
+              <div className={styles.btnDiv}>
+                <button className={styles.btn} type="submit">
+                  Create
+                </button>
+              </div>
+            </form>
+          </div>
+          <div className={styles.backBtn}>
+            <button onClick={() => handleBack("showrejult")} className={styles.btn} type="submit">
+              <span>&laquo; </span>back
             </button>
           </div>
-        </form>
-      </div>
-      <div className={styles.text}>
-        <h2>OR</h2>
-      </div>
-      <div className={styles.formContainer}>
-        <div className={styles.text}>
-          <h2>create new account</h2>
         </div>
-        <form onSubmit={(e) => handleSubmit(e, false)}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            value={formData.name}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-            className={styles.inputField}
-            required
-          />
-
-          <label htmlFor="newEmail">Email:</label>
-          <input
-            type="newEmail"
-            id="newEmail"
-            value={formData.newEmail}
-            onChange={(e) => handleInputChange("newEmail", e.target.value)}
-            className={styles.inputField}
-            required
-          />
-
-          <div className={styles.passwordContainer}>
-            <label htmlFor="newPassword">Password:</label>
-            <input
-              type={formData.newShowPassword ? "text" : "password"}
-              id="newPassword"
-              value={formData.newPassword}
-              onChange={(e) => handleInputChange("newPassword", e.target.value)}
-              className={styles.passwordInput}
-              required
-            />
-            <span className={styles.showPasswordToggle} onClick={() => togglePasswordVisibility("newShowPassword")}>
-              {formData.newShowPassword ? "Hide" : "Show"}
-            </span>
-            <p className={newPasswordLenError && styles.passwordLen}>Password must be between 6 - 10 characters</p>
-          </div>
-
-          <div className={styles.btnDiv}>
-            <button className={styles.btn} type="submit">
-              Create
-            </button>
-          </div>
-        </form>
-      </div>
-      <div className={styles.backBtn}>
-        <button onClick={() => router.push("showrejult")} className={styles.btn} type="submit">
-          <span>&laquo; </span>back
-        </button>
-      </div>
+      )}
     </div>
   );
 };

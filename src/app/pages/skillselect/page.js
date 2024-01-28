@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 import SkillsSelectUi from "../../components/skillsSelctUi/index";
 import { useRouter } from "next/navigation";
 import dataInstance from "@/app/server/mark";
+import Loading from "../loading/page";
 
 // Dummy search value, replace with actual search values
 const allSearchValues = [
@@ -26,8 +27,10 @@ const allSearchValues = [
 ];
 
 const SearchPage = () => {
+  const [loading, setLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
   const router = useRouter();
 
   // Caching for new search results
@@ -47,18 +50,28 @@ const SearchPage = () => {
   const handleSelectSearchValue = (selectedValue) => {
     setIsDropdownVisible(false);
     dataInstance.setSubjectName({ subject: selectedValue });
+    setLoading(true);
     router.push("permission");
+  };
+  const handleRoute = (path) => {
+    setLoading(true);
+    router.push(path);
   };
 
   return (
     <div>
-      <SkillsSelectUi
-        isDropdownVisible={isDropdownVisible}
-        searchResults={filteredSearchResults}
-        handleSearch={handleSearch}
-        handleSelectSearchValue={handleSelectSearchValue}
-        searchValue={searchValue}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <SkillsSelectUi
+          isDropdownVisible={isDropdownVisible}
+          searchResults={filteredSearchResults}
+          handleSearch={handleSearch}
+          handleSelectSearchValue={handleSelectSearchValue}
+          searchValue={searchValue}
+          handleRoute={handleRoute}
+        />
+      )}
     </div>
   );
 };

@@ -1,4 +1,14 @@
 /* SignupForm.module.css */
+.bodyContainear1 {
+  width: 100vw;
+  height: 80vh;
+  padding: 30px;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .bodyContainear {
   width: 100vw;
   min-height: 100vh;
@@ -103,7 +113,7 @@
     max-width: 100%;
   }
   .showPasswordToggle {
-    top: 43%;
+    top: 36%;
   }
   .backBtn {
     right: 180px;

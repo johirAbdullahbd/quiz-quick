@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import styles from "../../styles/signStyle/SignupForm.module.css";
 import Custom404 from "@/app/error";
 import Navbar from "@/app/components/navbar";
+import Loading from "../loading/page";
 
 const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/rejultcertificate";
 // const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
 
 const GetCertificate = () => {
+  const [loading, setLoading] = useState(false);
   const [code, setCode] = useState("");
 
   const router = useRouter();
@@ -36,6 +38,7 @@ const GetCertificate = () => {
 
       if (data.success) {
         sessionStorage.setItem("JAQC", data.JAQC);
+        setLoading(true);
         router.push("marksheet");
       } else {
         console.log("Error:", data);
@@ -46,30 +49,40 @@ const GetCertificate = () => {
     }
   };
 
+  const handleRoute = (path) => {
+    setLoading(true);
+    router.push(path);
+  };
   return (
     <div>
-      <Navbar />
-      <div className={styles.bodyContainear}>
-        <div className={styles.text}>
-          <h1>Send certificate code </h1>
-        </div>
-        <div className={styles.formContainer}>
-          <form onSubmit={(e) => handleSubmit(e, true)}>
-            <label htmlFor="code">Certificate Code:</label>
-            <input type="number" id="code" value={code} onChange={(e) => setCode(e.target.value)} className={styles.inputField} required />
-            <div className={styles.btnDiv}>
-              <button className={styles.btn} type="submit">
-                Send Code
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          <Navbar handleNavRoute={handleRoute} />
+          <div className={styles.bodyContainear1}>
+            <div className={styles.text}>
+              <h1>Send certificate code </h1>
+            </div>
+            <div className={styles.formContainer}>
+              <form onSubmit={(e) => handleSubmit(e, true)}>
+                <label htmlFor="code">Certificate Code:</label>
+                <input type="number" id="code" value={code} onChange={(e) => setCode(e.target.value)} className={styles.inputField} required />
+                <div className={styles.btnDiv}>
+                  <button className={styles.btn} type="submit">
+                    Send Code
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div className={styles.backBtn2}>
+              <button onClick={() => handleRoute("/")} className={styles.btn} type="submit">
+                <span>&laquo; </span>back
               </button>
             </div>
-          </form>
+          </div>
         </div>
-        <div className={styles.backBtn2}>
-          <button onClick={() => router.push("/")} className={styles.btn} type="submit">
-            <span>&laquo; </span>back
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

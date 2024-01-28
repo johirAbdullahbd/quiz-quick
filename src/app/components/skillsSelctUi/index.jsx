@@ -5,11 +5,11 @@ import Styles from "../../styles/skilsSelectStyle/page.module.css";
 import styles from "../../styles/quizStyle/page.module.css";
 import { useRouter } from "next/navigation";
 
-const SkillsSelectUi = ({ isDropdownVisible, searchResults, handleSearch, handleSelectSearchValue, searchValue }) => {
+const SkillsSelectUi = ({ isDropdownVisible, searchResults, handleSearch, handleSelectSearchValue, searchValue, handleRoute }) => {
   const router = useRouter();
   return (
     <div>
-      <Navbar />
+      <Navbar handleNavRoute={handleRoute} />
       <div className={Styles.mainContainer}>
         <SerchBox
           isDropdownVisible={isDropdownVisible}

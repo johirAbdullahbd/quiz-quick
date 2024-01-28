@@ -5,8 +5,16 @@ import Headding from "./headding";
 import Navbar from "../navbar";
 
 // Function to render the quiz header component
-const renderQuizHeader = (rejultPage, timeString, score, allSelect, isVisible, scrollToTop) => (
-  <Headding rejultPage={rejultPage} timeString={timeString} score={score} allSelect={allSelect} isVisible={isVisible} scrollToTop={scrollToTop} />
+const renderQuizHeader = (rejultPage, timeString, score, allSelect, isVisible, scrollToTop, handleRoute) => (
+  <Headding
+    rejultPage={rejultPage}
+    timeString={timeString}
+    score={score}
+    allSelect={allSelect}
+    isVisible={isVisible}
+    scrollToTop={scrollToTop}
+    handleHeadingRoute={handleRoute}
+  />
 );
 
 // Rendering of quiz buttons to
@@ -44,14 +52,15 @@ const QuizUi = ({
   rejultPage,
   handleScore,
   handleAllSelectCount,
+  handleRoute,
 }) => {
   return (
     <div>
-      <Navbar />
+      <Navbar handleNavRoute={handleRoute} />
       <div className={Styles.mainContainer}>
         <div className={Styles.container}>
           {/* Conditional rendering based on the availability of allQuestions */}
-          {renderQuizHeader(rejultPage, timeString, score, allSelect, isVisible, scrollToTop)}
+          {renderQuizHeader(rejultPage, timeString, score, allSelect, isVisible, scrollToTop, handleRoute)}
           {allQuestions.map((questions, index) => renderQuestion(questions, index, handleSelectedObj, rejultPage, handleScore, handleAllSelectCount))}
           {renderQuizButtons(submit)}
         </div>

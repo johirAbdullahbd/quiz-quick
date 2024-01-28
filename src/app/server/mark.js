@@ -1,9 +1,18 @@
+import { Thasadith } from "next/font/google";
+
 class Data {
   constructor() {
+    this.onTimeData = {};
     this.data = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("data"))) || this.getDefaultData();
     this.allQuestions = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("allQuestions"))) || [];
     this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 500);
     this.saveToSessionStorageDebouncedQuestions = this.debounce(this.saveToSessionStorageQuestions, 500);
+  }
+  getOnTimeData() {
+    return this.onTimeData;
+  }
+  setOnTimeData(data) {
+    this.onTimeData = { ...this.onTimeData, ...data };
   }
 
   getDefaultData() {

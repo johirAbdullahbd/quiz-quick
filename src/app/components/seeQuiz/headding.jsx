@@ -1,10 +1,8 @@
 "use client";
-import { useRouter } from "next/navigation";
+
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 
-const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop }) => {
-  const router = useRouter();
-
+const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop, handleHeadingRoute }) => {
   // Function to render the summary of quiz results
   const renderQuizSummary = () => (
     <div className={Styles.headString}>
@@ -26,9 +24,9 @@ const SeeHeadding = ({ timeString, allSelect, score, isVisible, scrollToTop }) =
   // Function to render quiz options/buttons
   const renderQuizOptions = () => (
     <div className={Styles.btn}>
-      <button onClick={() => router.push("skillselect")}>closed</button>
-      <button onClick={() => router.push("permission")}>try again</button>
-      <button onClick={() => router.push("signup")}>save rejult</button>
+      <button onClick={() => handleHeadingRoute("skillselect")}>closed</button>
+      <button onClick={() => handleHeadingRoute("permission")}>try again</button>
+      <button onClick={() => handleHeadingRoute("signup")}>save rejult</button>
     </div>
   );
 

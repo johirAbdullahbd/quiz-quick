@@ -6,8 +6,11 @@ import Questions from "@/app/components/seeQuiz/questions";
 import dataInstance from "@/app/server/mark";
 import { useState, useEffect } from "react";
 import Custom404 from "@/app/error";
+import Loading from "../loading/page";
+import { useRouter } from "next/navigation";
 
 const SeePage = () => {
+  const [loading, setLoading] = useState(false);
   // Initial state
   const initialState = {
     allQuestions: [],
@@ -20,6 +23,7 @@ const SeePage = () => {
 
   const [state, setState] = useState(initialState);
 
+  const router = useRouter();
   if (!dataInstance.getSubjectName()) {
     return <Custom404 />;
   }
@@ -49,24 +53,66 @@ const SeePage = () => {
       } else clearInterval(scrollInterval);
     }, 1000 / 60);
   };
+  const handleRoute = (path) => {
+    setLoading(true);
+    if (path == "signup") {
+      const checkNetworkData = dataInstance.getOnTimeData();
+      if (Object.keys(checkNetworkData).length > 0) {
+        sendDataBeforePageForNetworkError(checkNetworkData);
+      } else {
+        router.push(path);
+      }
+    } else {
+      router.push(path);
+    }
+  };
+  const sendDataBeforePageForNetworkError = async (postData) => {
+    try {
+      // Assuming you have some data to send in the request body
 
+      const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/examdata", postData);
+      // const response = await axios.post("http://localhost:4000/api/quiz/examdata", postData);
+
+      const data = response.data;
+
+      if (data.success) {
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("id", data.uniqueString);
+        }
+        router.push("signup");
+      }
+      console.log(data);
+    } catch (error) {
+      setLoading(false);
+      if (error.message == "Network Error") {
+        alert("Netword connection faild");
+      }
+    }
+  };
   return (
     <div>
-      <Navbar />
-      <div className={Styles.mainContainer}>
-        <div className={Styles.container}>
-          <SeeHeadding
-            timeString={state.timeString}
-            allSelect={state.allSelect}
-            score={state.score}
-            isVisible={state.isVisible}
-            scrollToTop={scrollToTop}
-          />
-          {state.allQuestions.map((questions, index) => (
-            <Questions index={index} questions={questions} selectedObj={state.selectedObj} />
-          ))}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          <Navbar handleNavRoute={handleRoute} />
+          <div className={Styles.mainContainer}>
+            <div className={Styles.container}>
+              <SeeHeadding
+                timeString={state.timeString}
+                allSelect={state.allSelect}
+                score={state.score}
+                isVisible={state.isVisible}
+                scrollToTop={scrollToTop}
+                handleHeadingRoute={handleRoute}
+              />
+              {state.allQuestions.map((questions, index) => (
+                <Questions index={index} questions={questions} selectedObj={state.selectedObj} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

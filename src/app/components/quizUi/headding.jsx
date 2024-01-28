@@ -1,15 +1,13 @@
 import React from "react";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
-import { useRouter } from "next/navigation";
 
-const Headding = ({ timeString, allSelect, isVisible, scrollToTop }) => {
-  const router = useRouter();
+const Headding = ({ timeString, allSelect, isVisible, scrollToTop,handleHeadingRoute }) => {
 
   // Function to handle page navigation and reset quiz data
 
   const renderQuizBack = () => (
     <div className={Styles.headString}>
-      <button onClick={() => router.push("skillselect")}>Back</button>
+      <button onClick={() => handleHeadingRoute("skillselect")}>Back</button>
       <h3>total question 100</h3>
       <h3>
         your answer: <span>{allSelect}</span>
@@ -33,7 +31,7 @@ const Headding = ({ timeString, allSelect, isVisible, scrollToTop }) => {
 
       {/* Reset Quiz Button, only shown when not on results page */}
 
-      <button className={Styles.quiz} onClick={() => router.push("permission")}>
+      <button className={Styles.quiz} onClick={() => handleHeadingRoute("permission")}>
         reset quiz
       </button>
     </div>

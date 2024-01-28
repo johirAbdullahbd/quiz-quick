@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Custom404 from "@/app/error";
 import dataInstance from "@/app/server/mark";
 import axios from "axios";
+import Loading from "../loading/page";
 
 const App = () => {
   const router = useRouter();
@@ -35,15 +36,18 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post(" https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/questions", {
+      const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/questions", {
         subjectName: subject,
       });
       // const response = await axios.post("http://localhost:4000/api/quiz/questions", { subjectName: subject });
+      console.log("data", response);
       const allQuestions = response.data.allQuestions;
       setState((prevState) => ({ ...prevState, allQuestions: [...allQuestions] }));
       dataInstance.setQuestions(allQuestions);
     } catch (error) {
-      console.error("Error fetching quiz questions:", error);
+      if (error.message == "Network Error") {
+        alert("Netword connection faild");
+      }
       setState((prevState) => ({ ...prevState, error: error }));
     } finally {
       setState((prevState) => ({ ...prevState, loading: false }));
@@ -72,7 +76,6 @@ const App = () => {
           setState((prevState) => ({ ...prevState, isTimerActive: true }));
         }
       }
-      // router.push("/pages/quiz");
     }
   }, [state.startSeconds]);
 
@@ -91,7 +94,7 @@ const App = () => {
     if (window) {
       sessionStorage.removeItem("JAQC");
     }
-
+    dataInstance.setOnTimeData({});
     fetchData();
 
     // Event listener setup for preventing text selection and context menu
@@ -160,21 +163,21 @@ const App = () => {
       selectedObj: state.selectedObj,
     });
     // Update state to stop the timer
-    setState((prevState) => ({ ...prevState, isTimerActive: false }));
+    setState((prevState) => ({ ...prevState, isTimerActive: false, loading: true }));
     // Navigate to the result page
     ///
     const setData = async () => {
+      let str;
+      if (typeof window !== "undefined") {
+        str = sessionStorage.getItem("id");
+      }
+      const postData = {
+        uniqueString: str,
+        subjectName: dataInstance.getSubjectName(),
+        score,
+      };
       try {
         // Assuming you have some data to send in the request body
-        let str;
-        if (typeof window !== "undefined") {
-          str = sessionStorage.getItem("id");
-        }
-        const postData = {
-          uniqueString: str,
-          subjectName: dataInstance.getSubjectName(),
-          score,
-        };
 
         const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/examdata", postData);
         // const response = await axios.post("http://localhost:4000/api/quiz/examdata", postData);
@@ -185,12 +188,13 @@ const App = () => {
           if (typeof window !== "undefined") {
             sessionStorage.setItem("id", data.uniqueString);
           }
-        } else {
-          console.log("error");
         }
-
         console.log(data);
       } catch (error) {
+        if (error.message == "Network Error") {
+          alert("Netword connection faild");
+        }
+        dataInstance.setOnTimeData(postData);
         console.error("Error fetching quiz questions:", error);
       }
     };
@@ -222,21 +226,20 @@ const App = () => {
       return { ...prevState, selectedObj: obj };
     });
   };
-
+  const handleRoute = (path) => {
+    setState((prevState) => ({ ...prevState, loading: true }));
+    router.push(path);
+  };
   return (
     <div>
       {state.startSeconds !== 0 ? (
         <div className={Styles.startContainear}>
           <div className={Styles.start}>
-            {state.startSeconds == 0 ? (
-              <p>
-                <span>L...</span>
-              </p>
-            ) : (
-              <span>{state.startSeconds}</span>
-            )}
+            <span>{state.startSeconds}</span>
           </div>
         </div>
+      ) : state.loading ? (
+        <Loading />
       ) : (
         <QuizUi
           submit={submit}
@@ -249,6 +252,7 @@ const App = () => {
           allQuestions={state.allQuestions}
           handleScore={handleScore}
           handleAllSelectCount={handleAllSelectCount}
+          handleRoute={handleRoute}
         />
       )}
     </div>
