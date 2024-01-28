@@ -66,7 +66,7 @@ const App = () => {
     // Stop the interval when state.startTimerActive becomes false
   }, [state.startTimerActive]);
   useEffect(() => {
-    if (state.startSeconds == 0) {
+    if (state.startSeconds < 1) {
       setState((prevState) => ({ ...prevState, startTimerActive: false }));
       if (state.error) {
         console.log(state.error, "error");
@@ -126,7 +126,7 @@ const App = () => {
   // Timer countdown and time string update
   useEffect(() => {
     // Conditional logic for submitting on timer completion
-    state.seconds === 0 && submit();
+    state.seconds < 1 && submit();
 
     // Calculate minutes and remaining seconds
     const minutes = Math.floor((state.seconds % 3600) / 60);
