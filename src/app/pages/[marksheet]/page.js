@@ -7,7 +7,7 @@ import { saveAs } from "file-saver";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import Custom404 from "@/app/error";
 import Styles from "../../styles/marksheet/marksheetPage.module.css";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 import Loading from "../loading/page";
 // const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
@@ -27,6 +27,9 @@ const App = () => {
   const [data, setData] = useState({ name: "", JAQC: "" });
   const [rejult, setRejult] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [copy, setCopy] = useState(false);
+
+  const path = usePathname();
   const route = useRouter();
   const params = useParams();
   let routePath;
@@ -77,6 +80,11 @@ const App = () => {
     </button>
   );
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`https://quiz-quick-theta.vercel.app/${path}`);
+    setCopy(true);
+  };
+
   return (
     <div>
       {loading ? (
@@ -84,8 +92,16 @@ const App = () => {
       ) : (
         <div className={Styles.containear}>
           <div className={Styles.card}>
+            <button onClick={handleCopy} className={Styles.backBtn}>
+              {copy ? (
+                <p>
+                  <span>&#10003; </span>copied!
+                </p>
+              ) : (
+                <span> Copy Link</span>
+              )}
+            </button>
             <h1>Please memories Ceetificate Code for use next Time</h1>
-
             <PDFDocument name={data.name} JAQC={data.JAQC} rejult={rejult} />
             <div className={Styles.bttm}>
               <button onClick={() => route.push(routePath || "/")} className={Styles.backBtn}>
