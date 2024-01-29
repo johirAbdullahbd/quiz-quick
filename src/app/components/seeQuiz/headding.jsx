@@ -13,7 +13,10 @@ const SeeHeadding = ({ wrong, timeString, allSelect, score, isVisible, scrollToT
         all answer: <span>{allSelect}</span>
       </h3>
       <h3>
-        correct answer: <span>{score}</span>
+        score: <span>{score}</span>
+      </h3>
+      <h3>
+        correct: <span>{wrong}</span>
       </h3>
       <h3>
         wrong answer: <span>{allSelect - wrong}</span>{" "}

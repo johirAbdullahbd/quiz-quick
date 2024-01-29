@@ -17,7 +17,7 @@ const App = () => {
     allQuestions: [],
     selectedObj: {},
     timeString: "",
-    seconds: 200,
+    seconds: 1800,
     isTimerActive: false,
     score: 0,
     allSelect: 0,

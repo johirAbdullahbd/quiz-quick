@@ -5,6 +5,7 @@ import Custom404 from "@/app/error";
 import dataInstance from "@/app/server/mark";
 import { useState } from "react";
 import Loading from "../loading/page";
+import axios from "axios";
 
 const ShowResult = () => {
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,8 @@ const ShowResult = () => {
     setLoading(true);
     if (typeof window !== "undefined") {
       if (sessionStorage.getItem("JAQC")) {
-        routeHandle("marksheet");
+        let path = sessionStorage.getItem("JAQC");
+        routeHandle(path);
       } else {
         const checkNetworkData = dataInstance.getOnTimeData();
         if (Object.keys(checkNetworkData).length > 0) {
@@ -62,6 +64,7 @@ const ShowResult = () => {
       if (error.message == "Network Error") {
         alert("Netword connection faild");
       }
+      console.log("error", error);
     }
   };
   return (

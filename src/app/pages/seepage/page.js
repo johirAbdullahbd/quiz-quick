@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Custom404 from "@/app/error";
 import Loading from "../loading/page";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const SeePage = () => {
   const [loading, setLoading] = useState(false);
@@ -74,6 +75,8 @@ const SeePage = () => {
   };
   const sendDataBeforePageForNetworkError = async (postData) => {
     try {
+      console.log("path5");
+
       // Assuming you have some data to send in the request body
 
       const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/examdata", postData);
@@ -82,17 +85,22 @@ const SeePage = () => {
       const data = response.data;
 
       if (data.success) {
+        console.log("path6");
+
         if (typeof window !== "undefined") {
           sessionStorage.setItem("id", data.uniqueString);
         }
         router.push("signup");
       }
+      console.log("path7");
+
       console.log(data);
     } catch (error) {
       setLoading(false);
       if (error.message == "Network Error") {
         alert("Netword connection faild");
       }
+      console.log("path8", error);
     }
   };
   return (
@@ -105,7 +113,7 @@ const SeePage = () => {
           <div className={Styles.mainContainer}>
             <div className={Styles.container}>
               <SeeHeadding
-                wrong={wrong}
+                wrong={state.wrong}
                 timeString={state.timeString}
                 allSelect={state.allSelect}
                 score={state.score}

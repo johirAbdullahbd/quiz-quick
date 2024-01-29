@@ -95,7 +95,11 @@ const App = () => {
 
               {/* PDF Download Link */}
               {routePath === "showrejult" && (
-                <PDFDownloadLink className={Styles.btn} document={<PDFDocument />} fileName="example.pdf">
+                <PDFDownloadLink
+                  className={Styles.btn}
+                  document={<PDFDocument name={data.name} JAQC={data.JAQC} rejult={rejult} />}
+                  fileName="example.pdf"
+                >
                   {({ loading }) => <DownloadButton loading={loading} />}
                 </PDFDownloadLink>
               )}

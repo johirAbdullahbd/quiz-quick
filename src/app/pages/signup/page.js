@@ -70,6 +70,9 @@ const SignupForm = () => {
 
       if (data.success) {
         console.log("Success:", data);
+        if (typeof window !== "undefined") {
+          sessionStorage.setItem("JAQC", data.JAQC);
+        }
         router.push(`${data.JAQC}`);
       } else {
         alert(data.message);
@@ -104,6 +107,7 @@ const SignupForm = () => {
 
     if (!validateEmail(formData[emailField])) {
       alert("Invalid email address");
+      setLoading(false);
       return;
     }
 
