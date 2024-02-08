@@ -18,7 +18,6 @@ const generatePdfBlob = (content) => {
     const blob = new Blob([pdfContent], { type: "application/pdf" });
     return blob;
   } catch (error) {
-    console.error("Error generating PDF Blob:", error);
     throw error;
   }
 };
@@ -40,7 +39,6 @@ const App = () => {
   if (params.marksheet.length !== 8) {
     return <Custom404 />;
   }
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,7 +57,6 @@ const App = () => {
           alert("Netword connection faild");
         }
         routePath ? route.push(routePath) : route.push("/");
-        console.error("Error fetching quiz questions:", error);
       }
     };
     fetchData();
@@ -69,9 +66,7 @@ const App = () => {
     try {
       const pdfBlob = generatePdfBlob(<PDFDocument />);
       saveAs(pdfBlob, "example.pdf");
-    } catch (error) {
-      console.error("Error generating PDF:", error);
-    }
+    } catch (error) {}
   };
 
   const DownloadButton = ({ loading }) => (
@@ -104,13 +99,13 @@ const App = () => {
             <h1>Please memories Ceetificate Code for use next Time</h1>
             <PDFDocument name={data.name} JAQC={data.JAQC} rejult={rejult} />
             <div className={Styles.bttm}>
-              <button onClick={() => route.push(routePath || "/")} className={Styles.backBtn}>
-                <span>&laquo; </span>back
+              <button onClick={() => route.push("/")} className={Styles.backBtn}>
+                <span>&laquo; </span>closed
               </button>
               {/* Generate and Download PDF */}
 
               {/* PDF Download Link */}
-              {routePath === "showrejult" && (
+              {routePath === "signup" && (
                 <PDFDownloadLink
                   className={Styles.btn}
                   document={<PDFDocument name={data.name} JAQC={data.JAQC} rejult={rejult} />}

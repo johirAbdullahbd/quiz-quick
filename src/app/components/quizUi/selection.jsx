@@ -51,7 +51,7 @@ const McqSelection = ({ handleSelectedObj, index, questions, handleScore, handle
   // Render the component JSX
   return (
     <div className={Styles.mcqContainer}>
-      <h3>
+      <h3 className={Styles.question}>
         {index + 1}. {questions.question}
       </h3>
 

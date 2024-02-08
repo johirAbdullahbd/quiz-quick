@@ -24,20 +24,13 @@ const SeeHeadding = ({ wrong, timeString, allSelect, score, isVisible, scrollToT
     </div>
   );
 
-  // Function to render quiz options/buttons
-  const renderQuizOptions = () => (
-    <div className={Styles.btn}>
-      <button onClick={() => handleHeadingRoute("skillselect")}>closed</button>
-      <button onClick={() => handleHeadingRoute("permission")}>try again</button>
-      <button onClick={() => handleHeadingRoute("signup")}>save rejult</button>
-    </div>
-  );
-
   // Function to render the back button and quiz details when not on results page
   return (
     <div className={Styles.container}>
+      <div className={Styles.btn}>
+        <button onClick={handleHeadingRoute}>Back to rejult page</button>
+      </div>
       {renderQuizSummary()}
-      {renderQuizOptions()}
       <button className={`${Styles.scrollToTopButton} ${isVisible ? Styles.visible : ""}`} onClick={scrollToTop}>
         Scroll to Top
       </button>

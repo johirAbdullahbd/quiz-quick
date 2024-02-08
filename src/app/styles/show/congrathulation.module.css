@@ -1,0 +1,34 @@
+/* styles/Congratulations.module.css */
+.congratulationsContainer {
+  margin: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.congratulationsHeader {
+  font-size: 2em;
+  color: #0797f7;
+}
+
+.congratulationsText {
+  margin-top: 10px;
+  font-size: 1.5em;
+  color: #a1a7eb;
+}

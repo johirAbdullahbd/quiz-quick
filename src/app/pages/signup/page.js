@@ -33,7 +33,7 @@ const SignupForm = () => {
   useEffect(() => {
     if (window) {
       //Runnig route path save for next page validationsd
-      sessionStorage.setItem("prevRoute", "showrejult");
+      sessionStorage.setItem("prevRoute", "signup");
     }
   }, []);
   useEffect(() => {
@@ -130,7 +130,7 @@ const SignupForm = () => {
       ) : (
         <div className={styles.bodyContainear}>
           <div className={styles.text}>
-            <h1>if your account already created </h1>
+            <h1 className={styles.headText}>if your account already created </h1>
           </div>
           <div className={styles.formContainer}>
             <div className={styles.text}>
@@ -181,7 +181,7 @@ const SignupForm = () => {
             </form>
           </div>
           <div className={styles.text}>
-            <h2>OR</h2>
+            <h2 className={styles.headText}>OR</h2>
           </div>
           <div className={styles.formContainer}>
             <div className={styles.text}>
@@ -232,7 +232,7 @@ const SignupForm = () => {
             </form>
           </div>
           <div className={styles.backBtn}>
-            <button onClick={() => handleBack("showrejult")} className={styles.btn} type="submit">
+            <button onClick={() => handleBack("prog")} className={styles.btn} type="submit">
               <span>&laquo; </span>back
             </button>
           </div>

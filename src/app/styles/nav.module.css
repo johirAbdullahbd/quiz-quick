@@ -19,7 +19,7 @@
   font-size: 20px;
   display: flex;
   justify-content: space-around;
-  background-color: #555;
+  background-color: #202c43;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -31,6 +31,7 @@
   color: #f2f2f2;
   text-align: center;
   padding: 5px;
+  background-color: #020d21;
   /* background: #4caf50; */
   border: 2px solid #f2f2f2;
   text-decoration: none;

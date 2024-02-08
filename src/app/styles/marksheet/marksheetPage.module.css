@@ -5,7 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: gray;
+  background-color: rgb(60, 60, 99);
+  border-radius: 5px;
 }
 .card {
   color: black;
@@ -18,6 +19,8 @@
   align-items: center;
   text-align: center;
   background-color: rgb(222, 210, 210);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px black;
 }
 
 @media (max-width: 600px) {
@@ -35,6 +38,7 @@
   padding: 5px;
   font-size: 22px;
   border: 2px solid gray;
+  background-color: rgb(9, 9, 76);
   border-radius: 5px;
   transition: background 500ms, border 1100ms;
 }
@@ -48,6 +52,9 @@
   padding: 0 15px;
   font-size: 25px;
   border: 5px solid rgb(243, 231, 231);
+  background-color: rgb(101, 141, 222);
+
+  border-radius: 5px;
 }
 
 @media (max-width: 370px) {

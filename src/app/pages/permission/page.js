@@ -13,9 +13,18 @@ const Permision = () => {
   if (!markDataInstance.getSubjectName()) {
     return <Custom404 />;
   }
-  const handleRoute = (path) => {
+  const startQuiz = () => {
     setLoading(true);
-    router.push(path);
+    router.push("quiz");
+  };
+  const closedQuiz = () => {
+    setLoading(true);
+    if (typeof window !== "undefined") {
+      let again = sessionStorage.getItem("againRejult");
+      !again && sessionStorage.setItem("prevRejult", "true");
+      let path = sessionStorage.getItem("prevRoute");
+      path ? router.push(path) : router.push("prog");
+    }
   };
   return (
     <div>
@@ -27,8 +36,8 @@ const Permision = () => {
             <h1> Ready your exam jurny </h1>
             <p>click to start button and exam time start </p>
             <div className={Styles.buttons}>
-              <button onClick={() => handleRoute("skillselect")}>Close</button>
-              <button onClick={() => handleRoute("quiz")}>Start</button>
+              <button onClick={closedQuiz}>Close</button>
+              <button onClick={startQuiz}>Start</button>
             </div>
           </div>
         </div>

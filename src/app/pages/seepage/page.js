@@ -1,5 +1,4 @@
 "use client";
-import Navbar from "@/app/components/navbar";
 import Styles from "../../styles/quizStyle/page.module.css";
 import SeeHeadding from "@/app/components/seeQuiz/headding";
 import Questions from "@/app/components/seeQuiz/questions";
@@ -8,7 +7,6 @@ import { useState, useEffect } from "react";
 import Custom404 from "@/app/error";
 import Loading from "../loading/page";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 
 const SeePage = () => {
   const [loading, setLoading] = useState(false);
@@ -55,53 +53,9 @@ const SeePage = () => {
       } else clearInterval(scrollInterval);
     }, 1000 / 60);
   };
-  const handleRoute = (path) => {
+  const handleRoute = () => {
     setLoading(true);
-    console.log("path", path);
-    if (path == "signup") {
-      console.log("path1");
-      const checkNetworkData = dataInstance.getOnTimeData();
-      if (Object.keys(checkNetworkData).length > 0) {
-        console.log("path2");
-        sendDataBeforePageForNetworkError(checkNetworkData);
-      } else {
-        console.log("path3");
-        router.push(path);
-      }
-    } else {
-      console.log("path4");
-      router.push(path);
-    }
-  };
-  const sendDataBeforePageForNetworkError = async (postData) => {
-    try {
-      console.log("path5");
-
-      // Assuming you have some data to send in the request body
-
-      const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/examdata", postData);
-      // const response = await axios.post("http://localhost:4000/api/quiz/examdata", postData);
-
-      const data = response.data;
-
-      if (data.success) {
-        console.log("path6");
-
-        if (typeof window !== "undefined") {
-          sessionStorage.setItem("id", data.uniqueString);
-        }
-        router.push("signup");
-      }
-      console.log("path7");
-
-      console.log(data);
-    } catch (error) {
-      setLoading(false);
-      if (error.message == "Network Error") {
-        alert("Netword connection faild");
-      }
-      console.log("path8", error);
-    }
+    router.push("prog");
   };
   return (
     <div>
@@ -109,7 +63,6 @@ const SeePage = () => {
         <Loading />
       ) : (
         <div>
-          <Navbar handleNavRoute={handleRoute} />
           <div className={Styles.mainContainer}>
             <div className={Styles.container}>
               <SeeHeadding

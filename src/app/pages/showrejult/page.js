@@ -36,7 +36,7 @@ const ShowResult = () => {
       } else {
         const checkNetworkData = dataInstance.getOnTimeData();
         if (Object.keys(checkNetworkData).length > 0) {
-          sendDataBeforePageForNetworkError(checkNetworkData);
+          // sendDataBeforePageForNetworkError(checkNetworkData);
         } else {
           routeHandle("signup");
         }

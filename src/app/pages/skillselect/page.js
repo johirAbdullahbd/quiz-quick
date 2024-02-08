@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import SkillsSelectUi from "../../components/skillsSelctUi/index";
 import { useRouter } from "next/navigation";
 import dataInstance from "@/app/server/mark";
@@ -32,7 +32,13 @@ const SearchPage = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const router = useRouter();
-
+  useEffect(() => {
+    if (window) {
+      sessionStorage.clear();
+      // set props data to session storage or local storage
+      sessionStorage.setItem("prevRoute", "skillselect");
+    }
+  }, []);
   // Caching for new search results
   const filteredSearchResults = useMemo(() => {
     if (!searchValue) return [];
@@ -51,6 +57,11 @@ const SearchPage = () => {
     setIsDropdownVisible(false);
     dataInstance.setSubjectName({ subject: selectedValue });
     setLoading(true);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("questions", "step1");
+      let obj = {};
+      sessionStorage.setItem("obj", JSON.stringify(obj));
+    }
     router.push("permission");
   };
   const handleRoute = (path) => {

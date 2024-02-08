@@ -41,6 +41,7 @@
   border: 1px solid #d2d8dd; /* Light gray border color */
   transition: background 200ms, border 200ms;
   color: #1a202c; /* Dark blue-gray text color */
+  box-shadow: 0 4px 6px red;
 }
 
 .card {
@@ -53,6 +54,7 @@
   border: 1px solid #d2d8dd; /* Light gray border color */
   transition: background 200ms, border 200ms;
   color: #1a202c; /* Dark blue-gray text color */
+  box-shadow: 0px 4px 6px #1a202c;
 }
 
 .cards span,
@@ -67,8 +69,9 @@
 }
 .cards p,
 .card p {
+  color: #1a202c;
   margin: 0;
-  opacity: 0.6;
+  /* opacity: 0.9; */
   font-size: 0.9rem;
   line-height: 1.5;
   max-width: 30ch;
@@ -147,7 +150,6 @@
 .largeFontSize {
   color: lightseagreen;
   font-size: 44px;
-  
 }
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {

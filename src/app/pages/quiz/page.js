@@ -35,15 +35,19 @@ const App = () => {
   }
 
   const fetchData = async () => {
+    let step;
+    if (typeof window !== "undefined") {
+      step = sessionStorage.getItem("questions");
+    }
     try {
       const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/questions", {
         subjectName: subject,
+        step,
       });
-      // const response = await axios.post("http://localhost:4000/api/quiz/questions", { subjectName: subject });
-      console.log("data", response);
+      // const response = await axios.post("http://localhost:4000/api/quiz/questions", { subjectName: subject, step });
       const allQuestions = response.data.allQuestions;
       setState((prevState) => ({ ...prevState, allQuestions: [...allQuestions] }));
-      dataInstance.setQuestions(allQuestions);
+      // dataInstance.setQuestions(allQuestions);
     } catch (error) {
       if (error.message == "Network Error") {
         alert("Netword connection faild");
@@ -69,7 +73,6 @@ const App = () => {
     if (state.startSeconds < 1) {
       setState((prevState) => ({ ...prevState, startTimerActive: false }));
       if (state.error) {
-        console.log(state.error, "error");
         router.push("/pages/permission");
       } else {
         if (!state.loading) {
@@ -93,8 +96,10 @@ const App = () => {
   useEffect(() => {
     if (window) {
       sessionStorage.removeItem("JAQC");
+      let step = sessionStorage.getItem("questions");
+      let emptyObj = {};
+      dataInstance.setOnTimeData(step, emptyObj);
     }
-    dataInstance.setOnTimeData({});
     fetchData();
 
     // Event listener setup for preventing text selection and context menu
@@ -169,14 +174,20 @@ const App = () => {
     ///
     const setData = async () => {
       let str;
+      let step;
       if (typeof window !== "undefined") {
         str = sessionStorage.getItem("id");
+        step = sessionStorage.getItem("questions");
+        sessionStorage.removeItem("prevRoute");
+        sessionStorage.removeItem("prevRejult");
       }
       const postData = {
         uniqueString: str,
         subjectName: dataInstance.getSubjectName(),
-        score,
+        score: state.score,
+        step,
       };
+
       try {
         // Assuming you have some data to send in the request body
 
@@ -188,20 +199,33 @@ const App = () => {
         if (data.success) {
           if (typeof window !== "undefined") {
             sessionStorage.setItem("id", data.uniqueString);
+            const obj = JSON.parse(sessionStorage.getItem("obj"));
+            obj[step] = true;
+            sessionStorage.setItem("obj", JSON.stringify(obj));
+            sessionStorage.setItem("inisial", true);
+            dataInstance.setQuestions(state.allQuestions);
           }
+          router.push("prog");
+        } else {
+          setState((prevState) => ({ ...prevState, loading: false }));
+          return <Custom404 />;
         }
-        console.log(data);
       } catch (error) {
         if (error.message == "Network Error") {
           alert("Netword connection faild");
+          router.push("prog");
+        } else {
+          if (error.message == "running time finish") {
+            alert("your visible time out , please agian to view");
+            router.push("/");
+            return;
+          }
         }
-        dataInstance.setOnTimeData(postData);
+        dataInstance.setOnTimeData(step, postData);
         console.error("Error fetching quiz questions:", error);
       }
     };
     setData();
-
-    router.push("showrejult");
   };
 
   // Event handler for smooth scroll to top
@@ -229,7 +253,16 @@ const App = () => {
   };
   const handleRoute = (path) => {
     setState((prevState) => ({ ...prevState, loading: true }));
-    router.push(path);
+    if (path == "skillselect") {
+      if (typeof window !== "undefined") {
+        let again = sessionStorage.getItem("againRejult");
+        !again && sessionStorage.setItem("prevRejult", "true");
+        let path = sessionStorage.getItem("prevRoute");
+        path ? router.push(path) : router.push("prog");
+      }
+    } else {
+      router.push(path);
+    }
   };
   return (
     <div>

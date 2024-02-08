@@ -11,6 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     if (window) {
+      sessionStorage.clear();
       sessionStorage.setItem("prevRoute", "/");
     }
   }, []);

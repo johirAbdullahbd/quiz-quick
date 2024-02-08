@@ -5,19 +5,26 @@
   padding: 20px;
   background-color: #f0f0f0;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px #656060;
 }
 
 .img {
   width: 100%;
   padding: 20px;
   height: auto;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px black;
 }
 .mcqContainer ul {
   list-style-type: none;
   padding: 0;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px black;
 }
-
+.question {
+  /* background-color: red; */
+  color: #1f3352;
+}
 .mcqContainer li {
   cursor: pointer;
   padding: 10px;
@@ -62,7 +69,7 @@
   padding: 10px;
   background-color: #007bff;
   color: #fff;
-  border: none;
+  border: 1px solid #fff;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -73,7 +80,7 @@
   padding: 10px;
   background-color: #007bff;
   color: #fff;
-  border: none;
+  border: 1px solid #fff;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -99,22 +106,22 @@
   top: 50px;
   right: 20px;
   padding: 10px;
-  background-color: #555;
+  background-color: rgb(53, 47, 66);
   color: #fff;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .timeString {
   position: fixed;
   top: 50px;
   left: 20px;
   padding: 10px;
-  background-color: #555;
+  background-color: rgb(53, 47, 66);
   color: #fff;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 .btn {
   width: 100%;
@@ -132,13 +139,16 @@
   padding: 5px 20px;
   font-size: 20px;
   color: white;
-  background-color: rgb(59, 55, 55);
+  background-color: #284679;
   border: 1px solid white;
   border-radius: 5px;
 }
+.btn button {
+  background-color: #0b203e;
+}
 .headString button:hover,
 .btn button:hover {
-  background-color: darkgray;
+  background-color: rgb(62, 64, 98);
 }
 @media (max-width: 500) {
   .btn {
@@ -154,6 +164,8 @@
   align-items: center;
   background-color: #1f3352;
   flex-wrap: wrap;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 4px 6px white;
 }
 .headString h3 {
   margin: 5px;

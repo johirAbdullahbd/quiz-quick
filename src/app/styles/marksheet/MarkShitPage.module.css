@@ -8,6 +8,7 @@
   /* padding: 10px; */
   box-sizing: border-box;
   background-color: white; /* Set background color to white for A4 size appearance */
+  box-shadow: 0 4px 6px black;
 }
 
 .card1 {

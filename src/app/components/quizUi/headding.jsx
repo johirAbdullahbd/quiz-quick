@@ -1,8 +1,7 @@
 import React from "react";
 import Styles from "../../styles/quizStyle/questionSelect.module.css";
 
-const Headding = ({ timeString, allSelect, isVisible, scrollToTop,handleHeadingRoute }) => {
-
+const Headding = ({ timeString, allSelect, isVisible, scrollToTop, handleHeadingRoute }) => {
   // Function to handle page navigation and reset quiz data
 
   const renderQuizBack = () => (

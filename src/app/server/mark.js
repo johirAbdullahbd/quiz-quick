@@ -3,16 +3,18 @@ import { Thasadith } from "next/font/google";
 class Data {
   constructor() {
     this.onTimeData = {};
-    this.data = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("data"))) || this.getDefaultData();
-    this.allQuestions = (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem("questions"))) || [];
-    this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 500);
+    this.data =
+      (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem(`${sessionStorage.getItem("questions")}Data`))) || this.getDefaultData();
+    this.allQuestions =
+      (typeof window !== "undefined" && JSON.parse(sessionStorage.getItem(`${sessionStorage.getItem("questions")}Questions`))) || [];
+    this.saveToSessionStorageDebouncedData = this.debounce(this.saveToSessionStorageData, 1);
     this.saveToSessionStorageDebouncedQuestions = this.debounce(this.saveToSessionStorageQuestions, 500);
   }
-  getOnTimeData() {
-    return this.onTimeData;
+  getOnTimeData(step) {
+    return this.onTimeData[step];
   }
-  setOnTimeData(data) {
-    this.onTimeData = { ...this.onTimeData, ...data };
+  setOnTimeData(step, data) {
+    this.onTimeData = { ...this.onTimeData, [step]: { ...data } };
   }
 
   getDefaultData() {
@@ -32,8 +34,13 @@ class Data {
     this.saveToSessionStorageDebouncedData();
   }
 
-  getData() {
-    return this.data;
+  getData(currentStep) {
+    if (typeof window !== "undefined") {
+      let step = sessionStorage.getItem("questions");
+      let data = JSON.parse(sessionStorage.getItem(`${currentStep || step}Data`)) || this.getDefaultData();
+      console.log(data, step, "mark");
+      return data;
+    }
   }
   setQuestions(data) {
     this.allQuestions = [...data];
@@ -41,6 +48,12 @@ class Data {
   }
 
   getQuestions() {
+    if (typeof window !== "undefined") {
+      let step = sessionStorage.getItem("questions");
+      let data = JSON.parse(sessionStorage.getItem(`${step}Questions`)) || [];
+      console.log(data, step, "mark");
+      return data;
+    }
     return this.allQuestions;
   }
 
@@ -55,12 +68,14 @@ class Data {
 
   saveToSessionStorageData() {
     if (typeof window !== "undefined") {
-      sessionStorage.setItem("data", JSON.stringify(this.data));
+      let dataName = sessionStorage.getItem("questions");
+      sessionStorage.setItem(`${dataName}Data`, JSON.stringify(this.data));
     }
   }
   saveToSessionStorageQuestions() {
     if (typeof window !== "undefined") {
-      sessionStorage.setItem("questions", JSON.stringify(this.allQuestions));
+      let questionsName = sessionStorage.getItem("questions");
+      sessionStorage.setItem(`${questionsName}Questions`, JSON.stringify(this.allQuestions));
     }
   }
 
