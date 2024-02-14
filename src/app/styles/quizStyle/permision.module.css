@@ -1,7 +1,8 @@
 .container {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(98, 88, 88);
+  background-color: rgb(6, 1, 21);
+
   opacity: 95%;
   display: flex;
   justify-content: center;
@@ -22,13 +23,14 @@
   align-items: center;
   text-align: center;
   border-radius: 5px;
-  box-shadow: 0px 4px 6px black;
+  box-shadow: 0px 4px 6px rgb(49, 7, 235);
   z-index: 1;
 }
 .startContainear {
   width: 100vw;
   height: 100vh;
-  background-color: gray;
+  background-color: rgb(6, 1, 21);
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,18 +44,19 @@
   align-items: center;
   background-color: whitesmoke;
   border-radius: 5px;
-  box-shadow: 0px 4px 6px black;
+  box-shadow: 0px 4px 6px rgb(79, 8, 221);
 }
 .start span {
   color: black;
   font-size: 100px;
   font-weight: bold;
 }
-.buttons button {
+.startQuiz {
   cursor: pointer;
   margin: 5px;
   padding: 5px 20px;
   font-size: 20px;
+  color: white;
   background-color: #020d21;
   border: 1px solid rgb(10, 10, 10);
   border-radius: 5px;
@@ -62,7 +65,6 @@
   background-color: darkgray;
 }
 .buttons {
-  color: white;
   width: 100%;
   margin: 0 auto;
   padding: 20px;

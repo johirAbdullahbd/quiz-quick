@@ -45,6 +45,7 @@
 .primaryButton,
 .secondaryButton {
   padding: 10px;
+  color: white;
   border: 1px solid white;
   border-radius: 5px;
   background-color: #020d21;
@@ -118,6 +119,10 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
+  .containear {
+    margin: 0;
+    border: none;
+  }
   .cardContainer {
     width: 90%;
   }

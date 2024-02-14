@@ -1,6 +1,6 @@
 .mainContainer {
   min-height: 100vh;
-  background-color: grey;
+  background: linear-gradient(90deg, #05000d, #2c1937);
 }
 @media (min-width: 500px) {
   .mainContainer {
@@ -14,11 +14,9 @@
   max-width: 100%;
   padding: 20px;
   width: var(--max-width);
-  background-color: #555;
+  background-color: #0f079d;
 }
-.container {
-  background-color: #555;
-}
+
 .bttm {
   display: flex;
   align-items: center;

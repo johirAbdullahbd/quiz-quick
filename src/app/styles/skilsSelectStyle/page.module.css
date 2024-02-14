@@ -1,9 +1,9 @@
 .mainContainer {
   min-height: 100vh;
-  background-color: grey;
+  background-color: rgb(19, 16, 33);
 }
-@media (min-width: 500px) {
+/* @media (min-width: 500px) {
   .mainContainer {
     padding: 0px 20px 10px 20px;
   }
-}
+} */

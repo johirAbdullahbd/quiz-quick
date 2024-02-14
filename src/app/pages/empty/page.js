@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Styles from "../../styles/error.module.css";
+import styles from "./empty.module.css";
 import { useState } from "react";
 import Loading from "../loading/page";
 export default function Empty() {
@@ -15,22 +15,12 @@ export default function Empty() {
       {loading ? (
         <Loading />
       ) : (
-        <div className={Styles.containear}>
-          <h1>this page is not raday. wait for write page</h1>
-          <p>try programing quiz</p>
-          <button
-            style={{
-              padding: "5px",
-              background: "white",
-              color: "blue",
-              border: "1px solid blue",
-              cursor: "pointer",
-              borderRadius: "5px",
-              margin: "20px",
-            }}
-            onClick={() => handleRoute("skillselect")}
-          >
-            get programing quiz
+        <div className={styles.containear}>
+          <h1>this quiz exam questions not ready. please wait for write questions</h1>
+          <p>please start your jurny with quiz exam, click to down button </p>
+          <button className={styles.btn}>
+            Start To Quiz
+            <i className={`fas fa-chevron-right ${styles.right}`}></i> <i className={`fas fa-chevron-right ${styles.right}`}></i>
           </button>
         </div>
       )}

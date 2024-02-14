@@ -1,0 +1,28 @@
+/* ResponsiveTable.module.css */
+
+.tableWrapper {
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.table {
+  padding: 5px;
+  width: 99%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.table th {
+  font-size: 20px;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, #05f0e89f, white);
+  letter-spacing: 1px;
+  text-shadow: 0 0.5px 0.5px black;
+}
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left; /* Align text to the left by default */
+}

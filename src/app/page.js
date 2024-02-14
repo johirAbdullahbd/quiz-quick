@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Loading from "./pages/loading/page";
+import Navbar from "./components/investmentPlan/nav";
+import Fotter from "./components/fotter";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -47,10 +49,21 @@ const Home = () => {
       description: "For government and private job sectors like teaching, banking, accounting, healthcare, etc.",
       path: "empty",
     },
+    {
+      title: "Additional Exam",
+      description: "Stack-learner, saifurse(banglades),retina(bangladesh),FM-methord(banglades),MIT-carere dipperment,Harverd-schienc-group,etc...",
+      path: "empty",
+    },
+    {
+      title: "Our Services",
+      description: "create your custom questtions set your students,job employer,addmition, etc...",
+      path: "empty",
+    },
   ];
 
   return (
     <div>
+      {/* <Navbar /> */}
       {loading ? (
         <Loading />
       ) : (
@@ -82,6 +95,7 @@ const Home = () => {
               </div>
             ))}
           </div>
+          <Fotter />
         </main>
       )}
     </div>

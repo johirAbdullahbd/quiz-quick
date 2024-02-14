@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import McqSelection from "./selection";
 import Styles from "../../styles/quizStyle/page.module.css";
 import Headding from "./headding";
-import Navbar from "../navbar";
+import Navbar from "../investmentPlan/nav";
 
 // Function to render the quiz header component
 const renderQuizHeader = (rejultPage, timeString, score, allSelect, isVisible, scrollToTop, handleRoute) => (
@@ -56,7 +56,6 @@ const QuizUi = ({
 }) => {
   return (
     <div>
-      <Navbar handleNavRoute={handleRoute} />
       <div className={Styles.mainContainer}>
         <div className={Styles.container}>
           {/* Conditional rendering based on the availability of allQuestions */}

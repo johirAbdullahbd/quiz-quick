@@ -1,0 +1,82 @@
+/* styles/ContactContainer.module.css */
+.mainContainear {
+  margin: 2px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  padding: 50px 5px;
+
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.imgDiv {
+  width: 40%;
+  max-height: 200px;
+  transition: transform 0.3s ease-in-out;
+  /* height: 100%; */
+  padding: 0px 25px 5px 5px;
+
+  /* max-height: 500px; */
+}
+.img {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(38, 37, 37, 0.389);
+}
+
+.text {
+  padding: 20px 5px;
+  width: 60%;
+  height: 100%;
+
+  text-align: center;
+
+  /* background-color: #19cc75; */
+}
+
+.imgDiv:hover {
+  transform: translateY(-5px);
+}
+
+.text h2 {
+  /* font-size: 24px; */
+  /* font-weight: bold; */
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, rgb(211, 211, 224), #05f0e89f);
+  letter-spacing: 1px;
+  text-shadow: 0 0.5px 0.5px black;
+  animation: slideinText1 6s forwards;
+}
+@keyframes slideinText1 {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%); /* End position */
+  }
+}
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 768px) {
+  .mainContainear {
+    padding-top: 5px;
+    flex-direction: column;
+  }
+
+  .text {
+    width: 95%;
+    margin-bottom: 5px;
+  }
+  .imgDiv {
+    width: 100%;
+  }
+}

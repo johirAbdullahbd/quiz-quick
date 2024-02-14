@@ -1,0 +1,78 @@
+/* styles/AskQuestion.module.css */
+.mainContainear {
+  margin: 2px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  padding: 50px 5px;
+
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.title {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 5px 50px;
+  border-bottom: 1px solid white;
+  border-radius: 2px;
+  background-image: linear-gradient(90deg, white, #2b25dc9f);
+  text-shadow: 0 0.5px 0.5px black;
+}
+
+.formContainer {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.formRow {
+  margin-bottom: 15px;
+}
+.formBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 5px;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, white, rgba(8, 2, 36, 0.937));
+}
+
+.formInput {
+  width: 100%;
+  padding: 10px;
+  resize: vertical;
+  border-radius: 3px;
+  background-color: #4e5664;
+}
+
+.submitButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid wheat;
+  border-radius: 5px;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 768px) {
+  .formContainer {
+    max-width: 100%;
+  }
+}

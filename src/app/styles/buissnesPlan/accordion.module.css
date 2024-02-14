@@ -1,0 +1,88 @@
+/* styles/home/accordion.module.css */
+.mainContainear {
+  padding: 50px;
+  width: 100vw;
+  height: auto;
+}
+.containear {
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+}
+.imgDiv {
+  padding: 20px;
+  width: 50%;
+}
+.img {
+  min-width: 300px;
+  max-width: 90%;
+  min-height: 400px;
+  max-height: 550px;
+}
+.accordion {
+  padding: 20px;
+  width: 50%;
+}
+
+.accordionItem {
+  margin-bottom: 10px;
+}
+
+.accordionButton {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+  text-align: left;
+  background-color: #0c0c0c;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordionButton:hover {
+  background-color: #434040;
+}
+
+/* .accordionItemContent {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+  overflow: hidden;
+  opacity: 0; /* Initially set opacity to 0 */
+/* max-height: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Added opacity transition */
+/* } */
+.accordionItemContent {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+  color: wheat;
+  background-color: brown;
+  max-height: 500px; /* Adjust as needed */
+  opacity: 1; /* Set opacity to 1 when content is visible */
+}
+
+@media (max-width: 768px) {
+  .mainContainear {
+    padding: 0px;
+  }
+  .containear {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imgDiv {
+    padding: 10px 10px 10px 20px;
+    width: 100%;
+  }
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+  .accordion {
+    padding: 20px;
+    width: 100%;
+  }
+}

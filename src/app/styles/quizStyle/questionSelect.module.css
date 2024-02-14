@@ -5,7 +5,7 @@
   padding: 20px;
   background-color: #f0f0f0;
   border-radius: 10px;
-  box-shadow: 0 0 2px #656060;
+  box-shadow: 0 0 2px #010113;
 }
 
 .img {
@@ -103,7 +103,7 @@
 
 .select {
   position: fixed;
-  top: 50px;
+  top: 60px;
   right: 20px;
   padding: 10px;
   background-color: rgb(53, 47, 66);
@@ -114,7 +114,7 @@
 }
 .timeString {
   position: fixed;
-  top: 50px;
+  top: 60px;
   left: 20px;
   padding: 10px;
   background-color: rgb(53, 47, 66);
@@ -174,13 +174,6 @@
   padding: 2px 5px;
   border-radius: 3px;
   background-color: black;
-}
-
-@media (max-width: 600px) {
-  .select,
-  .timeString {
-    top: 2px;
-  }
 }
 
 .ans {

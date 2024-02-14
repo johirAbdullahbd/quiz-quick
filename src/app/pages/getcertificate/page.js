@@ -4,8 +4,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import styles from "../../styles/signStyle/SignupForm.module.css";
 import Custom404 from "@/app/error";
-import Navbar from "@/app/components/navbar";
 import Loading from "../loading/page";
+import Fotter from "@/app/components/fotter";
+import Navbar from "@/app/components/investmentPlan/nav";
 
 const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/rejultcertificate";
 // const API_URL = "http://localhost:4000/api/quiz/rejultcertificate";
@@ -57,7 +58,7 @@ const GetCertificate = () => {
       {loading ? (
         <Loading />
       ) : (
-        <div>
+        <div className={styles.main}>
           <Navbar handleNavRoute={handleRoute} />
           <div className={styles.bodyContainear1}>
             <div className={styles.text}>
@@ -78,6 +79,9 @@ const GetCertificate = () => {
               <button onClick={() => handleRoute("/")} className={styles.btn} type="submit">
                 <span>&laquo; </span>back
               </button>
+            </div>
+            <div className={styles.customeNav}>
+              <Fotter />
             </div>
           </div>
         </div>

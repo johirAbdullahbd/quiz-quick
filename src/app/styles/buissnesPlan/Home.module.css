@@ -1,0 +1,163 @@
+/* styles/Home.module.css */
+
+@keyframes gradientAnimationDown {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.scrollDown {
+  width: 100vw;
+  background: linear-gradient(45deg, #333333, #555555, #777777, #efecec);
+  background-size: 200% 200%;
+  animation: gradientAnimationDown 10s infinite;
+
+  padding: 0 0;
+}
+
+.firstImg {
+  width: 100vw;
+  height: 520px;
+}
+
+/* styles/TypingAnimation.module.css */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes continuousGradientColorChange {
+  0% {
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(45deg, #f0f2f1, #4f4b4a); /* Initial linear gradient color */
+  }
+  25% {
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(45deg, #453c36, #f0e7e4); /* Continuous linear gradient color change */
+  }
+  50% {
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(45deg, #dbcdc9, #423c3a); /* Continuous linear gradient color change */
+  }
+  75% {
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(45deg, #d8c5c0, #322c2b); /* Continuous linear gradient color change */
+  }
+  100% {
+    background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(45deg, #c4a9a3, #021906); /* Continuous linear gradient color change */
+  }
+}
+
+.typewriterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* height: 100vh; */
+}
+
+.typewriterText {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 8s steps(40, end) forwards, transformUp 6s forwards, continuousGradientColorChange 4s infinite; /* Combine typing, transform, and continuous gradient color change animations */
+
+  letter-spacing: 1px;
+  /* text-shadow: 0 1px 1px black; */
+  border-right: 2px solid; /* Optional: Add a blinking cursor */
+  animation-delay: 2s; /* Delay the start of the animation by 2 seconds */
+  opacity: 0; /* Initially hidden */
+}
+.ImgTex {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  height: auto;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, white, rgb(4, 148, 150));
+  letter-spacing: 0.4px;
+  text-shadow: 0 0.3px 0.3px rgb(9, 1, 46);
+  animation: imgText 6s forwards;
+}
+
+@keyframes imgText {
+  from {
+    transform: translateX(0) scale(0);
+  }
+  to {
+    transform: translateY(200px) scale(2);
+  }
+}
+.ImgTex h4 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.headingComponent {
+  top: 0;
+  left: 0;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .scrollDown {
+    animation: gradientAnimationDown 5s infinite;
+  }
+  .ImgTex {
+    width: 100%;
+    left: 0;
+    padding: 5px;
+    font-size: 24px;
+    letter-spacing: 0.1px;
+  }
+  .firstImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 420px;
+    z-index: 1;
+  }
+  .typewriterContainer {
+    position: absolute;
+    top: 100px;
+    left: 30%;
+    z-index: 2;
+  }
+  @keyframes transformUp {
+    from {
+      transform: translateY(0) scale(1);
+    }
+    to {
+      transform: translateY(-50px) scale(2);
+    }
+  }
+  @keyframes imgText {
+    from {
+      transform: translateX(0) scale(0);
+    }
+    to {
+      transform: translateY(100px) scale(1);
+    }
+  }
+}

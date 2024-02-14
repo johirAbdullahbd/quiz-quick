@@ -1,0 +1,157 @@
+/* nav.module.css */
+
+.navbarContainer {
+  background: linear-gradient(90deg, #05000d, #2c1937);
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  /* position: fixed; */
+  /* z-index: 5; */
+}
+
+.description {
+  width: 40%;
+  margin-left: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.logo p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.toggleButton {
+  visibility: hidden;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.toggleIcon {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  transition: transform 0.3s;
+}
+
+.open {
+  transform: rotate(0deg);
+}
+
+.close {
+  transform: rotate(45deg);
+}
+
+.navbar {
+  display: flex;
+  align-items: flex-end;
+  width: 60%;
+}
+
+.menuItems {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  /* z-index: -2; */
+
+  justify-content: space-around;
+}
+
+.menuItems li {
+  padding: 10px 15px;
+  cursor: pointer;
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+}
+
+.menuItems li:hover {
+  background-color: #030e37;
+}
+
+.active {
+  cursor: alias;
+  font-weight: bold;
+  color: #0534f1;
+  background-color: #030e37;
+}
+.showMenu {
+  display: block;
+}
+
+/* Show menu for small screens */
+@media (max-width: 768px) {
+  .navbarContainer {
+    position: relative;
+  }
+  .description {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .toggleButton {
+    visibility: visible;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #05000d;
+    padding: 50px;
+    /* overflow: hidden; */
+
+    transition: max-height 0.2s ease-out;
+  }
+  .hidden {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 50px;
+    z-index: -10;
+    /* overflow: hidden; */
+
+    transition: max-height 0.2s ease-out;
+  }
+
+  .showMenu {
+    display: flex;
+    max-height: 200px;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menuItems {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .menuItems li {
+    margin: 5px 0;
+    padding: 10px 0;
+    text-align: center;
+  }
+}

@@ -1,0 +1,19 @@
+.containear {
+  width: 100vw;
+  height: auto;
+  padding: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  /* background-color: yellow; */
+  /* background-color: rebeccapurple; */
+  /* background: linear-gradient(to right, #dd5555 50%, transparent 1px) repeat-y, linear-gradient(to bottom, #0da9c5 50%, transparent 1px) repeat-x; */
+  /* background: linear-gradient(to right, #dd5555 50%, transparent 1px) repeat-y, linear-gradient(to bottom, #0da9c5 50%, transparent 1px) repeat-x; */
+  background: linear-gradient(45deg, #101010, #6c6a6a, white);
+  /* background-size: 20px 20px; Adjust the size of the grid squares */
+}
+
+@media screen and (max-width: 768px) {
+  .containear {
+    padding: 5px;
+  }
+}

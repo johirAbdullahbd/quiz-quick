@@ -1,0 +1,91 @@
+/* styles/Home.module.css */
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  /* background-color: #f0f0f0; */
+}
+
+.logo i {
+  font-size: 50px;
+  color: #fff; /* Standard color for the logo */
+}
+
+.links {
+  margin: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+.links a {
+  font-size: 20px;
+  text-decoration: none;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, white, #08b8be9f);
+}
+.links a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.socialMedia {
+  display: flex;
+  gap: 10px;
+}
+
+.socialMedia i {
+  font-size: 30px;
+}
+
+/* Official colors for social media icons */
+.faFacebook {
+  color: #0871fb;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.faInstagram {
+  color: #bc2a8d;
+}
+
+.faYoutube {
+  color: #ff0000;
+}
+.faFacebook:hover {
+  color: #86aee3;
+}
+.faInstagram:hover {
+  color: #eabbdb;
+}
+.faYoutube:hover {
+  color: #bb4e4e;
+}
+
+/* Media Queries for Responsive Design */
+.footer {
+  width: 100vw;
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  background-image: linear-gradient(90deg, white, #2b25dc9f);
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .links {
+    margin-top: 20px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .links a {
+    margin-bottom: 5px;
+  }
+}
