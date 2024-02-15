@@ -3,10 +3,10 @@
 import Image from "next/image";
 
 const Call = ({ bodyClass, Img }) => {
-  const phoneNumber = 1775274498;
+  const phoneNumber = "01322646880";
   const handleCallLog = () => {
     // Open call log with the specified phone number
-    window.location.href = `tel:${phoneNumber}`;
+    window.open(`tel:${phoneNumber}`, "_blank");
   };
   return (
     <div className={bodyClass} onClick={handleCallLog} role="button">

@@ -13,10 +13,12 @@ const Navbar = ({ handleNavRoute }) => {
   return (
     <div className={Styles.navbarContainer}>
       <div className={Styles.description}>
-        <div className={Styles.logo}>
-          <h1>JA</h1>
-          <p>academy</p>
+        <div>
+          <h3 onClick={() => handleNavRoute("/")}>
+            <span className={Styles.smallFontSize}>By</span> <span className={Styles.largeFontSize}>JA</span> Academy
+          </h3>
         </div>
+
         <button className={Styles.toggleButton} onClick={toggleMenu}>
           <span className={`${Styles.toggleIcon} ${showMenu ? Styles.close : Styles.open}`}>
             <i className={`fas ${showMenu ? "fa-times" : "fa-bars"}`}></i>
@@ -25,21 +27,18 @@ const Navbar = ({ handleNavRoute }) => {
       </div>
       <div className={`${Styles.navbar} ${showMenu ? Styles.showMenu : Styles.hidden}`}>
         <ul className={Styles.menuItems}>
-          <li
-            className={pathname === "/pages/investmentrplanview" ? Styles.active : ""}
-            onClick={() => (handleNavRoute ? handleNavRoute("/") : router.push("/"))}
-          >
+          <li className={pathname === "/" ? Styles.active : ""} onClick={() => (handleNavRoute ? handleNavRoute("/") : router.push("/"))}>
             Home
           </li>
           <li
-            className={pathname === "/pages/empty" ? Styles.active : ""}
-            onClick={() => (handleNavRoute ? handleNavRoute("/pages/empty") : router.push("/pages/empty"))}
+            className={pathname === "/pages/about" ? Styles.active : ""}
+            onClick={() => (handleNavRoute ? handleNavRoute("/pages/about") : router.push("/pages/about"))}
           >
             About
           </li>
           <li
-            className={pathname === "/pages/empty" ? Styles.active : ""}
-            onClick={() => (handleNavRoute ? handleNavRoute("/pages/empty") : router.push("/pages/empty"))}
+            className={pathname === "/pages/contact" ? Styles.active : ""}
+            onClick={() => (handleNavRoute ? handleNavRoute("/pages/contact") : router.push("/pages/contact"))}
           >
             Contact
           </li>

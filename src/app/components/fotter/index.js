@@ -1,29 +1,42 @@
 // pages/index.js
 import React from "react";
-import Link from "next/link";
 import styles from "@/app/styles/fotter/fotter.module.css";
 
-const Fotter = () => {
+const Fotter = ({ navigateTo }) => {
   const currentYear = new Date().getFullYear();
   return (
     <div>
       <div className={styles.container}>
         {/* First div with logo */}
         <div className={styles.logo}>
-          <i className="fas fa-home"></i>
+          <button className={styles.link} onClick={() => navigateTo("/")}>
+            <i className="fas fa-home"></i>
+          </button>
         </div>
 
         {/* Second div with six string links */}
         <div>
           <div className={styles.links}>
-            <Link href="/">Brand New</Link>
-            <Link href="/about">Recondition</Link>
-            <Link href="/services">Used</Link>
+            <button className={styles.link} onClick={() => navigateTo("/pages/investmentplan")}>
+              Get Partnership
+            </button>
+            <button className={styles.link} onClick={() => navigateTo("/pages/getcertificate")}>
+              Get Certificate
+            </button>
+            <button className={styles.link} onClick={() => navigateTo("/pages/about")}>
+              About Us
+            </button>
           </div>
           <div className={styles.links}>
-            <Link href="/portfolio">About Us</Link>
-            <Link href="/contact">Customer Reviews</Link>
-            <Link href="/blog">Contact Us</Link>
+            <button className={styles.link} onClick={() => navigateTo("/pages/contact")}>
+              Contact Us
+            </button>
+            <button className={styles.link} onClick={() => navigateTo("/pages/empty")}>
+              Our Services
+            </button>
+            <button className={styles.link} onClick={() => navigateTo("/pages/empty")}>
+              Career
+            </button>
           </div>
         </div>
 

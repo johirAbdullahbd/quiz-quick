@@ -2,6 +2,7 @@
 "use client";
 import { useState } from "react";
 import styles from "@/app/styles/contact/askQuestion.module.css";
+import axios from "axios";
 
 const AskQuestionPage = () => {
   const [formData, setFormData] = useState({
@@ -16,8 +17,17 @@ const AskQuestionPage = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      // const response = await axios.post("http://localhost:4000/api/quiz/ask", formData);
+      const response = await axios.post("https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/ask", formData);
+      console.log("Response:", response.data);
+      // Handle success or redirect if needed
+    } catch (error) {
+      console.error("Error posting data:", error);
+      // Handle error
+    }
     // Handle the form submission (you can send the data to your server or process it as needed)
     console.log("Submitted data:", formData);
     // You may want to redirect the user or show a confirmation message

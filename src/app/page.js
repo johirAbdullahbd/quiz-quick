@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Loading from "./pages/loading/page";
-import Navbar from "./components/investmentPlan/nav";
+import Navbar from "./components/investmentplan/nav";
 import Fotter from "./components/fotter";
 
 const Home = () => {
@@ -21,6 +21,11 @@ const Home = () => {
   const navigateTo = (path) => {
     setLoading(true);
     router.push(`pages/${path}`);
+  };
+  
+  const fotterNavigate = (path) => {
+    setLoading(true);
+    router.push(path);
   };
 
   const cardData = [
@@ -95,7 +100,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <Fotter />
+          <Fotter navigateTo={fotterNavigate} />
         </main>
       )}
     </div>

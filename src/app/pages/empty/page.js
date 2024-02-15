@@ -8,7 +8,7 @@ export default function Empty() {
   const router = useRouter();
   const handleRoute = (path) => {
     setLoading(true);
-    router.push(path);
+    router.push("skillselect");
   };
   return (
     <div>
@@ -18,7 +18,7 @@ export default function Empty() {
         <div className={styles.containear}>
           <h1>this quiz exam questions not ready. please wait for write questions</h1>
           <p>please start your jurny with quiz exam, click to down button </p>
-          <button className={styles.btn}>
+          <button className={styles.btn} onClick={handleRoute}>
             Start To Quiz
             <i className={`fas fa-chevron-right ${styles.right}`}></i> <i className={`fas fa-chevron-right ${styles.right}`}></i>
           </button>

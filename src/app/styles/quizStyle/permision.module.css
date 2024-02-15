@@ -51,7 +51,15 @@
   font-size: 100px;
   font-weight: bold;
 }
-.startQuiz {
+
+.buttons {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.buttons button {
   cursor: pointer;
   margin: 5px;
   padding: 5px 20px;
@@ -63,13 +71,6 @@
 }
 .buttons button:hover {
   background-color: darkgray;
-}
-.buttons {
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  justify-content: space-around;
 }
 @media (max-width: 450px) {
   .buttons {

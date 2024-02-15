@@ -55,8 +55,11 @@ const AboutBody = () => {
           </div>
           <div className={styles.text1}>
             <h2>
-              We chose our administered online testing service as a first step, which we believe will help students, teachers, and parents get to know
-              each other quickly.
+              We chose our administered{" "}
+              <a style={{ color: "blue", textDecoration: "underline" }} href="https://quiz-quick-theta.vercel.app/" target="blank">
+                online testing service
+              </a>{" "}
+              as a first step, which we believe will help students, teachers, and parents get to know each other quickly.
             </h2>
           </div>
         </div>
@@ -86,7 +89,30 @@ const AboutBody = () => {
         <div className={styles.heading1}>
           <h2>Any other options available?</h2>
           <div className={styles.hr1}></div>
-          <h4>follow this chart</h4>
+        </div>
+        <div className={styles.bodyContainear}>
+          <div className={styles.imgDiv}>
+            <Image
+              className={styles.img}
+              src="https://ipfs.filebase.io/ipfs/QmZjjTDggKitayxPoV7KuoNXu7QWa8UBHHXZ33gJqx47x8"
+              alt="img"
+              width={600}
+              height={400}
+            />
+          </div>
+          <div className={styles.text1}>
+            <h2>
+              Yes there are options if we cannot find someone who is willing to take the partnership alone. Alternatively, we would like to retail the
+              partnership at a minimum value of (50% / 1)(100,000.00 / 2) = $2,000.00.
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div className={styles.containear}>
+        <div className={styles.heading1}>
+          <h2>How the money will be spent</h2>
+          <div className={styles.hr1}></div>
+          <h4>See this chart below</h4>
         </div>
         <ResponsiveTable />
       </div>
@@ -174,18 +200,19 @@ const AboutBody = () => {
             height={400}
           />
           <div className={styles.cardContent}>
-            <h2 className={styles.cardTitle}>Johir_Abdullah</h2>
+            <h2 className={styles.cardTitle}>Emranul_Amin</h2>
             <h3>CEO</h3>
             <h2 className={styles.cardDescription}>
-              "Our system is starting in such a way that parents can allocate time and money. We are forming groups of 20 students in each batch. For
-              them, we are arranging an experienced parent. We are arranging 4 live teachers separately for teaching each of the 4 subjects every day.
+              "Hi, I look forward to meeting you, we can talk about making our dreams come true. I am serious about learning anything, I am Honors 2nd
+              year student of Psychology Department of Shahjalal University of Science and Technology. I am excited for the possibility of improvement
+              in the future and always feel free to contact me..
             </h2>
             <div>
               <div className={styles.IconContainear}>
                 <Call bodyClass={styles.contactItem} Img={styles.Img} />
 
                 <div className={styles.contactItem}>
-                  <Link href="https://wa.me/your-whatsapp-number" passHref>
+                  <Link href="https://wa.me/01322646880" passHref>
                     <Image
                       className={styles.Img}
                       src="https://ipfs.filebase.io/ipfs/QmegGRha5BBxdEtsRnsQEJCx7iCgwVjS5sun3nKcaaxonX"
@@ -208,7 +235,7 @@ const AboutBody = () => {
                   </Link>
                 </div>
                 <div className={styles.contactItem}>
-                  <Link href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=emon@gmail.com" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=mdeaamin9@gmail.com" target="_blank" rel="noopener noreferrer">
                     <Image
                       className={styles.Img}
                       src="https://ipfs.filebase.io/ipfs/QmPUPdYzUiWZr5GPgNvFXZpK8v8UjiTMKasTA9QiSoJyeD"

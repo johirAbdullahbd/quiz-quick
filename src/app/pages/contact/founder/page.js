@@ -7,11 +7,11 @@ import ImgShow from "@/app/components/about/imagShow";
 import Fotter from "@/app/components/fotter";
 import Navbar from "@/app/components/investmentplan/nav";
 import styles from "@/app/styles/contact/main.module.css";
-import Loading from "../loading/page";
-import { useState } from "react";
+import IconContainear from "./iconContainear";
+import Loading from "../../loading/page";
 import { useRouter } from "next/navigation";
 
-const About = () => {
+const Contact = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const navigateTo = (path) => {
@@ -26,9 +26,12 @@ const About = () => {
         <div>
           <Navbar handleNavRoute={navigateTo} />
           <div className={styles.containear}>
-            <HeadingContact />
-            <AboutBody />
-            <ImgShow navigateTo={navigateTo} />
+            <HeadingContact custom={true} name="founder" />
+            <div style={{ textAlign: "center" }}>
+              <h2 style={{ marginBottom: "5px", color: "white", textShadow: "0 1px 1px blue" }}>Johir_Abdullah</h2>
+              <h2 style={{ color: "blue", textShadow: "0 1px 1px white" }}>Founder</h2>
+            </div>
+            <IconContainear />
             <AskQuestionPage />
             <Fotter navigateTo={navigateTo} />
           </div>
@@ -37,4 +40,4 @@ const About = () => {
     </div>
   );
 };
-export default About;
+export default Contact;

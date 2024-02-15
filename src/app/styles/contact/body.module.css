@@ -61,6 +61,10 @@
   padding: 0px 25px 5px 5px;
   min-height: 300px;
   max-height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s ease-in-out;
 }
 .imgDiv1 {
@@ -68,7 +72,10 @@
   width: 50%;
   padding: 0 25px 5px 5px;
   min-height: 100px;
-  max-height: 220px;
+  max-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -82,7 +89,7 @@
 .img1 {
   width: 100%;
   min-height: 100px;
-  max-height: 200px;
+  max-height: 300px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.67);
 }
