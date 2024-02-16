@@ -1,8 +1,6 @@
-import InvestMentPlan from "@/app/components/investmentplan";
-import AboutBody from "@/app/components/investmentplan/body";
+import InvestMentPlan from "@/app/components/investmentplan/index";
 
 const PlanViewsPage = () => {
-  // return <AboutBody />;
   return <InvestMentPlan />;
 };
 export default PlanViewsPage;
