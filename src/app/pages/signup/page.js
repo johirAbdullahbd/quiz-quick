@@ -7,7 +7,7 @@ import axios from "axios";
 import dataInstance from "@/app/server/mark";
 import Loading from "../loading/page";
 import Fotter from "@/app/components/fotter";
-import Navbar from "@/app/components/investmentplan/nav";
+import Navbar from "@/app/components/investmentplan/navBar";
 
 // const API_URL = "http://localhost:4000/api/quiz/certificatedata";
 const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/certificatedata";

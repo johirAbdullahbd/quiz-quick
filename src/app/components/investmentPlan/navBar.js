@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "./nav.module.css";
+import Styles from "./navigation.module.css";
 import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = ({ handleNavRoute }) => {

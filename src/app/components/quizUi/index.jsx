@@ -1,8 +1,6 @@
-import React, { useMemo } from "react";
 import McqSelection from "./selection";
 import Styles from "../../styles/quizStyle/page.module.css";
 import Headding from "./headding";
-import Navbar from "../investmentplan/nav";
 
 // Function to render the quiz header component
 const renderQuizHeader = (rejultPage, timeString, score, allSelect, isVisible, scrollToTop, handleRoute) => (

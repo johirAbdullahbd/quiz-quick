@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Loading from "./pages/loading/page";
-import Navbar from "./components/investmentplan/nav";
 import Fotter from "./components/fotter";
 
 const Home = () => {
