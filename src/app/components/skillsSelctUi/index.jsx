@@ -4,14 +4,14 @@ import SkillsList from "./skiilsList";
 import Styles from "../../styles/skilsSelectStyle/page.module.css";
 import styles from "../../styles/quizStyle/page.module.css";
 import { useRouter } from "next/navigation";
-// import Navbar from "@/app/components/investmentplan/navBar";
+import Navbar from "@/app/components/investmentplan/navBar";
 import Fotter from "../fotter";
 
 const SkillsSelectUi = ({ isDropdownVisible, searchResults, handleSearch, handleSelectSearchValue, searchValue, handleRoute }) => {
   const router = useRouter();
   return (
     <div>
-      {/* <Navbar handleNavRoute={handleRoute} /> */}
+      <Navbar handleNavRoute={handleRoute} />
       <div className={Styles.mainContainer}>
         <SerchBox
           isDropdownVisible={isDropdownVisible}

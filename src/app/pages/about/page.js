@@ -5,7 +5,7 @@ import AboutBody from "@/app/components/about/body";
 import HeadingContact from "@/app/components/about/headding";
 import ImgShow from "@/app/components/about/imagShow";
 import Fotter from "@/app/components/fotter";
-// import Navbar from "@/app/components/investmentplan/navBar";
+import Navbar from "@/app/components/investmentplan/navBar";
 import styles from "@/app/styles/contact/main.module.css";
 import Loading from "../loading/page";
 import { useState } from "react";
@@ -24,7 +24,7 @@ const About = () => {
         <Loading />
       ) : (
         <div>
-          {/* <Navbar handleNavRoute={navigateTo} /> */}
+          <Navbar handleNavRoute={navigateTo} />
           <div className={styles.containear}>
             <HeadingContact />
             <AboutBody />

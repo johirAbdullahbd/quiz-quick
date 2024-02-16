@@ -3,7 +3,7 @@
 import AskQuestionPage from "@/app/components/about/askQuestions";
 import HeadingContact from "@/app/components/about/headding";
 import Fotter from "@/app/components/fotter";
-// import Navbar from "@/app/components/investmentplan/navBar";
+import Navbar from "@/app/components/investmentplan/navBar";
 import styles from "@/app/styles/contact/main.module.css";
 import IconContainear from "./iconContainear";
 import Loading from "../../loading/page";
@@ -23,7 +23,7 @@ const Contact = () => {
         <Loading />
       ) : (
         <div>
-          {/* <Navbar handleNavRoute={navigateTo} /> */}
+          <Navbar handleNavRoute={navigateTo} />
           <div className={styles.containear}>
             <HeadingContact custom={true} name="founder" />
             <div style={{ textAlign: "center" }}>
