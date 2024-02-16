@@ -4,7 +4,7 @@ import SkillsList from "./skiilsList";
 import Styles from "../../styles/skilsSelectStyle/page.module.css";
 import styles from "../../styles/quizStyle/page.module.css";
 import { useRouter } from "next/navigation";
-import Navbar from "../investmentplan/navBar";
+import Navbar from "@/app/components/investmentplan/navBar";
 import Fotter from "../fotter";
 
 const SkillsSelectUi = ({ isDropdownVisible, searchResults, handleSearch, handleSelectSearchValue, searchValue, handleRoute }) => {

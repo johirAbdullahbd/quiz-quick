@@ -6,7 +6,7 @@ import Loading from "../loading/page";
 export default function Empty() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const handleRoute = (path) => {
+  const handleRoute = () => {
     setLoading(true);
     router.push("skillselect");
   };
