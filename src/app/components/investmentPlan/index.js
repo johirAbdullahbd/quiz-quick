@@ -5,7 +5,7 @@ import styles from "@/app/styles/buissnesPlan/Home.module.css";
 import Fotter from "../fotter";
 import Image from "next/image";
 import AskQuestionPage from "../about/askQuestions";
-import Navbar from "./navBar";
+import Navbar from "@/app/components/navbar/navBar";
 import AboutBody from "./body";
 import Loading from "@/app/pages/loading/page";
 import { useRouter } from "next/navigation";

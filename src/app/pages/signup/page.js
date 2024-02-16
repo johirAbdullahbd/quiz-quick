@@ -4,10 +4,9 @@ import styles from "../../styles/signStyle/SignupForm.module.css";
 import { useRouter } from "next/navigation";
 import Custom404 from "@/app/error";
 import axios from "axios";
-import dataInstance from "@/app/server/mark";
 import Loading from "../loading/page";
 import Fotter from "@/app/components/fotter";
-import Navbar from "@/app/components/investmentplan/navBar";
+import Navbar from "@/app/components/navbar/navBar";
 
 // const API_URL = "http://localhost:4000/api/quiz/certificatedata";
 const API_URL = "https://quiz-node-johirabdullahs-projects.vercel.app/api/quiz/certificatedata";

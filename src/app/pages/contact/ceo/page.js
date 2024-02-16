@@ -3,7 +3,7 @@
 import AskQuestionPage from "@/app/components/about/askQuestions";
 import HeadingContact from "@/app/components/about/headding";
 import Fotter from "@/app/components/fotter";
-import Navbar from "@/app/components/investmentplan/navBar";
+import Navbar from "@/app/components/navbar/navBar";
 import styles from "@/app/styles/contact/main.module.css";
 import IconContainear from "./iconContainear";
 import { useState } from "react";

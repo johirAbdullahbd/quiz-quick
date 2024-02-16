@@ -61,14 +61,15 @@
 }
 
 .menuItems li {
-  padding: 10px 15px;
+  font-size: 1.7rem;
+  padding: 7px 15px;
   cursor: pointer;
   border: 2px solid whitesmoke;
   border-radius: 5px;
 }
 
 .menuItems li:hover {
-  background-color: #030e37;
+  background-color: #0b1742;
 }
 
 .active {

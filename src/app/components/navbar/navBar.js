@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import Styles from "./navigation.module.css";
+"use client";
+import Styles from "@/app/styles/navbarStyle/navigation.module.css";
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Navbar = ({ handleNavRoute }) => {
   const [showMenu, setShowMenu] = useState(false);
