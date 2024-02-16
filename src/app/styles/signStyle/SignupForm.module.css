@@ -24,8 +24,8 @@
   width: 100vw;
   min-height: 100vh;
   padding: 30px;
-  background-color: darkgray;
   display: flex;
+  background-color: #03041d;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -38,13 +38,14 @@
   margin: 10px auto;
   align-items: center;
   box-shadow: 0px 2px 4px white;
+  position: relative;
 }
 .text {
   color: #f9fafc;
   text-align: center;
 }
 .headText {
-  color: #272d6b;
+  color: #fbfbfb;
 }
 .passwordLen {
   color: rgb(135, 12, 12);
@@ -65,10 +66,14 @@
   border: 2px solid #e8eaef; /* Highlight border color on focus */
 }
 .invalidEmail {
-  border-color: red;
+  font-weight: bold;
+  border-color: rgb(120, 61, 61);
 }
 .passwordContainer {
   position: relative;
+}
+.passwordContainer p {
+  font-size: 1.2rem;
 }
 
 .passwordInput {
@@ -96,24 +101,27 @@
 
 .btnDiv {
   width: 100%;
-
+  margin-top: 10px;
   text-align: center;
   align-items: center;
 }
 .btn {
   /* margin: 0 auto; */
+  font-size: 1.6rem;
+
   background-color: #0056b3;
   color: white;
-  padding: 10px;
+  padding: 5px 10px;
   border: 1px solid white;
   border-radius: 4px;
   cursor: pointer;
 }
 .backBtn {
-  position: relative;
-  right: 250px;
-  bottom: 350px;
+  position: absolute;
+  top: 102%;
+  left: -50%;
 }
+
 .backBtn2 {
   position: relative;
   right: 200px;
@@ -122,6 +130,7 @@
 .btn:hover {
   background-color: #4282ef; /* Darker blue on hover for visual feedback */
 }
+
 
 /* Responsive styles */
 @media (max-width: 768px) {
@@ -133,28 +142,28 @@
     background-color: rgb(6, 1, 21);
   }
   .formContainer {
-    max-width: 100%;
+    width: 100%;
+  }
+
+  .text {
+    color: whitesmoke;
+    font-size: 2rem;
+    margin: 10px;
+  }
+  .passwordContainer p,
+  .formContainer label,
+  .passwordInput,
+  .inputField {
+    font-size: 1.7rem;
   }
   .showPasswordToggle {
-    top: 36%;
+    font-size: 1.5rem;
+    top: 45%;
   }
-  .backBtn {
-    right: 180px;
-    bottom: 346px;
-  }
+  .backBtn,
   .backBtn2 {
-    right: 140px;
-    /* bottom: 210px; */
-  }
-}
-@media (max-width: 450px) {
-  .backBtn {
-    right: 170px;
-  }
-}
-@media (max-width: 430px) {
-  .backBtn {
-    right: 140px;
-    bottom: 357px;
+    position: absolute;
+    top: 105%;
+    left: 0;
   }
 }

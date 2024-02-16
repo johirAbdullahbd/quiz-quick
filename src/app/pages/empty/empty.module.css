@@ -45,10 +45,19 @@
     transform: translateX(50px);
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 760px) {
   .btn {
     width: 100%;
     margin: 10px;
-    font-size: 24px;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  .containear h1 {
+    font-size: 2.6rem;
+    letter-spacing: 1px;
+  }
+  .containear p {
+    font-size: 2rem;
+    letter-spacing: 1px;
   }
 }

@@ -8,6 +8,7 @@
   border-radius: 5px 5px 0 0;
 }
 .textContainer {
+  font-size: 1.7rem;
   width: auto;
   height: auto;
   margin: 10px;
@@ -28,6 +29,7 @@
 }
 
 .input {
+  font-size: 1.7rem;
   padding: 5px;
   width: 100%;
   border: 1px solid whitesmoke;
@@ -50,6 +52,7 @@
 }
 
 .dropdown li {
+  font-size: 1.7rem;
   color: black;
   cursor: pointer;
   padding: 5px;

@@ -193,8 +193,8 @@ const AboutBody = () => {
         </div>
         <div className={styles.card}>
           <Image
-            src="https://ipfs.filebase.io/ipfs/QmNSu8q1kJtwhZxkPhu9drGw3NEu3yiHCrzdmG1zpTFL37"
-            alt="johir_abdullah"
+            src="https://ipfs.filebase.io/ipfs/QmXm7VRyyogkTkDLnaoZyckJgU9BBZMXzgndnVLFioDp7N"
+            alt="Emranul_Amin"
             className={styles.cardImage}
             width={600}
             height={400}

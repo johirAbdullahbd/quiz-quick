@@ -54,3 +54,12 @@
     transform: translateX(0);
   }
 }
+@media (max-width: 768px) {
+  .spinner {
+    width: 60px;
+    height: 60px;
+  }
+  .loadingText {
+    font-size: 2.4rem;
+  }
+}

@@ -97,7 +97,9 @@
     padding-top: 5px;
     flex-direction: column;
   }
-
+  .text h2 {
+    font-size: 2rem;
+  }
   .text {
     width: 95%;
     margin-bottom: 5px;

@@ -2,11 +2,6 @@
   min-height: 100vh;
   background: linear-gradient(90deg, #05000d, #2c1937);
 }
-@media (min-width: 500px) {
-  .mainContainer {
-    padding: 0px 20px 10px 20px;
-  }
-}
 
 .skillsContainer {
   display: grid;
@@ -24,10 +19,10 @@
 }
 
 .btn {
-  margin: 20px;
-  margin-bottom: 60px;
-  font-size: 22px;
-  padding: 5px;
+  margin: 30px;
+  margin-bottom: 80px;
+  font-size: 1.5rem;
+  padding: 8px;
   background-color: #007bff;
   color: #fff;
   border: 1px solid #fff;
@@ -36,4 +31,12 @@
 }
 .btn:hover {
   background-color: #73a6de;
+}
+@media (max-width: 750px) {
+  .mainContainer {
+    padding: 10px 20px;
+  }
+  .btn {
+    font-size: 2rem;
+  }
 }

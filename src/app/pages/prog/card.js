@@ -80,10 +80,10 @@ const ResultCard = ({ stateData, step, firstStep, lastStep, othersPageHandleRout
       </div>
       <div className={styles.buttonGroup}>
         <button className={styles.primaryButton} onClick={handleClearAndGoToHomePage}>
-          clear all and go to home page
+          Clear all and go to home page
         </button>
         <button className={styles.secondaryButton} onClick={handleClearAndSelectOthers}>
-          clear and select others subject
+          Clear and select others subject
         </button>
       </div>
       <div className={styles.buttonGroup}>
@@ -99,7 +99,7 @@ const ResultCard = ({ stateData, step, firstStep, lastStep, othersPageHandleRout
           onClick={next}
           disabled={lastStep && stateData.wrong < 3}
         >
-          {lastStep ? (step === "step5" ? "get certificate" : "start next step quiz") : "next step"}
+          {lastStep ? (step === "step5" ? "get certificate" : "Start next step quiz") : "Next step"}
           <i className={`fas fa-chevron-right ${styles.right}`}></i>
           <i className={`fas fa-chevron-right ${styles.right}`}></i>
         </button>

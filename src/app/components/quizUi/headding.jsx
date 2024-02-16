@@ -6,7 +6,9 @@ const Headding = ({ timeString, allSelect, isVisible, scrollToTop, handleHeading
 
   const renderQuizBack = () => (
     <div className={Styles.headString}>
-      <button onClick={() => handleHeadingRoute("skillselect")}>Back</button>
+      <button onClick={() => handleHeadingRoute("skillselect")}>
+        <i className="fas fa-chevron-left"></i> <i className="fas fa-chevron-left"></i>Back
+      </button>
       <h3>total question 100</h3>
       <h3>
         your answer: <span>{allSelect}</span>
@@ -25,13 +27,13 @@ const Headding = ({ timeString, allSelect, isVisible, scrollToTop, handleHeading
 
       {/* Scroll to Top Button */}
       <button className={`${Styles.scrollToTopButton} ${isVisible ? Styles.visible : ""}`} onClick={scrollToTop}>
-        Scroll to Top
+        Scroll Top <i class="fas fa-arrow-up"></i>
       </button>
 
       {/* Reset Quiz Button, only shown when not on results page */}
 
       <button className={Styles.quiz} onClick={() => handleHeadingRoute("permission")}>
-        reset quiz
+        Reset quiz
       </button>
     </div>
   );

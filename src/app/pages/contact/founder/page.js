@@ -10,6 +10,7 @@ import styles from "@/app/styles/contact/main.module.css";
 import IconContainear from "./iconContainear";
 import Loading from "../../loading/page";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -28,8 +29,8 @@ const Contact = () => {
           <div className={styles.containear}>
             <HeadingContact custom={true} name="founder" />
             <div style={{ textAlign: "center" }}>
-              <h2 style={{ marginBottom: "5px", color: "white", textShadow: "0 1px 1px blue" }}>Johir_Abdullah</h2>
-              <h2 style={{ color: "blue", textShadow: "0 1px 1px white" }}>Founder</h2>
+              <h2 className={styles.name}>Johir_Abdullah</h2>
+              <h2 className={styles.rank}>Founder</h2>
             </div>
             <IconContainear />
             <AskQuestionPage />

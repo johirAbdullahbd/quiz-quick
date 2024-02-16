@@ -74,14 +74,15 @@ const GetCertificate = () => {
                   </button>
                 </div>
               </form>
+              <div className={styles.backBtn2}>
+                <button onClick={() => handleRoute("/")} className={styles.btn} type="submit">
+                  <span>&laquo; </span>back
+                </button>
+              </div>
             </div>
-            <div className={styles.backBtn2}>
-              <button onClick={() => handleRoute("/")} className={styles.btn} type="submit">
-                <span>&laquo; </span>back
-              </button>
-            </div>
+
             <div className={styles.customeNav}>
-              <Fotter />
+              <Fotter navigateTo={handleRoute} />
             </div>
           </div>
         </div>

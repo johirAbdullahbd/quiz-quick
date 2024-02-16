@@ -183,6 +183,11 @@ const SignupForm = () => {
                   </button>
                 </div>
               </form>
+              <div className={styles.backBtn}>
+                <button onClick={() => navigateTo("prog")} className={styles.btn}>
+                  <span>&laquo; </span>back
+                </button>
+              </div>
             </div>
             <div className={styles.text}>
               <h2 className={styles.headText}>OR</h2>
@@ -235,11 +240,7 @@ const SignupForm = () => {
                 </div>
               </form>
             </div>
-            <div className={styles.backBtn}>
-              <button onClick={() => navigateTo("prog")} className={styles.btn} type="submit">
-                <span>&laquo; </span>back
-              </button>
-            </div>
+
             <Fotter navigateTo={navigateTo} />
           </div>
         </div>

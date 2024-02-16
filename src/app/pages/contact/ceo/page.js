@@ -29,8 +29,8 @@ const Contact = () => {
           <div className={styles.containear}>
             <HeadingContact custom={true} name="ceo" />
             <div style={{ textAlign: "center" }}>
-              <h2 style={{ marginBottom: "5px", color: "white", textShadow: "0 1px 1px blue" }}>Emranul_Amin</h2>
-              <h2 style={{ color: "blue", textShadow: "0 1px 1px white" }}>CEO</h2>
+              <h2 className={styles.name}>Emranul_Amin</h2>
+              <h2 className={styles.rank}>CEO</h2>
             </div>
             <IconContainear />
             <AskQuestionPage />

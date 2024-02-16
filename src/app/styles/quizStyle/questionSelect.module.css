@@ -62,6 +62,7 @@
   cursor: not-allowed;
 }
 .scrollToTopButton {
+  font-size: 1.2rem;
   display: none;
   position: fixed;
   bottom: 20px;
@@ -74,6 +75,8 @@
   cursor: pointer;
 }
 .quiz {
+  font-size: 1.2rem;
+
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -150,9 +153,28 @@
 .btn button:hover {
   background-color: rgb(62, 64, 98);
 }
-@media (max-width: 500) {
-  .btn {
-    padding: 5px;
+@media (max-width: 750px) {
+  .btn,
+  .btn button,
+  .headString h3,
+  .headString button,
+  .timeString,
+  .scrollToTopButton,
+  .select,
+  .quiz {
+    font-size: 2rem;
+    padding: 8px;
+  }
+
+  .question {
+    /* background-color: red; */
+    font-size: 2rem;
+    margin-bottom: 5px;
+  }
+  .mcqContainer p,
+  .mcqContainer li {
+    font-size: 1.7rem;
+    letter-spacing: 1px;
   }
 }
 .headString {

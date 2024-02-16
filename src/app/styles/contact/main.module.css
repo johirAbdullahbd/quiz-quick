@@ -11,9 +11,24 @@
   background: linear-gradient(45deg, #101010, #6c6a6a, white);
   /* background-size: 20px 20px; Adjust the size of the grid squares */
 }
+.name {
+  margin-bottom: 5px;
+  color: white;
+  text-shadow: 0 1px 1px blue;
+  font-size: 2rem;
+}
+.rank {
+  margin-bottom: 5px;
+  color: rgb(7, 3, 22);
+  text-shadow: 0 1px 1px rgba(250, 250, 251, 0.099);
+  font-size: 2rem;
+}
 
 @media screen and (max-width: 768px) {
   .containear {
     padding: 5px;
+  }
+  .name {
+    font-size: 2.6rem;
   }
 }

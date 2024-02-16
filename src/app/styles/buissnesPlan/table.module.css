@@ -13,7 +13,7 @@
 }
 
 .table th {
-  font-size: 20px;
+  font-size: 24px;
   background-clip: text;
   color: transparent;
   background-image: linear-gradient(90deg, #05f0e89f, white);
@@ -22,7 +22,18 @@
 }
 .table th,
 .table td {
+  letter-spacing: 1px;
+  font-size: 18px;
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left; /* Align text to the left by default */
+}
+@media (max-width: 768px) {
+  .table th {
+    font-size: 1.8rem;
+  }
+  .table td {
+    font-size: 1.6rem;
+    letter-spacing: 0.8px;
+  }
 }

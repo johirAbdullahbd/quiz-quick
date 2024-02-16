@@ -32,3 +32,9 @@
   font-size: 1.5em;
   color: #a1a7eb;
 }
+.congratulationsContainer h2 {
+  font-size: 2rem;
+}
+.congratulationsContainer p {
+  font-size: 1.6rem;
+}

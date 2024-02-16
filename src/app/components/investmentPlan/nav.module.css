@@ -35,14 +35,6 @@
   cursor: pointer;
 }
 
-.toggleIcon {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background-color: #fff;
-  transition: transform 0.3s;
-}
-
 .open {
   transform: rotate(0deg);
 }
@@ -98,8 +90,12 @@
     width: 100%;
     margin: 0 auto;
   }
-
+  .toggleButton i {
+    font-size: 40px;
+  }
   .toggleButton {
+    width: 50px;
+    height: 50px;
     visibility: visible;
     position: absolute;
     top: 50%;
@@ -139,7 +135,7 @@
   .showMenu {
     display: flex;
     max-height: 200px;
-    z-index: 2;
+    z-index: 5;
     justify-content: center;
     align-items: center;
   }
@@ -150,6 +146,8 @@
   }
 
   .menuItems li {
+    background-color: black;
+    font-size: 2rem;
     margin: 5px 0;
     padding: 10px 0;
     text-align: center;

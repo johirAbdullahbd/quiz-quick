@@ -22,7 +22,7 @@ const Home = () => {
     setLoading(true);
     router.push(`pages/${path}`);
   };
-  
+
   const fotterNavigate = (path) => {
     setLoading(true);
     router.push(path);

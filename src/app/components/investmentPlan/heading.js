@@ -11,7 +11,7 @@ import ResponsiveTable from "./table";
 const AboutBody = () => {
   return (
     <div className={styles.mainContainear}>
-      <div className={styles.containear}>
+      <div className={styles.containear1}>
         <div className={styles.heading}>
           <h2>How do you want to get it?</h2>
           <div className={styles.hr}></div>

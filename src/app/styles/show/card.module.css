@@ -118,24 +118,7 @@
 }
 
 /* Responsive design */
-@media (max-width: 768px) {
-  .containear {
-    margin: 0;
-    border: none;
-  }
-  .cardContainer {
-    width: 90%;
-  }
 
-  .buttonGroup {
-    flex-direction: column;
-  }
-
-  .primaryButton,
-  .secondaryButton {
-    width: 100%;
-  }
-}
 .modal {
   position: fixed;
   top: 0;
@@ -190,4 +173,37 @@
 
 .confirmButton:hover {
   background-color: #f14b50; /* Darker green on hover */
+}
+@media (max-width: 750px) {
+  .containear {
+    margin: 0;
+    border: none;
+  }
+  .cardContainer {
+    width: 90%;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+  .resultInfo p {
+    font-size: 1.6rem;
+  }
+  .resultInfo h3 {
+    font-size: 2rem;
+  }
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    font-size: 2rem;
+  }
+  .pragraph {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  .cancelButton,
+  .confirmButton {
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+  }
 }

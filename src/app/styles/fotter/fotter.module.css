@@ -92,6 +92,10 @@
   }
 
   .link {
+    font-size: 2rem;
     margin-bottom: 0 0 5px 0;
+  }
+  .footer {
+    font-size: 1.7rem;
   }
 }
