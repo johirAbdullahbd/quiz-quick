@@ -2,13 +2,13 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import styles from "@/app/styles/buissnesPlan/Home.module.css";
-import Fotter from "../fotter";
 import Image from "next/image";
 import AskQuestionPage from "../about/askQuestions";
 import Navbar from "@/app/components/navbar/navBar";
-import AboutBody from "./body";
 import Loading from "@/app/pages/loading/page";
 import { useRouter } from "next/navigation";
+import Fotter from "@/app/components/fotter/index";
+import AboutBody from "./body";
 
 const Home = () => {
   const [loading, setLoading] = useState(false);

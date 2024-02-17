@@ -1,5 +1,5 @@
 // components/ContactContainer.js
-
+"use client";
 import React from "react";
 import styles from "@/app/styles/buissnesPlan/body.module.css";
 
