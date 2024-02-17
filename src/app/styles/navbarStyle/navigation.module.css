@@ -61,8 +61,8 @@
 }
 
 .menuItems li {
-  font-size: 1.7rem;
-  padding: 7px 15px;
+  font-size: 1.5rem;
+  padding: 5px 10px;
   cursor: pointer;
   border: 2px solid whitesmoke;
   border-radius: 5px;
