@@ -1,7 +1,6 @@
 // components/ContactContainer.js
 "use client";
 import React from "react";
-import Link from "next/link";
 import styles from "@/app/styles/contact/headingContact.module.css";
 
 import Image from "next/image";

@@ -39,7 +39,7 @@
 
 .socialMedia {
   display: flex;
-  gap: 10px;
+  gap: 30px;
 }
 
 .socialMedia i {
@@ -86,16 +86,21 @@
   }
 
   .links {
-    margin-top: 20px;
+    margin: 0;
     flex-direction: column;
     text-align: center;
+    gap: 5px;
   }
 
   .link {
-    font-size: 2rem;
-    margin-bottom: 0 0 5px 0;
+    font-size: 1rem;
+    margin: 2px;
+  }
+  .socialMedia {
+    margin-top: 15px;
   }
   .footer {
-    font-size: 1.7rem;
+    padding: 10px;
+    font-size: 1rem;
   }
 }

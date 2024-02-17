@@ -62,7 +62,7 @@
   font-size: 1.6rem;
   background-color: #007bff;
   color: #fff;
-  padding: 10px 20px;
+  padding: 5px 10px;
   cursor: pointer;
   border: 1px solid wheat;
   border-radius: 5px;
@@ -78,11 +78,14 @@
   .formContainer {
     max-width: 100%;
   }
+  .title {
+    font-size: 1.4rem;
+  }
   .formLabel,
   .formInput {
-    font-size: 1.7rem;
+    font-size: 1rem;
   }
   .submitButton {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 }

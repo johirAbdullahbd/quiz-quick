@@ -180,30 +180,29 @@
     border: none;
   }
   .cardContainer {
-    width: 90%;
+    padding: 10px;
+    /* margin: 0; */
+    width: 100%;
   }
 
-  .buttonGroup {
-    flex-direction: column;
-  }
   .resultInfo p {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
   .resultInfo h3 {
-    font-size: 2rem;
+    font-size: 1rem;
   }
   .primaryButton,
   .secondaryButton {
     width: 100%;
-    font-size: 2rem;
+    font-size: 1rem;
   }
   .pragraph {
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     letter-spacing: 1px;
   }
   .cancelButton,
   .confirmButton {
-    font-size: 2.4rem;
+    font-size: 1, 8rem;
     letter-spacing: 1px;
   }
 }

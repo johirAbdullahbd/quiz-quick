@@ -239,7 +239,6 @@ const SignupForm = () => {
                 </div>
               </form>
             </div>
-
             <Fotter navigateTo={navigateTo} />
           </div>
         </div>

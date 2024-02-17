@@ -224,11 +224,11 @@
   .heading1,
   .heading {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.2rem;
     text-shadow: 0 1px 1px black;
   }
   .heading1 h4 {
-    font-size: 2.4rem;
+    font-size: 1.2rem;
   }
   .bodyContainear {
     padding: 10px 0;
@@ -236,13 +236,13 @@
     align-items: center; /* Add this to center the items vertically */
   }
   .cardTitle {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
   .cardContent h3 {
-    font-size: 2.2rem;
+    font-size: 1.4rem;
   }
   .cardDescription {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
   .text,
   .text1,
@@ -251,7 +251,7 @@
     padding: 5px 5px;
     width: 100%; /* Adjust width for better responsiveness */
     margin-top: 10px; /* Add margin for spacing */
-    font-size: 1.5rem;
+    font-size: 0.7rem;
     text-shadow: 0 1px 1px white;
   }
   .tex1 {
@@ -265,8 +265,8 @@
     text-align: center;
   }
   .contactItem Img {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
   }
   .firstImg {
     max-height: 200px;

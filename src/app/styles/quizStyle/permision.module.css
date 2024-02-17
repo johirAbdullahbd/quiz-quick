@@ -29,7 +29,7 @@
 .card p {
   letter-spacing: 1px;
   margin: 5px;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 .startContainear {
@@ -80,7 +80,7 @@
 }
 @media (max-width: 750px) {
   .buttons button {
-    font-size: 2rem;
+    font-size: 1.2rem;
     border-radius: 10px;
   }
 

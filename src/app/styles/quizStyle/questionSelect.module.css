@@ -106,7 +106,7 @@
 
 .select {
   position: fixed;
-  top: 60px;
+  top: 50px;
   right: 20px;
   padding: 10px;
   background-color: rgb(53, 47, 66);
@@ -117,7 +117,7 @@
 }
 .timeString {
   position: fixed;
-  top: 60px;
+  top: 50px;
   left: 20px;
   padding: 10px;
   background-color: rgb(53, 47, 66);
@@ -162,25 +162,25 @@
   .scrollToTopButton,
   .select,
   .quiz {
-    font-size: 2rem;
-    padding: 8px;
+    font-size: 1.2rem;
+    padding: 5px;
   }
 
   .question {
     /* background-color: red; */
-    font-size: 2rem;
+    font-size: 1.2rem;
     margin-bottom: 5px;
   }
   .mcqContainer p,
   .mcqContainer li {
-    font-size: 1.7rem;
+    font-size: 1rem;
     letter-spacing: 1px;
   }
 }
 .headString {
   width: 100%;
   height: auto;
-  padding: 20px 50px;
+  padding: 20px 30px;
   display: flex;
   justify-content: space-around;
   align-items: center;

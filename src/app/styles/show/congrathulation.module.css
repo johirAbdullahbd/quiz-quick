@@ -1,6 +1,6 @@
 /* styles/Congratulations.module.css */
 .congratulationsContainer {
-  margin: 60px;
+  margin: 30px 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,4 +37,18 @@
 }
 .congratulationsContainer p {
   font-size: 1.6rem;
+}
+@media (max-width: 750px) {
+  .congratulationsHeader {
+    font-size: 1.6rem;
+  }
+  .congratulationsText {
+    font-size: 1rem;
+  }
+  .congratulationsContainer h2 {
+    font-size: 1.1rem;
+  }
+  .congratulationsContainer p {
+    font-size: 1rem;
+  }
 }
