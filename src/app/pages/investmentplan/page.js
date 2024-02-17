@@ -1,6 +1,10 @@
-import InvestMentPlan from "@/app/components/investmentplan/index";
+import InvestMentPlan from "@/app/components/investmentplan";
 
 const PlanViewsPage = () => {
-  return <InvestMentPlan />;
+  return (
+    <div>
+      <InvestMentPlan />;
+    </div>
+  );
 };
 export default PlanViewsPage;

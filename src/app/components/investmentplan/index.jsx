@@ -1,16 +1,16 @@
 // pages/index.js
 "use client";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import styles from "@/app/styles/buissnesPlan/Home.module.css";
-import Image from "next/image";
-import AskQuestionPage from "../about/askQuestions";
+import AskQuestionPage from "@/app/components/about/askQuestions";
 import Navbar from "@/app/components/navbar/navBar";
 import Loading from "@/app/pages/loading/page";
-import { useRouter } from "next/navigation";
 import Fotter from "@/app/components/fotter/index";
-import AboutBody from "./body";
+import AboutBody from "@/app/components/investmentplan/body";
 
-const Home = () => {
+const InvestMentPlan = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -92,4 +92,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default InvestMentPlan;

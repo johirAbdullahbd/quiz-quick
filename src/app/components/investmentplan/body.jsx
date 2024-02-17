@@ -141,30 +141,6 @@ const AboutBody = () => {
         </div>
       </div>
       <div className={styles.containear}>
-        <div className={styles.heading}>
-          <h2>About partners?</h2>
-          <div className={styles.hr}></div>
-        </div>
-        <div className={styles.bodyContainear}>
-          <div className={styles.text}>
-            <h2>
-              We want to find people in the world who want to benefit themselves by improving education and solving problems, and who prioritize deep
-              thinking.
-            </h2>
-          </div>
-
-          <div className={styles.imgDiv}>
-            <Image
-              className={styles.img}
-              src="https://ipfs.filebase.io/ipfs/Qmcxz5h9EjLUs3ArBopKKEGpzdxvbCRd2rvG1yXZSy7ong"
-              alt="img"
-              width={600}
-              height={400}
-            />
-          </div>
-        </div>
-      </div>
-      <div className={styles.containear}>
         <div className={styles.heading1}>
           <h2>Why should I become a shareholder, why should I join you without starting something new with my own money?</h2>
           <div className={styles.hr1}></div>
