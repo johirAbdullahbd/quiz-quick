@@ -50,7 +50,7 @@ const ResultCard = ({ stateData, step, firstStep, lastStep, othersPageHandleRout
     if (step !== "step5") {
       return <h3 style={{ color: "greenyellow" }}>Get Your Certificate Need To Wine Step 5</h3>;
     } else {
-      if (stateData.wrong > 2) {
+      if (stateData.wrong > 7) {
         return <h3 style={{ color: "lightblue" }}>Ready Your Certificate</h3>;
       } else {
         return <h3 style={{ color: "greenyellow" }}>Get Your Certificate Need To Wine Step 5</h3>;

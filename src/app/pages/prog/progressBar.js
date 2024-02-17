@@ -13,11 +13,11 @@ const ProgressBar = ({ lastWine, wrong }) => {
   };
   const getStyle = (step, index) => {
     const data = dataInstance.getData(step);
-    if (data.wrong > 2) {
+    if (data.wrong > 7) {
       return styles.completed;
     } else {
       if (index == lastWine) {
-        if (data.wrong > 2) {
+        if (data.wrong > 7) {
           return styles.completed;
         } else {
           return styles.active;

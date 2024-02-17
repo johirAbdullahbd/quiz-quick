@@ -57,7 +57,7 @@ const Show = () => {
     setLoading(true);
     if (typeof window !== "undefined") {
       const checkNetworkData = dataInstance.getOnTimeData(step);
-      if (Object.keys(checkNetworkData).length > 0) {
+      if (Object.keys(checkNetworkData).length > 200) {
         sendDataBeforePageForNetworkError(checkNetworkData);
       } else {
         if (step == "step5") {
