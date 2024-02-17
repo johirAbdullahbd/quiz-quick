@@ -19,8 +19,8 @@ const SerchBox = ({ isDropdownVisible, searchResults, handleSearch, handleSelect
     <div className={Styles.container}>
       {/* Text container for welcome message and instructions */}
       <div className={Styles.textContainer}>
-        <h2>welcome for subject or selected option</h2>
-        <p>you select or search box type your title, exam name and click this button. Click the button to start exam time.</p>
+        <h2>Welcome for subject or selecte option</h2>
+        <p>You select or search box type your title, exam name and click this button. Click the button to start exam time.</p>
       </div>
       {/* Container for the search box and associated elements */}
       <div className={Styles.serchContainer}>

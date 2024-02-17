@@ -6,6 +6,10 @@
   padding: 10px;
   display: flex;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   /* position: fixed; */
   /* z-index: 5; */
 }
@@ -51,8 +55,8 @@
 
 .menuItems {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding: 0 auto;
+  margin: 0 auto;
   width: 100%;
   display: flex;
   /* z-index: -2; */
@@ -61,7 +65,7 @@
 }
 
 .menuItems li {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   padding: 5px 10px;
   cursor: pointer;
   border: 2px solid whitesmoke;

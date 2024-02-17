@@ -22,7 +22,7 @@ const ConfirmationModal = ({ message, onConfirm, onCancel }) => {
 const ResultCard = ({ stateData, step, firstStep, lastStep, othersPageHandleRoute, routeHandle, againQuiz, prev, next }) => {
   const [showModal, setShowModal] = useState(false);
   const [route, setRoute] = useState("");
-
+  const correct = stateData.allSelect - stateData.wrong;
   const handleClearAndGoToHomePage = () => {
     setRoute("/");
     setShowModal(true);
@@ -64,17 +64,17 @@ const ResultCard = ({ stateData, step, firstStep, lastStep, othersPageHandleRout
       <div className={styles.resultInfo}>
         {certificateStr()}
         <p>Your score: {stateData.score} of 100</p>
-        <p>Your all questions selected: {stateData.allSelect} of 100</p>
-        <p>Non-selected questions:{stateData.wrong - stateData.allSelect} of 100</p>
+        <p>Your selected questions: {stateData.allSelect} of 100</p>
+        <p>Cerrect answer:{correct} of 100</p>
       </div>
 
       <div className={styles.buttonGroup}>
         <button className={styles.primaryButton} onClick={() => routeHandle("seepage")}>
-          see your exam
+          See your exam
         </button>
         {lastStep && (
           <button className={styles.secondaryButton} onClick={againQuiz}>
-            again
+            Again this step exam
           </button>
         )}
       </div>
