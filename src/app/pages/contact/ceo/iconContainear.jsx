@@ -3,15 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 const IconContainear = () => {
-  const phoneNumber = "01322646880";
-  const handleCallLog = () => {
-    // Open call log with the specified phone number
-    window.open(`tel:${phoneNumber}`, "_blank");
-  };
+  // const phoneNumber = "01322646880";
+  // const handleCallLog = () => {
+  //   // Open call log with the specified phone number
+  //   window.open(`tel:${phoneNumber}`, "_blank");
+  // };
   return (
     <div>
       <div className={styles.IconContainear}>
-        <div className={styles.contactItem} onClick={handleCallLog} role="button">
+        {/* <div className={styles.contactItem} onClick={handleCallLog} role="button">
           <Image
             className={styles.Img}
             src="https://ipfs.filebase.io/ipfs/QmPY9PdcevNfo6GAPTkXJSYj6h5rPztiDBHedgXAj7yqhd"
@@ -19,26 +19,25 @@ const IconContainear = () => {
             width={200}
             height={100}
           />
-        </div>
+        </div> */}
 
         <div className={styles.contactItem}>
-          <Link target="_blank" href="https://wa.me/01322646880" passHref>
+          <Link target="_blank" href="https://twitter.com/">
             <Image
               className={styles.Img}
-              src="https://ipfs.filebase.io/ipfs/QmegGRha5BBxdEtsRnsQEJCx7iCgwVjS5sun3nKcaaxonX"
-              alt="WhatsApp"
+              src="https://ipfs.filebase.io/ipfs/QmU82Shg72DR2BDsiCNNbf1CFPDsJZTQHZ2s1bZoirbMSr"
+              alt="twitter"
               width={100}
               height={100}
             />
           </Link>
         </div>
-
         <div className={styles.contactItem}>
-          <Link target="_blank" href="https://m.me/100088879760582" passHref>
+          <Link target="_blank" href="https://www.linkedin.com/">
             <Image
               className={styles.Img}
-              src="https://ipfs.filebase.io/ipfs/QmR7aYsJ52h6tZZfYZVnt1bg6CpsyeVM3wf7CTzCsk2hW8"
-              alt="msngr"
+              src="https://ipfs.filebase.io/ipfs/Qmcejf9W8Cu3KNxx1DWcY4nU5qndPZQJrX9p1gVssuy2zb"
+              alt="linkedin"
               width={100}
               height={100}
             />

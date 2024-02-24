@@ -37,9 +37,24 @@
   text-decoration: underline;
 }
 
+.IconContainear {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 .socialMedia {
   display: flex;
   gap: 30px;
+}
+
+.Img {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.Img:hover {
+  transform: translateY(-5px);
 }
 
 .socialMedia i {
@@ -96,7 +111,8 @@
     font-size: 1rem;
     margin: 2px;
   }
-  .socialMedia {
+  .IconContainear {
+    gap: 10px;
     margin-top: 15px;
   }
   .footer {

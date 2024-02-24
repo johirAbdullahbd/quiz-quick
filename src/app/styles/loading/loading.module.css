@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: gray;
+  background-color: rgb(4, 1, 13);
 }
 .loadingContainer {
   display: flex;
@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(45deg, #3a3b3b, #eee7e6);
+  background: linear-gradient(45deg, #1b1b1d, #eee7e6);
 }
 
 /* styles/loading.module.css */

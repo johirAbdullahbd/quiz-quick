@@ -72,7 +72,8 @@
   font-size: 20px;
   color: white;
   background-color: #020d21;
-  border: 2px solid rgb(8, 132, 177);
+  border: 2px solid rgb(79, 8, 221);
+  box-shadow: 4px 4px 6px rgb(79, 8, 221);
   border-radius: 5px;
 }
 .buttons button:hover {
