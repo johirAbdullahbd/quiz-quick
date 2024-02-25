@@ -57,6 +57,7 @@ const ResultCard = ({ stateData, step, firstStep, lastStep, othersPageHandleRout
       }
     }
   };
+  console.log("lastttep", lastStep);
 
   return (
     <div className={styles.cardContainer}>
@@ -93,11 +94,11 @@ const ResultCard = ({ stateData, step, firstStep, lastStep, othersPageHandleRout
           </button>
         )}
         <button
-          className={`${styles.secondaryButton} ${styles.navButton}  ${lastStep && stateData.wrong < 3 && styles.disabled} ${
+          className={`${styles.secondaryButton} ${styles.navButton}  ${lastStep && stateData.wrong < 8 && styles.disabled} ${
             lastStep && step === "step5" && styles.certificateBtn
           }`}
           onClick={next}
-          disabled={lastStep && stateData.wrong < 3}
+          disabled={lastStep && stateData.wrong < 8}
         >
           {lastStep ? (step === "step5" ? "get certificate" : "Start next step quiz") : "Next step"}
           <i className={`fas fa-chevron-right ${styles.right}`}></i>

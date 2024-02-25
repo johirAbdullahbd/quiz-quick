@@ -20,8 +20,11 @@ const ImgShow = ({ navigateTo }) => {
             which will have global exposure in the future. These projects allowed me to learn new things and I took every challenge to improve myself.
             I like to be busy with work and learning new things and I am ready to face any challenge in new situations anytime.
           </p>
-          <button className={styles.cardButton} onClick={() => navigateTo("/pages/contact/founder")}>
-            Learn More..
+
+          <button className={styles.cardButton}>
+            <a href="https://johoir-abdullah.vercel.app/" target="_blank">
+              Learn More..
+            </a>
           </button>
         </div>
       </div>

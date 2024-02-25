@@ -5,8 +5,8 @@ import dataInstance from "@/app/server/mark";
 
 const ProgressBar = ({ lastWine, wrong }) => {
   const steps = ["step1", "step2", "step3", "step4", "step5"];
-  console.log(dataInstance.getData());
-  console.log(dataInstance.getData(steps[lastWine]), steps[lastWine]);
+  // console.log(dataInstance.getData());
+  // console.log(dataInstance.getData(steps[lastWine]), steps[lastWine]);
   const getScore = (step) => {
     const data = dataInstance.getData(step);
     return data.score;

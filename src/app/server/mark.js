@@ -38,7 +38,6 @@ class Data {
     if (typeof window !== "undefined") {
       let step = sessionStorage.getItem("questions");
       let data = JSON.parse(sessionStorage.getItem(`${currentStep || step}Data`)) || this.getDefaultData();
-      console.log(data, step, "mark");
       return data;
     }
   }

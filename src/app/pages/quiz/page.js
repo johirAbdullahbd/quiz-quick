@@ -213,6 +213,13 @@ const App = () => {
       } catch (error) {
         if (error.message == "Network Error") {
           alert("Netword connection faild");
+          if (typeof window !== "undefined") {
+            const obj = JSON.parse(sessionStorage.getItem("obj"));
+            obj[step] = true;
+            sessionStorage.setItem("obj", JSON.stringify(obj));
+            sessionStorage.setItem("inisial", true);
+            dataInstance.setQuestions(state.allQuestions);
+          }
           router.push("prog");
         } else {
           if (error.message == "running time finish") {

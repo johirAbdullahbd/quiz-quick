@@ -57,7 +57,8 @@ const Show = () => {
     setLoading(true);
     if (typeof window !== "undefined") {
       const checkNetworkData = dataInstance.getOnTimeData(step);
-      if (Object.keys(checkNetworkData).length > 200) {
+      if (Object.keys(checkNetworkData).length > 0) {
+        console.log("callNet");
         sendDataBeforePageForNetworkError(checkNetworkData);
       } else {
         if (step == "step5") {
@@ -79,6 +80,7 @@ const Show = () => {
     }
   };
   const sendDataBeforePageForNetworkError = async (postData) => {
+    console.log("nwtFunctionCall", postData);
     try {
       // Assuming you have some data to send in the request body
 
@@ -109,6 +111,7 @@ const Show = () => {
     } catch (error) {
       if (error.message == "Network Error") {
         alert("Netword connection faild");
+        sendDataBeforePageForNetworkError(postData);
       } else {
         if (error.message == "running time finish") {
           alert("your visible time out , please agian to view");
@@ -125,9 +128,12 @@ const Show = () => {
     setFirstStep(false);
     setLastStep(false);
     if (window) {
+      console.log("window1");
       const inisialPage = sessionStorage.getItem("inisial");
       // for  page congrathulation or faild  after exam inisial page
       if (inisialPage) {
+      console.log("window2");
+
         setInisial(true);
         sessionStorage.removeItem("inisial");
       }
@@ -142,6 +148,8 @@ const Show = () => {
       let step = sessionStorage.getItem("questions");
       setStep(step);
       const data = dataInstance.getData(step);
+      console.log("window3",data);
+
       setStateData((prevData) => ({
         ...prevData,
         seconds: data.seconds,
@@ -152,6 +160,8 @@ const Show = () => {
       }));
       const obj = JSON.parse(sessionStorage.getItem("obj"));
       const arr = Object.keys(obj);
+      console.log("window4",obj);
+
       arr.map((key, i) => {
         if (step == key) {
           let index = arr.length - 1;

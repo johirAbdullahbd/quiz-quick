@@ -55,7 +55,7 @@ const Home = () => {
     },
     {
       title: "Additional Exam",
-      description: "Stack-learner, saifurse(banglades),retina(bangladesh),FM-methord(banglades),MIT-carere dipperment,Harverd-schienc-group,etc...",
+      description: "Stack-learner, saifurse(banglades),retina(bangladesh),Harverd-scienc-group,etc...",
       path: "empty",
     },
     {
