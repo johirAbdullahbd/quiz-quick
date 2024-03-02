@@ -116,23 +116,27 @@
   margin-bottom: 10px;
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(90deg, #4f0a3dcc, rgba(10, 10, 11, 0.937));
+  background-image: linear-gradient(90deg, white, #2b25dc9f);
+
+  text-shadow: 0 0.5px 0.5px rgb(4, 1, 17);
 }
-.text1 li {
-  list-style-type: circle;
-  font-size: 22px;
-  background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(90deg, black, #2b25dc9f);
-  animation: slideinText1 6s forwards;
-}
+.text1 li,
 .text li {
   list-style-type: circle;
   font-size: 22px;
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(90deg, white, #bbbbdd9f);
+  background-image: linear-gradient(90deg, rgb(1, 1, 17), #0303d09f);
+  letter-spacing: 1px;
+  text-shadow: 0 0.5px 0.5px white;
 }
+/* .text li {
+  list-style-type: circle;
+  font-size: 22px;
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(90deg, white, #bbbbdd9f);
+} */
 
 @keyframes slideinText1 {
   from {
@@ -166,14 +170,11 @@
     padding: 20px 0;
     width: 100%;
   }
-  .text1 li {
-    background-image: linear-gradient(90deg, rgba(1, 1, 15, 0.937), #0d09f5f1);
-    font-size: 1rem;
-  }
+  .text1 li,
   .text li {
-    background-image: linear-gradient(90deg, rgba(6, 6, 254, 0.937), #01010aeb);
     font-size: 1rem;
   }
+
   .imgDiv {
     padding: 20px 0;
     width: 100%;
